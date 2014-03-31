@@ -40,13 +40,6 @@ group :development, :test do
   gem 'thin'
 end
 
-# We need to list all the different database platforms for Travis
-group :test do
-  gem 'mysql2'
-  gem 'sqlite3'
-  gem 'rake'
-end
-
 group :development, :staging, :test do
   gem 'faker'
 end
@@ -61,6 +54,7 @@ group :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'launchy'
+  gem 'rake'   # needed by Travis
   gem 'rspec-html-matchers'
   gem 'shoulda-matchers'
   gem 'spork-rails', '>= 4.0.0'
@@ -71,8 +65,11 @@ group :test do
   gem 'rb-fsevent', :require => false
 end
 
+group :test, :staging, :production do
+  gem 'mysql2'  # needed in test for Travis
+end
+
 group :staging, :production do
-  gem 'mysql2'
   gem 'rack-ssl'
 end
 
