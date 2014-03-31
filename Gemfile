@@ -1,45 +1,75 @@
 source 'https://rubygems.org'
+source 'https://gems.biola.edu'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.4'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
+gem 'biola_deploy'
+gem 'blazing'
+gem 'bootstrap-sass'
+gem 'coffee-rails'
+gem 'compass-rails'
+gem 'declarative_authorization'
+gem 'font-awesome-rails'
+gem 'humanity', '>= 0.2.1'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'pinglish'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+# gem 'pretender'
+gem 'rack-cas', '>= 0.8.1'
+gem 'rails_config'
+gem 'sass-rails'
+gem 'slim-rails' # for slim generators instead of erb
+gem 'therubyracer'
+gem 'turnout'
+gem 'uglifier'
+gem 'version'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
-
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  # gem 'meta_request'  # needed for rails_panel chrome extension https://github.com/dejan/rails_panel
+  gem 'terminal-notifier-guard' # sends guard notifications to the OS X Notification Center.
+  # gem 'letter_opener'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'rspec-rails'
+  gem 'sqlite3'
+  gem 'thin'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development, :staging, :test do
+  gem 'faker'
+end
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
+group :development, :staging, :production do
+  gem 'newrelic_rpm'
+end
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'launchy'
+  gem 'rspec-html-matchers'
+  gem 'shoulda-matchers'
+  gem 'spork-rails', '>= 4.0.0'
+  gem 'timecop'
+
+  # For notifications
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+end
+
+group :staging, :production do
+  gem 'mysql2'
+  gem 'rack-ssl'
+end
+
+group :production do
+  gem 'exception_notification'
+end

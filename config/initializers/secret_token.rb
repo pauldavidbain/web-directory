@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Directory::Application.config.secret_key_base = '709badd0c701c65b2cb5e8e45ae6de3d4b013e33844d6f3e2be8efadfcd5078cc42a259e3a8964c528d65ad315c474e1f349466b6d025a2588008c73368101d2'
+Directory::Application.config.secret_key_base = Settings.secret_token

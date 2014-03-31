@@ -1,0 +1,27 @@
+app:
+  name: Directory
+  scheme: https
+  host: directory.biola.edu
+  relative_url_root: /
+
+
+# Override this in settings.local.yml
+secret_token: '454a795d8dd7f7a58ae0232c8a5a5b68f8cfc567f9975472cf2df4957d59a5911751f7c5e71b61b845750e2dd393aebb1b6b72252ff1948a8ef48477520dc380'
+
+urn_namespaces:
+- "urn:biola:apps:directory:"
+- "urn:biola:apps:all:"
+
+cas:
+  url: "https://login.biola.edu/cas"
+
+email:
+  enabled: true
+  from: no-reply@biola.edu
+  developer: appdev@biola.edu
+  smtp:
+    server: postfix.biola.edu
+
+exceptions:
+  mail_to:
+  - appdev@biola.edu
