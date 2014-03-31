@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://gems.biola.edu'
 
 gem 'rails', '4.0.4'
 
@@ -41,6 +40,14 @@ group :development, :test do
   gem 'thin'
 end
 
+# We need to list all the different database platforms for Travis
+group :test do
+  gem 'mysql2'
+  gem 'pg'
+  gem 'sqlite3'
+  gem 'rake'
+end
+
 group :development, :staging, :test do
   gem 'faker'
 end
@@ -58,7 +65,7 @@ group :test do
   gem 'rspec-html-matchers'
   gem 'shoulda-matchers'
   gem 'spork-rails', '>= 4.0.0'
-  gem 'timecop'
+  # gem 'timecop'
 
   # For notifications
   gem 'rb-inotify', :require => false
