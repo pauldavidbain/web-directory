@@ -43,7 +43,6 @@ end
 # We need to list all the different database platforms for Travis
 group :test do
   gem 'mysql2'
-  gem 'pg'
   gem 'sqlite3'
   gem 'rake'
 end
