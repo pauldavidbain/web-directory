@@ -9,6 +9,7 @@ gem 'coffee-rails'
 gem 'compass-rails'
 gem 'declarative_authorization'
 gem 'font-awesome-rails'
+gem 'httparty', '~> 0.13.0'
 gem 'humanity', '>= 0.2.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
@@ -23,6 +24,7 @@ gem 'therubyracer'
 gem 'turnout'
 gem 'uglifier'
 gem 'version'
+gem 'virtus', '~> 1.0.2'
 
 group :development do
   gem 'better_errors'
@@ -34,6 +36,7 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'fakeweb', '>= 1.3.0'   # TODO: this should be moved to just test once the api is deployed
   gem 'pry'
   gem 'rspec-rails'
   gem 'sqlite3'
