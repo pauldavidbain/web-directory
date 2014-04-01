@@ -4,7 +4,7 @@ class ApiClass
 
   # # ActiveModel
   # include ActiveModel::Validations
-  # extend  ActiveModel::Naming
+  extend  ActiveModel::Naming
   # include ActiveModel::Conversion
 
   # HTTParty for actually grabbing the data from the API

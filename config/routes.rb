@@ -1,5 +1,11 @@
 Directory::Application.routes.draw do
 
+  resources :people, only: [] do
+    member do
+      get :staff
+    end
+  end
+
   get '/search', to: 'searches#search'
   root to: 'searches#landing'
 
