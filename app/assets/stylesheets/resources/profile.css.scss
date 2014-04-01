@@ -1,0 +1,48 @@
+@import 'settings';
+
+body.profile {
+  .content {
+    .profile-header { padding: 30px 0; background: #424242; color: #eee;
+      .profile-header-image { text-align: center;
+        .profile-image { margin: 0; padding: 10px; background-color: #777; display: inline-block; }
+      }
+      .profile-header-details {
+        .profile-tags {
+          .tag { display: inline-block; margin: 0 5px 5px 0; background-color: $biola-red; padding: 3px 8px; font-size: 12px; border-radius: 2px; letter-spacing: .7px; font-weight: 500; }
+        }
+        .profile-title {
+          h2 { font-size: 35px; margin-top: 10px; }
+          h3 { font-size: 18px; margin: 10px 0; font-weight: 100; }
+        }
+      }
+    }
+
+    .profile-body { padding: 20px 0; background-color: #eee;
+      .content-col {
+        .card-title { border-bottom: none; border-top: none; color: #888; font-size: 12px; font-weight: bold; margin-top: 0; padding: 10px 5px; text-transform: uppercase;
+          &.icon { padding-left: 30px; }
+          &.icon-contact { background: image-url('contacts_gray.png') no-repeat 5px center; }
+        }
+        .card { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #E0E0E0; border-bottom-width: 2px; background-color: white; padding: 15px; width: 100%; margin-bottom: 15px;
+          table {
+            tr {
+              td { padding: 5px; vertical-align: top;
+                &:first-child { color: #999; text-align: right; padding-right: 10px; }
+              }
+            }
+          }
+        }
+
+        section { margin-bottom: 30px; }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .profile-header { padding: 20px 0;
+      .profile-header-image { float: right;
+        .profile-image { padding: 3px; }
+      }
+    }
+  }
+}

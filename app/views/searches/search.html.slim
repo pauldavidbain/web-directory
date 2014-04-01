@@ -1,0 +1,46 @@
+.search-term
+  .container
+    .row
+      .col-sm-4.col-lg-3.nav-col
+        .leading-text Your search
+
+      .col-sm-8.col-lg-9.nav-col
+        .term = params[:q] || 'Programmer'
+
+
+
+.search-body
+  .container
+    .row
+      .col-sm-4.col-lg-3.nav-col
+        ul.side-nav
+          li
+            a href='#'
+              .tag 2
+              | Department
+          li
+            a href='#'
+              .tag 82
+              | Staff
+          li
+            a href='#'
+              .tag 5
+              | Faculty
+
+      .col-sm-8.col-lg-9.nav-col
+        .media
+          / a.pull-left
+          /   .media-object.square-img
+          .media-body
+            h4.media-heading
+              a Information Technology
+            | Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu.
+
+        - @results.each do |result|
+          .media
+            a.pull-left href='#'
+              .media-object.square-img style="background-image: url('#{result.image_url}')"
+            .media-body
+              h4.media-heading
+                a href='#' = result.to_s
+              | Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.

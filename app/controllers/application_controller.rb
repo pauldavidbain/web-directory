@@ -6,13 +6,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  def home
-    text = "You are #{current_user || 'not logged in.'} <br/>"
-    text += view_context.link_to('Sign In', url_for(params.merge(login: true))) unless user_logged_in?
-    render text: text
-  end
-
-
   protected
 
   def set_current_user
