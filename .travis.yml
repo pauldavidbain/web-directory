@@ -6,8 +6,10 @@ rvm:
 env:
   - DB=sqlite
   - DB=mysql
-script: bundle exec rspec
+services:
+  - elasticsearch
 before_script:
   - cp config/database.yml.example config/database.yml
   - mysql -e 'create database directory_test'
   - bundle exec rake db:migrate RAILS_ENV=test
+script: bundle exec rspec
