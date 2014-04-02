@@ -3,9 +3,8 @@ class ApiClass
   include Virtus.model
 
   # # ActiveModel
-  # include ActiveModel::Validations
   extend  ActiveModel::Naming
-  # include ActiveModel::Conversion
+  include ActiveModel::Conversion
 
   # HTTParty for actually grabbing the data from the API
   include HTTParty
@@ -26,6 +25,11 @@ class ApiClass
   # Overwrite this in the subclass
   def self.api_path
     ''
+  end
+
+  # This gets used by ActiveModel::Conversion when calling to_param.
+  def persisted?
+    id.present?
   end
 
 private

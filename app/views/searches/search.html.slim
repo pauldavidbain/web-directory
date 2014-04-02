@@ -28,13 +28,7 @@
               | Faculty
 
       .col-sm-8.col-lg-9.nav-col
-        .media
-          / a.pull-left
-          /   .media-object.square-img
-          .media-body
-            h4.media-heading
-              a Information Technology
-            | Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu.
+        p #{@results_count} #{'result'.pluralize(@results_count)}
 
         - @results.each do |result|
           .media

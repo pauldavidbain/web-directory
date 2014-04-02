@@ -37,7 +37,7 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'fakeweb', '>= 1.3.0'   # TODO: this should be moved to just test once the api is deployed
+  gem 'webmock', '>= 1.17.4'   # TODO: this should be moved to just test once the api is deployed
   gem 'pry'
   gem 'rspec-rails'
   gem 'sqlite3'

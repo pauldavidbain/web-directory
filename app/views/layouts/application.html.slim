@@ -23,11 +23,12 @@ html lang="en-us"
             span.glyphicon.glyphicon-user>
             span.caret
 
-        - if @show_search
-          .search_form.pull-right
-            input type="search" class="form-control" placeholder="Search"
-            a.btn.btn-primary href='/search?q=Ryan'
+        - unless params[:action] == 'landing'
+          = form_tag '/search', class: 'search_form pull-right' do |f|
+            = text_field_tag 'q', nil, class: 'form-control', placeholder: 'Search'
+            = button_tag class: 'btn btn-primary' do
               span.glyphicon.glyphicon-search
+
 
         h1.branding
           a href='/'

@@ -1,6 +1,6 @@
 @import 'settings';
 
-body.profile {
+body.people { background-color: #eee;
   .content {
     .profile-header { padding: 30px 0; background: #424242; color: #eee;
       .profile-header-image { text-align: center;
@@ -17,7 +17,7 @@ body.profile {
       }
     }
 
-    .profile-body { padding: 20px 0; background-color: #eee;
+    .profile-body { padding: 20px 0;
       .content-col {
         .card-title { border-bottom: none; border-top: none; color: #888; font-size: 12px; font-weight: bold; margin-top: 0; padding: 10px 5px; text-transform: uppercase;
           &.icon { padding-left: 30px; }

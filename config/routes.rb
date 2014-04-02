@@ -6,7 +6,7 @@ Directory::Application.routes.draw do
     end
   end
 
-  get '/search', to: 'searches#search'
+  post '/search', to: 'searches#search'
   root to: 'searches#landing'
 
   # this is just a convenience to create a named route to rack-cas' logout
