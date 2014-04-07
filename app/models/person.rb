@@ -5,6 +5,8 @@ class Person < ApiClass
   attribute :last_name, String
   attribute :job_title, String
   attribute :image_url, String
+  attribute :email, String
+  attribute :phone, String
 
   def to_s
     name

@@ -38,4 +38,9 @@
             .media-body
               h4.media-heading
                 = link_to result.to_s, [:staff, result]
-              | Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
+              dl.dl-horizontal#info
+                dt Phone:
+                dd = result.phone
+                dt Email:
+                dd = result.email
+              / | Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
