@@ -12,7 +12,7 @@ types = {
 
 
 # Enable web requests to localhost so that we can talk to the elasticsearch server
-WebMock.disable_net_connect!(:allow_localhost => true)
+WebMock.disable_net_connect!(allow: ['login.biola.edu', 'localhost:9200'])
 
 
 # Stub out the API requests with Webmock
