@@ -11,7 +11,7 @@
           .tag = @person.roles.last.titleize
         .profile-title
           h2 = @person.name
-          h3 = @person.job_title
+          / h3 = @person.job_title
 
 
 
@@ -21,7 +21,7 @@
       .col-sm-4.col-lg-3.nav-col
         ul.side-nav
           li.active
-            a Staff Page
+            a Student Page
           li
             a href="/profile/#{@person.first_name.downcase}-personal" Personal Profile
       .col-sm-8.col-lg-9.content-col
@@ -33,12 +33,6 @@
               td
                 = @person.cell
             tr
-              td Office Phone
-              td
-                = @person.phone ? @person.phone : 'Unknown'
-                span.text-muted = ' ext '
-                = @person.ext ? @person.ext : 'Unknown'
-            tr
               td Email
               td
                 a href="mailto:#{@person.email}"
@@ -47,21 +41,17 @@
               td Birthday
               td = @person.birthday
 
-        .card-title Other Info
+        .card-title Websites
         .card
           table
             tr
-              td Department
+              td Facebook
               td
                 = @person.department
             tr
-              td Office Location
+              td Twitter
               td
                 = @person.office_location
-
-        .card-title Responsibilities
-        .card
-          p = @person.responsibilities
 
         .card-title Projects
         .card

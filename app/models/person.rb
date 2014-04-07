@@ -7,6 +7,16 @@ class Person < ApiClass
   attribute :image_url, String
   attribute :email, String
   attribute :phone, String
+  attribute :ext, String
+  attribute :birthday, String
+  attribute :cell, String
+  attribute :responsibilities, String
+  attribute :projects, String
+  attribute :roles, String
+  attribute :department, String
+  attribute :office_location, String
+  attribute :fax, String
+
 
   def to_s
     name
