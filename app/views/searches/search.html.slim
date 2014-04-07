@@ -30,7 +30,8 @@
       .col-sm-8.col-lg-9.nav-col
         p #{@results_count} #{'result'.pluralize(@results_count)}
 
-        - @results.each do |result|
+        - @results.each do |es_result|
+          - result = Person.new es_result["_source"]
           .media
             a.pull-left href='#'
               .media-object.square-img style="background-image: url('#{result.image_url}')"

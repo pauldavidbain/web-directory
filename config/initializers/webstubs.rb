@@ -32,7 +32,7 @@ types.each do |type, entities|
     e_index = entity.dup
 
     # strip unneeded attributes
-    [:image_url].each {|key| e_index.delete(key)}
+    # [:image_url].each {|key| e_index.delete(key)}
 
     # Index the remaining attributes
     client.index  index: 'directory', type: type.to_s, id: entity[:id], body: e_index
