@@ -20,8 +20,8 @@ body.searches {
     }
 
     .search-body { padding: 20px 0;
-      .square-img { width: 64px; height: 64px; background-position: center center; background-repeat: no-repeat; background-size: cover; border-radius: 3px; border: 1px solid #aaa; margin-bottom: 10px;
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiBmaWxsPSIjZWVlIj48L3JlY3Q+PHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgeD0iMzIiIHk9IjMyIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEycHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9zdmc+')
+      .square-img { width: 64px; height: 64px; background-position: center center; background-repeat: no-repeat; background-size: cover; background-color: #ddd; border-radius: 3px; border: 1px solid #aaa; margin-bottom: 10px; text-align: center;
+        i.fa { font-size: 40px; color: #fff; padding-top: 11px; text-shadow: 0px 0px 2px #aaa; }
       }
       .media { margin-top: 5px; border-top: 1px solid #eee; padding-top: 15px;
         &:first-child { margin-top: 0; padding-top: 0; border-top: none; }

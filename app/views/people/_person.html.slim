@@ -1,6 +1,10 @@
 .media
   a.pull-left href=url_for(result)
-    .media-object.square-img style="background-image: url('#{result.image_url}')"
+    - if result.image_url.present?
+      .media-object.square-img style="background-image: url('#{result.image_url}')"
+    - else
+      .media-object.square-img
+        = fa_icon 'user'
   .media-body
     .row
       .col-md-6
