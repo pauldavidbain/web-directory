@@ -1,10 +1,6 @@
 Directory::Application.routes.draw do
 
-  resources :people, only: [] do
-    member do
-      get :staff
-    end
-  end
+  resources :people, only: [:show]
 
   post '/search', to: 'searches#search'
   root to: 'searches#landing'
