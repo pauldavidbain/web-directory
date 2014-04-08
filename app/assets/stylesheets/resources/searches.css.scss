@@ -6,6 +6,9 @@ body.searches {
       .icon { font-size: 50px; padding-bottom: 10px; }
       .title { font-size: 24px;  font-family: 'Lusitana', serif; }
     }
+    #quick_contacts {
+      .contact { text-align: center; padding: 50px 10px; }
+    }
   }
 
 
@@ -20,6 +23,7 @@ body.searches {
     }
 
     .search-body { padding: 20px 0;
+      ul.side-nav { margin-bottom: 20px; }
       .square-img { width: 64px; height: 64px; background-position: center center; background-repeat: no-repeat; background-size: cover; background-color: #ddd; border-radius: 3px; border: 1px solid #aaa; margin-bottom: 10px; text-align: center;
         i.fa, span.glyphicon { font-size: 40px; color: #fff; padding-top: 11px; text-shadow: 0px 0px 2px #aaa; }
       }
@@ -34,6 +38,7 @@ body.searches {
           i.fa { color: #A3A3A3; padding-right: 5px; }
         }
       }
+      .action_text { font-weight: 200; line-height: 1.5em; font-size: 22px; }
     }
   }
 }

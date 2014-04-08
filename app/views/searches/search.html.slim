@@ -1,12 +1,16 @@
 .search-term
   .container
     .row
-      .col-sm-4.col-lg-3.nav-col
-        .leading-text Your search
+      - if params[:q].present?
+        .col-sm-4.col-lg-3.nav-col
+          .leading-text Your search
 
-      .col-sm-8.col-lg-9.nav-col
-        .term = params[:q] || 'Programmer'
+        .col-sm-8.col-lg-9.nav-col
+          .term = params[:q] || 'Programmer'
 
+      - else
+        .col-sm-4.col-lg-3.nav-col
+          .leading-text Browsing Categories
 
 
 .search-body
@@ -28,9 +32,13 @@
               | Faculty
 
       .col-sm-8.col-lg-9.nav-col
-        p #{@results_count} #{'result'.pluralize(@results_count)}
+        - if params[:q].present?
+          p #{@results_count} #{'result'.pluralize(@results_count)}
 
-        #search_results
-          - @results.each do |es_result|
-            - result = es_result['_type'].classify.constantize.new es_result["_source"]
-            = render result, result: result
+          #search_results
+            - @results.each do |es_result|
+              - result = es_result['_type'].classify.constantize.new es_result["_source"]
+              = render result, result: result
+
+        - else
+          p.action_text Choose a category to browse or search for a specific person or department in form above.

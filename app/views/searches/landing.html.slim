@@ -10,25 +10,20 @@
         .col-xs-3
           = button_tag class: 'btn btn-primary btn-lg' do
             span.glyphicon.glyphicon-search.hidden-md.visible-xs
-            span.text.hidden-xs Search
+            / 'Browse' gets replaced with 'Search' by javascript whenever you type something
+            span.text.hidden-xs Browse
 
 .container
-  h4 Or browse by...
-  #wordcloud style="height: 300px; position: relative;"
-  hr
-  .row
-    .col-md-offset-2.col-md-4
+  .row#quick_contacts
+    .contact.col-md-6
         h3 Emergency?
-        ' Call Campus Safety: 562-777-4000
+        ' Campus Safety: <strong>(562) 777-4000</strong>
         br
-        ' Or call 5111 from a campus phone
-        br
-        ' Sheriff or Fire Deptartment: 911
-    .col-md-offset-1.col-md-4
+        ' Or from on campus: <strong>5111</strong>
+    .contact.col-md-6
         h3 Contact Biola
         ' 13800 Biola Avenue
         br
-        ' La Mirada, California 90639-0001
+        ' La Mirada, California 90639
         br
-        ' Phone: 1-562-903-6000
-
+        strong = '(562) 903-6000'
