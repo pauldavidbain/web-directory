@@ -32,23 +32,5 @@
 
         #search_results
           - @results.each do |es_result|
-            - result = Person.new es_result["_source"]
-            .media
-              a.pull-left href=url_for([:staff, result])
-                .media-object.square-img style="background-image: url('#{result.image_url}')"
-              .media-body
-                .row
-                  .col-md-6
-                    h4.media-heading
-                      = link_to result.to_s, [:staff, result]
-                    h5.media-subheading = result.job_title
-                    p.about_me Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-
-                  .col-md-6
-                    p.contact_details
-                      - if result.phone.present?
-                        = fa_icon 'phone', text: result.phone
-                        br
-                      - if result.email.present?
-                        = fa_icon 'envelope-o', text: result.email
-                        br
+            - result = es_result['_type'].classify.constantize.new es_result["_source"]
+            = render result, result: result
