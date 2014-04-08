@@ -4,9 +4,13 @@ body.people { background-color: #eee;
   .content {
     .profile-header { padding: 30px 0; background: #424242; color: #eee;
       .profile-header-image { text-align: center;
-        .profile-image { margin: 0; padding: 10px; background-color: #777; display: inline-block; }
+        .profile-image {
+          margin: 0; padding: 10px; background-color: #777; display: inline-block;
+          #general_photo { font-size: 100px; }
+        }
       }
       .profile-header-details {
+        padding-right: 0px;
         .profile-tags {
           .tag { display: inline-block; margin: 0 5px 5px 0; background-color: $biola-red; padding: 3px 8px; font-size: 12px; border-radius: 2px; letter-spacing: .7px; font-weight: 500; }
         }

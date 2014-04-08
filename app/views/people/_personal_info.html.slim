@@ -1,0 +1,38 @@
+.content-col
+  .card-title Personal Info
+  .card
+    table
+      - if @person.cell.present?
+        tr
+          td Cell Phone
+          td
+            = @person.cell
+
+      - if @person.home_phone.present?
+        tr
+          td Home Phone
+          td
+            = @person.home_phone ? @person.home_phone : 'Unknown'
+
+      - if @person.email.present?
+        tr
+          td Email
+          td
+            a href="mailto:#{@person.email}"
+              = @person.email
+
+      - if @person.birthday.present?
+        tr
+          td Birthday
+          td = @person.birthday
+
+      - if @person.website.present?
+        tr
+          td Website
+          td = @person.website
+
+      - if @person.web_presence.present?
+        tr
+          td Web Presence
+          td
+            = @person.web_presence

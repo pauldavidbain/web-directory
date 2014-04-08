@@ -2,73 +2,78 @@
   .container
     .row
       .profile-header-image.col-sm-4.col-lg-3
-        .profile-image
-          img src=@person.image_url
+        - if @person.image_url.present?
+          .profile-image
+            img src=@person.image_url
+        - else
+          .profile-image
+            span.glyphicon.glyphicon-user#general_photo
 
       .profile-header-details.col-sm-8.col-lg-9
         .profile-tags
-          .tag = @person.roles.first.titleize
-          .tag = @person.roles.last.titleize
+          - @person.roles.each do |role|
+            .tag = role.titleize
         .profile-title
           h2 = @person.name
-          h3 = @person.job_title
+          - if @person.job_title.present?
+            h3 = @person.job_title
+          - if @person.major.present?
+            h3 = @person.major
 
 
 
 .profile-body
   .container
     .row
-      .col-sm-4.col-lg-3.nav-col
-        ul.side-nav
-          li.active
-            a Staff Page
-          li
-            a href="/profile/#{@person.first_name.downcase}-personal" Personal Profile
-      .col-sm-8.col-lg-9.content-col
-        .card-title.icon.icon-contact Contact Info
+      .col-sm-5.col-lg-4.nav-col
+        = render 'personal_info'
+      .col-sm-7.col-lg-8.content-col
+        .card-title Contact Info
         .card
           table
-            tr
-              td Cell Phone
-              td
-                = @person.cell
-            tr
-              td Office Phone
-              td
-                = @person.phone ? @person.phone : 'Unknown'
-                span.text-muted = ' ext '
-                = @person.ext ? @person.ext : 'Unknown'
-            tr
-              td Email
-              td
-                a href="mailto:#{@person.email}"
-                  = @person.email
-            tr
-              td Birthday
-              td = @person.birthday
+            - if @person.phone.present?
+              tr
+                td Office Phone
+                td
+                  = @person.phone ? @person.phone : 'Unknown'
+                  - if @person.ext
+                    span.text-muted = ' ext '
+                    = @person.ext ? @person.ext : 'Unknown'
+            - if @person.department.present?
+              tr
+                td Department
+                td
+                  = @person.department
+            - if @person.office_location.present?
+              tr
+                td Office Location
+                td
+                  = @person.office_location
 
-        .card-title Other Info
-        .card
-          table
-            tr
-              td Department
-              td
-                = @person.department
-            tr
-              td Office Location
-              td
-                = @person.office_location
+        - if @person.responsibilities.present?
+          .card-title Responsibilities
+          .card
+            p = @person.responsibilities
 
-        .card-title Responsibilities
-        .card
-          p = @person.responsibilities
+        - if @person.graduation_year.present?
+          .card-title Graduation
+          .card
+            table
+              tr
+                td Year
+                td
+                  = @person.graduation_year
+              - if @person.graduation_major.present?
+                tr
+                  td Major
+                  td
+                    = @person.graduation_major
+              - elsif @person.major.present?
+                tr
+                  td Major
+                  td
+                    = @person.major
 
-        .card-title Projects
-        .card
-          ul
-            li Biola Classifieds
-            li Open Biola
-            li Timecard
 
 
         .card-title Other Random Facts
