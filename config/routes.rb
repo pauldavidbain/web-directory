@@ -1,6 +1,7 @@
 Directory::Application.routes.draw do
 
   resources :people, only: [:show]
+  resources :departments, only: [:show]
 
   post '/search', to: 'searches#search'
   root to: 'searches#landing'

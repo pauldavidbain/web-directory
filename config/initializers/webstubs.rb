@@ -11,7 +11,9 @@ types = {
     {id: 8, roles: ['trustee'], first_name: 'Barry', last_name: 'Corry', job_title: 'President', image_url: 'http://apps.biola.edu/idphotos/5c7d9f02228781f1917f58b20bb37bf6.jpg', department: 'President CEO', office_location: 'Upper Metzger West', phone: '562-903-6000', birthday: '', ext: '4701', email: '', responsibilities: '', cell: ''}
   ],
   department: [
-    {id: 1, name: 'Information Technology', image_url: 'https://apps.biola.edu/idphotos/ef2092d948c316c13b9f7e62a937d6a6_medium.jpg', hours: 'M-F 8:00 am - 5:00 pm', department_location: 'Metzger Lower East'}
+    {id: 1, name: 'Information Technology', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Lower East'},
+    {id: 2, name: 'Human Resources', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Upper West'},
+    {id: 3, name: 'Business', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Business Building'}
   ]
 }
 
