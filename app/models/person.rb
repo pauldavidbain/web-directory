@@ -30,8 +30,4 @@ class Person < ApiClass
     'person'
   end
 
-  def self.initialize_from_ids(ids)
-    ids.map { |id| Person.find(id) }
-  end
-
 end

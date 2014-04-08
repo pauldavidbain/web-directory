@@ -22,6 +22,11 @@ class ApiClass
     end
   end
 
+  # Pass this method an array of IDs and it will hit the API and return an array of objects matching the ids.
+  def self.initialize_from_ids(ids)
+    ids.map { |id| self.find(id) }
+  end
+
   # Overwrite this in the subclass
   def self.api_path
     ''
