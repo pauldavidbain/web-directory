@@ -19,6 +19,10 @@
             h3 = @person.job_title
           - if @person.major.present?
             h3 = @person.major
+          - if @person.level.present?
+            h5
+              ' -
+              = @person.level
 
 
 
