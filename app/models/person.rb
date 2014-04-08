@@ -28,6 +28,7 @@ class Person < ApiClass
   attribute :office_hours, String
   attribute :home_phone, String
   attribute :graduation_year, String
+  attribute :graduation_major, String
 
 
 

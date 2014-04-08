@@ -1,0 +1,21 @@
+.card-title Contact Info
+.card
+  table
+    - if @person.phone.present?
+      tr
+        td Office Phone
+        td
+          = @person.phone ? @person.phone : 'Unknown'
+          - if @person.ext
+            span.text-muted = ' ext '
+            = @person.ext ? @person.ext : 'Unknown'
+    - if @person.department.present?
+      tr
+        td Department
+        td
+          = @person.department
+    - if @person.office_location.present?
+      tr
+        td Office Location
+        td
+          = @person.office_location

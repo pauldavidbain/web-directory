@@ -25,57 +25,20 @@
 .profile-body
   .container
     .row
-      .col-sm-5.col-lg-4.nav-col
+      .col-sm-5.col-lg-4.content-col
         = render 'personal_info'
       .col-sm-7.col-lg-8.content-col
-        .card-title Contact Info
-        .card
-          table
-            - if @person.phone.present?
-              tr
-                td Office Phone
-                td
-                  = @person.phone ? @person.phone : 'Unknown'
-                  - if @person.ext
-                    span.text-muted = ' ext '
-                    = @person.ext ? @person.ext : 'Unknown'
-            - if @person.department.present?
-              tr
-                td Department
-                td
-                  = @person.department
-            - if @person.office_location.present?
-              tr
-                td Office Location
-                td
-                  = @person.office_location
+        - if @person.roles.include?('employee') || @person.roles.include?('faculty') || @person.roles.include?('trustee')
+          = render 'contact_info'
 
         - if @person.responsibilities.present?
           .card-title Responsibilities
           .card
             p = @person.responsibilities
 
-        - if @person.graduation_year.present?
-          .card-title Graduation
-          .card
-            table
-              tr
-                td Year
-                td
-                  = @person.graduation_year
-              - if @person.graduation_major.present?
-                tr
-                  td Major
-                  td
-                    = @person.graduation_major
-              - elsif @person.major.present?
-                tr
-                  td Major
-                  td
-                    = @person.major
+        - if @person.roles.include?('alumni')
+          = render 'graduation_info'
 
-
-
-        .card-title Other Random Facts
-        .card
-          p Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
+        / .card-title Other Random Facts
+        / .card
+        /   p Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
