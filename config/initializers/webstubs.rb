@@ -38,6 +38,10 @@ types.each do |type, entities|
   entities.each do |entity|
     e_index = entity.dup
 
+    e_index[:facets] = []
+    e_index[:facets] += entity[:roles] || []
+    e_index[:facets] += ['department'] if type == :department
+
     # strip unneeded attributes
     # [:image_url].each {|key| e_index.delete(key)}
 

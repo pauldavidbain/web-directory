@@ -7,19 +7,21 @@ class SearchesController < ApplicationController
     # See /config/initializers/webstubs.rb
 
     client = Elasticsearch::Client.new log: true
-    es_results = client.search index: 'directory', body: {
-      query: {
-        match: {
-          _all: params[:q]
+    search_body = {facets: { tag: { terms: { field: "facets" }}}}
+    if params[:q].present?
+      search_body[:query] = {
+        multi_match: {
+          query: params[:q],
+          fields: ["*name^4", "job_title", "department", "location"]
         }
       }
-    }
+    end
 
-    # result_ids = es_results['hits']['hits'].map{|h| h['_source']['id']}
-    # @results = Person.initialize_from_ids(result_ids)
+    es_results = client.search index: 'directory', body: search_body
 
     @results_count = es_results['hits']['total']
     @results = es_results['hits']['hits']
+    @facets = es_results['facets']['tag']['terms']
   end
 
 end
