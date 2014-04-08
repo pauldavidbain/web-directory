@@ -1,1 +1,57 @@
-h1 = @department
+.profile-header
+  .container
+    .row
+      .profile-header-image.col-sm-4.col-lg-3
+        .profile-image
+          / img src=@department.image_url
+          = fa_icon 'building-o'
+
+      .profile-header-details.col-sm-8.col-lg-9
+        .profile-tags
+          / .tag = @department.roles.first.titleize
+          / .tag = @department.roles.last.titleize
+        .profile-title
+          h2 = @department.name
+          h3 Open Today until 5pm
+
+
+
+.profile-body
+  .container
+    .row
+      .col-md-5.nav-col.content-col
+        - @department.contacts.each_with_index do |contact, i|
+          .card-title
+            = i == 0 ? 'Primary Contact' : 'Contact'
+          .card
+            p.text-center
+              strong = contact['name']
+            hr
+            table
+              tr
+                td Reason
+                td = contact['reason']
+              tr
+                td Phone
+                td
+                  = contact['phone']
+              tr
+                td Email
+                td
+                  a href="mailto:#{contact['email']}"
+                    = contact['email']
+      .col-md-7.content-col
+        .card-title Department Details
+        .card
+          table
+            tr
+              td Hours
+              td = @department.hours
+            tr
+              td Location
+              td
+                = @department.location
+
+        .card-title Other Random Facts
+        .card
+          p Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.

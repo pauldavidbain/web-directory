@@ -13,11 +13,12 @@
         / h5.media-subheading = result.job_title
         / p.about_me Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 
-      .col-md-6
-        p.contact_details
-          - if result.phone.present?
-            = fa_icon 'phone', text: result.phone
-            br
-          - if result.email.present?
-            = fa_icon 'envelope-o', text: result.email
-            br
+      - if contact = result.contacts.try(:first)
+        .col-md-6
+          p.contact_details
+            - if contact['phone'].present?
+              = fa_icon 'phone', text: contact['phone']
+              br
+            - if contact['email'].present?
+              = fa_icon 'envelope-o', text: contact['email']
+              br

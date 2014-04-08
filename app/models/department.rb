@@ -8,6 +8,7 @@ class Department < ApiClass
   attribute :contact_person, String
   attribute :phone, String
   attribute :email, String
+  attribute :contacts, Array
 
 
 

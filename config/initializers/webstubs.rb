@@ -11,9 +11,9 @@ types = {
     {id: 8, roles: ['trustee'], first_name: 'Barry', last_name: 'Corry', job_title: 'President', image_url: 'http://apps.biola.edu/idphotos/5c7d9f02228781f1917f58b20bb37bf6.jpg', department: 'President CEO', office_location: 'Upper Metzger West', phone: '562-903-6000', birthday: '12/15/1987', ext: '4701', email: 'berry.corry@biola.edu', responsibilities: 'Presidential Dinners', cell: '568-743-1321'}
   ],
   department: [
-    {id: 1, name: 'Information Technology', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Lower East'},
-    {id: 2, name: 'Human Resources', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Upper West'},
-    {id: 3, name: 'Business', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Business Building'}
+    {id: 1, name: 'Information Technology', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Lower East', contacts: [{name: 'IT Helpdesk', reason: 'Computer help', phone: '123-123-4567', email: 'ithelpdesk@biola.edu'}, {name: 'Becca O\'Hanlon', reason: 'Administration Needs', phone: '123-123-4567', email: 'becca@biola.edu'}]},
+    {id: 2, name: 'Human Resources', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Metzger Upper West', contacts: [{name: 'Frodo Baggins', reason: 'Travel tips when visiting middle earth.', phone: '525-251-1424', email: 'frodo@biola.edu'}]},
+    {id: 3, name: 'Business', image_url: '', hours: 'M-F 8:00 am - 5:00 pm', location: 'Business Building', contacts: [{name: 'Gandalf', reason: 'For help talking to butterflies and riding eagles', phone: '929-141-4252', email: 'gandalf@biola.edu'}]}
   ]
 }
 

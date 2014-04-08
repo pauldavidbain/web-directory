@@ -1,12 +1,13 @@
 @import 'settings';
 
-body.people { background-color: #eee;
+body.people, body.departments { background-color: #eee;
   .content {
     .profile-header { padding: 30px 0; background: #424242; color: #eee;
       .profile-header-image { text-align: center;
         .profile-image {
           margin: 0; padding: 10px; background-color: #777; display: inline-block;
           #general_photo { font-size: 100px; }
+          i.fa { font-size: 50px; padding: 15px 20px; }
         }
       }
       .profile-header-details {
@@ -28,6 +29,7 @@ body.people { background-color: #eee;
           &.icon-contact { background: image-url('contacts_gray.png') no-repeat 5px center; }
         }
         .card { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #E0E0E0; border-bottom-width: 2px; background-color: white; padding: 15px; width: 100%; margin-bottom: 15px;
+          hr { margin: 10px 0; }
           table {
             tr {
               td { padding: 5px; vertical-align: top;
