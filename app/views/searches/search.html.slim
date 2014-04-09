@@ -19,13 +19,10 @@
       .col-sm-4.col-lg-3.nav-col
         ul.side-nav
           - @facets.each do |facet|
-            li
-              a href='#'
-                .tag = facet['count']
-                = facet['term'].titleize
+            li = facet_link facet
 
       .col-sm-8.col-lg-9.nav-col
-        - if params[:q].present?
+        - if params[:q].present? || params[:facets].present?
           p #{@results_count} #{'result'.pluralize(@results_count)}
 
           #search_results

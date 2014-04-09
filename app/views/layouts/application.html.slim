@@ -23,7 +23,7 @@ html lang="en-us"
             span.caret
 
         - unless params[:action] == 'landing'
-          = form_tag '/search', class: 'search_form pull-right' do |f|
+          = form_tag '/search', class: 'search_form pull-right', method: :get do |f|
             = text_field_tag 'q', nil, class: 'form-control', placeholder: 'Search'
             = button_tag class: 'btn btn-primary' do
               span.glyphicon.glyphicon-search
