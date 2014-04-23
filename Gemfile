@@ -6,7 +6,7 @@ gem 'api-auth', '~> 1.1.0'
 gem 'biola_deploy'
 gem 'blazing'
 gem 'bootstrap-sass'
-gem 'buweb-api-client'
+gem 'buweb_api_client'
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'declarative_authorization'
@@ -28,6 +28,7 @@ gem 'turnout'
 gem 'uglifier'
 gem 'version'
 gem 'virtus', '~> 1.0.2'
+
 
 group :development do
   gem 'better_errors'
