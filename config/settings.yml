@@ -27,3 +27,11 @@ email:
 exceptions:
   mail_to:
   - appdev@biola.edu
+
+biola_web_api:
+  scheme: http
+  host: localhost:3000
+  script_name:
+  version: v1
+  access_id: # set in settings.local.yml
+  secret_key: # set in settings.local.yml

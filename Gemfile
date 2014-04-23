@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 
+gem 'api-auth', '~> 1.1.0'
 gem 'biola_deploy'
 gem 'blazing'
 gem 'bootstrap-sass'
+gem 'buweb-api-client'
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'declarative_authorization'

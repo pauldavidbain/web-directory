@@ -4,3 +4,8 @@ security:
   cert_path:
   key_path:
   key_password:
+
+
+biola_web_api:
+  access_id: ''
+  secret_key: ''
