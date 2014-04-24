@@ -16,6 +16,7 @@ gem 'httparty', '~> 0.13.0'
 gem 'humanity', '>= 0.2.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'mongoid', github: 'mongoid/mongoid'
 gem 'pinglish'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 # gem 'pretender'
@@ -33,17 +34,15 @@ gem 'virtus', '~> 1.0.2'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  # gem 'meta_request'  # needed for rails_panel chrome extension https://github.com/dejan/rails_panel
   gem 'terminal-notifier-guard' # sends guard notifications to the OS X Notification Center.
-  # gem 'letter_opener'
 end
 
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'webmock', '>= 1.17.4'   # TODO: this should be moved to just test once the api is deployed
+  gem 'mongoid-rspec'
   gem 'pry'
   gem 'rspec-rails'
-  gem 'sqlite3'
   gem 'thin'
 end
 
@@ -56,24 +55,20 @@ group :development, :staging, :production do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'launchy'
-  gem 'rake'   # needed by Travis
-  gem 'rspec-html-matchers'
-  gem 'shoulda-matchers'
-  gem 'spork-rails', '>= 4.0.0'
-  # gem 'timecop'
+  # Feel free to add these back later as they are actually needed
+  # gem 'capybara'
+  # gem 'guard-rspec'
+  # gem 'guard-spork'
+  # gem 'launchy'
+  # gem 'rake'   # needed by Travis
+  # gem 'rspec-html-matchers'
+  # gem 'shoulda-matchers'
+  # gem 'spork-rails', '>= 4.0.0'
+  # # gem 'timecop'
 
   # For notifications
-  gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-end
-
-group :test, :staging, :production do
-  gem 'mysql2'  # needed in test for Travis
+  # gem 'rb-inotify', :require => false
+  # gem 'rb-fsevent', :require => false
 end
 
 group :staging, :production do

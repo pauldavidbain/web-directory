@@ -1,2 +1,3 @@
-require 'rack-cas/session_store/rails/active_record'
-Directory::Application.config.session_store :rack_cas_active_record_store
+# Still having problems with mongoid and rack-cas session store
+# require 'rack-cas/session_store/rails/mongoid'
+# Directory::Application.config.session_store :rack_cas_mongoid_store
