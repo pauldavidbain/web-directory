@@ -39,7 +39,6 @@ end
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'webmock', '>= 1.17.4'   # TODO: this should be moved to just test once the api is deployed
   gem 'mongoid-rspec'
   gem 'pry'
   gem 'rspec-rails'
@@ -55,6 +54,7 @@ group :development, :staging, :production do
 end
 
 group :test do
+  gem 'webmock', '>= 1.17.4'
   # Feel free to add these back later as they are actually needed
   # gem 'capybara'
   # gem 'guard-rspec'
