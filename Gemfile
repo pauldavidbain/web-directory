@@ -6,7 +6,7 @@ gem 'api-auth', '~> 1.1.0'
 gem 'biola_deploy'
 gem 'blazing'
 gem 'bootstrap-sass'
-gem 'buweb_api_client'
+gem 'buweb_api_client', github: 'biola/buweb-api-client' # uses latest commit for now
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'declarative_authorization'
