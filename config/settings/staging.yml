@@ -1,4 +1,4 @@
 biola_web_api:
   scheme: https
   host: api.staging.biola.edu
-  script_name: /web
+  script_name: web
