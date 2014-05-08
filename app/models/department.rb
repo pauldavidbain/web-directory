@@ -1,7 +1,7 @@
 class Department < ApiClass
   # Virtus attributes
   attribute :id, Integer
-  attribute :name, String
+  attribute :title, String
   attribute :image_url, String
   attribute :hours, String
   attribute :location, String
@@ -13,7 +13,7 @@ class Department < ApiClass
 
 
   def to_s
-    name
+    title
   end
 
   def self.api_path
