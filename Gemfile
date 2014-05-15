@@ -5,6 +5,7 @@ gem 'rails', '4.0.4'
 gem 'api-auth', '~> 1.1.0'
 gem 'biola_deploy'
 gem 'blazing'
+gem 'biola_style_guide', github: 'biola/biola-style-guide'
 gem 'bootstrap-sass'
 gem 'buweb_api_client', github: 'biola/buweb-api-client' # uses latest commit for now
 gem 'coffee-rails'

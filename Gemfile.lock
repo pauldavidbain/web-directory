@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/biola/biola-style-guide.git
+  revision: 843e25679126279f8d887959f8e4837227975df7
+  specs:
+    biola_style_guide (0.0.1)
+
+GIT
   remote: git://github.com/biola/buweb-api-client.git
   revision: 91c2214fa49c8b8eda49827f003e9304c613cb64
   specs:
@@ -290,6 +296,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biola_deploy
+  biola_style_guide!
   blazing
   bootstrap-sass
   buweb_api_client!
