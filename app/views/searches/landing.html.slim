@@ -2,16 +2,12 @@
   .container
     h1 Directory
     p Search for people, departments, or services.
-    br
-    .row
-      = form_tag '/search', method: :get do |f|
-        .col-xs-9
-          = text_field_tag 'q', nil, class: 'input-lg form-control', placeholder: 'Who or what would you like to find?'
-        .col-xs-3
-          = button_tag class: 'btn btn-primary btn-lg' do
-            span.glyphicon.glyphicon-search.hidden-md.visible-xs
-            / 'Browse' gets replaced with 'Search' by javascript whenever you type something
-            span.text.hidden-xs Browse
+
+#search_form
+  .container
+    = fa_icon 'search'
+    = form_tag '/search', method: :get do |f|
+      = text_field_tag 'q', nil, placeholder: 'Search...'
 
 .container
   .row#quick_contacts

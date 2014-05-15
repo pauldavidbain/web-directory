@@ -1,17 +1,8 @@
-.search-term
+#search_form
   .container
-    .row
-      - if params[:q].present?
-        .col-sm-4.col-lg-3.nav-col
-          .leading-text Directory
-
-        .col-sm-8.col-lg-9.nav-col
-          .term = params[:q] || 'Programmer'
-
-      - else
-        .col-sm-4.col-lg-3.nav-col
-          .leading-text Browsing Categories
-
+    = fa_icon 'search'
+    = form_tag '/search', method: :get do |f|
+      = text_field_tag 'q', params[:q], placeholder: 'Search...'
 
 .search-body
   .container
