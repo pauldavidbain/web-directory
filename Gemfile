@@ -7,7 +7,7 @@ gem 'biola_deploy'
 gem 'blazing'
 gem 'biola_style_guide', github: 'biola/biola-style-guide'
 gem 'bootstrap-sass'
-gem 'buweb_api_client', github: 'biola/buweb-api-client' # uses latest commit for now
+gem 'buweb_content_models', github: 'biola/buweb-content-models'
 gem 'coffee-rails'
 gem 'compass-rails'
 gem 'declarative_authorization'
