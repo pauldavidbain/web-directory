@@ -3,11 +3,7 @@
     h1 Directory
     p Search for people, departments, or services.
 
-#search_form
-  .container
-    = fa_icon 'search'
-    = form_tag '/search', method: :get do |f|
-      = text_field_tag 'q', nil, placeholder: 'Search...'
+= render 'shared/search_form'
 
 .container
   .row#quick_contacts

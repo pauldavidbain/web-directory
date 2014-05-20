@@ -1,8 +1,4 @@
-#search_form
-  .container
-    = fa_icon 'search'
-    = form_tag '/search', method: :get do |f|
-      = text_field_tag 'q', params[:q], placeholder: 'Search...'
+= render 'shared/search_form'
 
 .search-body
   .container
