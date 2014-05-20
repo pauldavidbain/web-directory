@@ -1,0 +1,7 @@
+.card-title Personal Assistant To
+.card
+  table
+    - if @person.assistant_to.present?
+      tr
+        td Name
+        td = link_to @person.assistant_to, @person.assistant_to.name
