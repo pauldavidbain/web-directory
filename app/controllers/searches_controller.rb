@@ -30,7 +30,7 @@ private
     if params[:q].present?
       es[:query][:filtered][:query][:multi_match] = {
         query: params[:q],
-        fields: ["title", "*name^4", "job_title", "department", "location"]
+        fields: ["title", "*name^4", "alliases", "job_title", "department", "location"]
       }
     else
       es[:query][:filtered][:query][:match_all] = {}

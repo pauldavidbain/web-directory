@@ -6,8 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/biola/buweb-content-models.git
-  revision: efec1bfac4b5ba56b3ba041b8178e27ba2ad6e74
-  branch: add_elasticsearch
+  revision: 9b59b64dff741f8ab0fab101aac94a3a66b71ea0
   specs:
     buweb_content_models (0.8.2)
       aasm
