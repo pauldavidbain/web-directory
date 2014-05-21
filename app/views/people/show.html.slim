@@ -16,10 +16,7 @@
           - @person.affiliations.each do |aff|
             .tag = aff.titleize
         .profile-title
-          h2
-            = @person.name
-            '
-            = link_to 'Edit', Settings.profile_publisher.url + '/my_profile', class: 'btn btn-xs btn-primary'
+          h2 = @person.name
           - if @person.given_title.present?
             h3 = @person.given_title
           - if @person.major.present?
@@ -28,6 +25,10 @@
             h5
               ' -
               = @person.level
+
+- if (@current_user.biola_id == @person.biola_id) || @person.actors.include?(@current_user)
+  .profile-editor
+    = link_to 'Edit Profile', Settings.profile_publisher.url + '/my_profile', class: 'btn btn-primary', id: 'edit-in-publisher'
 
 
 
