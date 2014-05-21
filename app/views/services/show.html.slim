@@ -1,0 +1,60 @@
+.profile-header
+  .container
+    .row
+      .profile-header-image.col-sm-4.col-lg-3
+        .profile-image
+          / img src=@service.image_url
+          = fa_icon 'building-o'
+
+      .profile-header-details.col-sm-8.col-lg-9
+        .profile-tags
+          / .tag = @service.roles.first.titleize
+          / .tag = @service.roles.last.titleize
+        .profile-title
+          h2 = @service.title
+          - if @service.department.present?
+            h3 = @service.department.title
+          h3 Open today until 5pm
+
+- if @service.actors.include? @current_user
+  .profile-editor
+    = link_to 'Edit Service', Settings.profile_publisher.url + '/services/' + @service.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
+
+.profile-body
+  .container
+    .row
+      .col-md-5.nav-col.content-col
+        .card-title
+          = 'Contact Info'
+        .card
+          table
+            tr
+              td Email
+              td = @service.email
+            tr
+              td Phone
+              td = @service.phone
+
+      .col-md-7.content-col
+        .card-title service Details
+        .card
+          table
+            tr
+              td Location
+              td
+                = @service.location
+
+        -if @service.about.present?
+          .card-title About
+          .card
+            = @service.about.html_safe
+
+        -if @service.social_media.present?
+          .card-title Social Media
+          .card
+            - @service.social_media.each do |account|
+              table
+                tr
+                  td = "#{account.type.to_s.humanize}:"
+                  td
+                    a href=account.url = account.account

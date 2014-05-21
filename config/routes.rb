@@ -2,6 +2,8 @@ Directory::Application.routes.draw do
 
   resources :people, only: [:show]
   resources :departments, only: [:show]
+  resources :services, only: [:show]
+  resources :groups, only: [:show]
 
   get '/search', to: 'searches#search'
   root to: 'searches#landing'

@@ -1,0 +1,46 @@
+.profile-header
+  .container
+    .row
+      .profile-header-image.col-sm-4.col-lg-3
+        .profile-image
+          / img src=@group.image_url
+          = fa_icon 'building-o'
+
+      .profile-header-details.col-sm-8.col-lg-9
+        .profile-tags
+          / .tag = @group.roles.first.titleize
+          / .tag = @group.roles.last.titleize
+        .profile-title
+          h2 = @group.title
+          h3 Open Today until 5pm
+
+- if @group.actors.include? @current_user
+  .profile-editor
+    = link_to 'Edit Group', Settings.profile_publisher.url + '/groups/' + @group.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
+
+
+.profile-body
+  .container
+    .row
+      .col-md-5.nav-col.content-col
+        .card-title
+          = 'Contact Info'
+        .card
+          table
+            tr
+              td Email
+              td = @group.email
+            tr
+              td Phone
+              td = @group.phone
+            - if @group.website.present?
+              tr
+                td Website
+                td = @group.website
+
+      .col-md-7.content-col
+        -if @group.about.present?
+          .card-title About
+          .card
+            = @group.about.html_safe
+
