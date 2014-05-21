@@ -1,0 +1,6 @@
+test:
+  sessions:
+    default:
+      database: web_directory_test
+      hosts:
+        - localhost:27017
