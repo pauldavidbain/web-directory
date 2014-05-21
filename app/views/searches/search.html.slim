@@ -14,7 +14,7 @@
 
           #search_results
             - @results.each do |es_result|
-              - result = es_result['_type'].classify.constantize.new es_result["_source"]
+              - result = result_object(es_result)
               = render result, result: result
 
         - else

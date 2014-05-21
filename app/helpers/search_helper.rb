@@ -16,6 +16,12 @@ module SearchHelper
     params.merge(facets: merged_facets)
   end
 
+  def result_object(result)
+    klass = result['_type'].classify.constantize
+    klass.new(result["_source"]) { |r| r.id = result["_id"] }
+  end
+
+
 private
 
   def facet_is_active?(facet)

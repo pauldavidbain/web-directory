@@ -26,7 +26,7 @@
               ' -
               = @person.level
 
-- if (@current_user.biola_id == @person.biola_id) || @person.actors.include?(@current_user)
+- if @current_user && ((@current_user.biola_id == @person.biola_id) || @person.actors.include?(@current_user))
   .profile-editor
     = link_to 'Edit Profile', Settings.profile_publisher.url + '/my_profile', class: 'btn btn-primary', id: 'edit-in-publisher'
 
@@ -37,7 +37,7 @@
     .row
       .col-sm-5.col-lg-4.content-col
         / = render 'personal_info'
-        - if @current_user.affiliations.include?('employee')
+        - if @current_user && @current_user.affiliations.include?('employee')
           = render 'assistants'
           = render 'assistant_to'
       .col-sm-7.col-lg-8.content-col

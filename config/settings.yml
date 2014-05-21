@@ -35,3 +35,10 @@ biola_web_api:
   version: v1
   access_id: # set in settings.local.yml
   secret_key: # set in settings.local.yml
+
+elasticsearch:
+  host:  # set in environment settings, leave nil for development
+  index_name: 'directory_dev'
+
+profile_publisher:
+  url:  # set this in environment settings.
