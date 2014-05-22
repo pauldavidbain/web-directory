@@ -1,14 +1,11 @@
 .card-title Contact Info
 .card
   table
-    - if @person.employee_phone.present?
+    - if @person.extension_conversion.present?
       tr
         td Office Phone
         td
-          = @person.employee_phone ? @person.employee_phone : 'Unknown'
-          / - if @person.ext
-          /   span.text-muted = ' ext '
-          /   = @person.ext ? @person.ext : 'Unknown'
+          = @person.extension_conversion ? @person.extension_conversion : 'Unknown'
     - if @person.department.present?
       tr
         td Department
