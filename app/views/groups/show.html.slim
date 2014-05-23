@@ -1,3 +1,5 @@
+= render 'shared/search_form'
+
 .profile-header
   .container
     .row
@@ -32,7 +34,7 @@
               td = @group.email
             tr
               td Phone
-              td = @group.phone
+              td = @group.full_biola_phone_number
             - if @group.website.present?
               tr
                 td Website

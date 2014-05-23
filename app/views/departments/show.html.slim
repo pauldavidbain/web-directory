@@ -1,3 +1,5 @@
+= render 'shared/search_form'
+
 .profile-header
   .container
     .row
@@ -34,7 +36,7 @@
               td = @department.email
             tr
               td Phone
-              td = @department.phone
+              td = @department.full_biola_phone_number
         .card-title
           = 'Department Contacts'
         - @department.department_contacts.each_with_index do |contact|

@@ -1,3 +1,5 @@
+= render 'shared/search_form'
+
 .profile-header
   .container
     .row
@@ -33,7 +35,7 @@
               td = @service.email
             tr
               td Phone
-              td = @service.phone
+              td = @service.full_biola_phone_number
 
       .col-md-7.content-col
         .card-title service Details
