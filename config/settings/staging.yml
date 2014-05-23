@@ -5,3 +5,7 @@ biola_web_api:
 
 profile_publisher:
   url: https://wcms.staging.biola.edu/profiles
+
+elasticsearch:
+  host: http://elastic1.staging.biola.edu
+  index_name: 'web_directory'
