@@ -16,9 +16,12 @@ module SearchHelper
     params.merge(facets: merged_facets)
   end
 
-  def result_object(result)
-    klass = result['_type'].classify.constantize
-    klass.new(result["_source"]) { |r| r.id = result["_id"] }
+  def result_object(es_result)
+    SearchResult.new(es_result['_type'], es_result['_id'], es_result['_source']['normalized_data'])
+  end
+
+  def result_url(search_result)
+    url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id
   end
 
 
