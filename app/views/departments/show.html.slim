@@ -1,3 +1,5 @@
+= render 'shared/search_form'
+
 .profile-header
   .container
     .row
@@ -11,8 +13,13 @@
           / .tag = @department.roles.first.titleize
           / .tag = @department.roles.last.titleize
         .profile-title
-          h2 = @department.name
+          h2 = @department.title
           h3 Open Today until 5pm
+
+- if @department.actors.include? @current_user
+  .profile-editor
+    = link_to 'Edit Department', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
+
 
 
 
@@ -20,17 +27,28 @@
   .container
     .row
       .col-md-5.nav-col.content-col
-        - @department.contacts.each_with_index do |contact, i|
-          .card-title
-            = i == 0 ? 'Primary Contact' : 'Contact'
+        .card-title
+          = 'Contact Info'
+        .card
+          table
+            tr
+              td Email
+              td = @department.email
+            tr
+              td Phone
+              td = @department.full_biola_phone_number
+        .card-title
+          = 'Department Contacts'
+        - @department.department_contacts.each_with_index do |contact|
           .card
             p.text-center
               strong = contact['name']
             hr
             table
               tr
-                td Reason
-                td = contact['reason']
+                td Purpose
+                td
+                  = contact['purpose']
               tr
                 td Phone
                 td
@@ -40,18 +58,26 @@
                 td
                   a href="mailto:#{contact['email']}"
                     = contact['email']
+
       .col-md-7.content-col
         .card-title Department Details
         .card
           table
             tr
-              td Hours
-              td = @department.hours
-            tr
               td Location
               td
                 = @department.location
 
-        .card-title Other Random Facts
+        .card-title About
         .card
-          p Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
+          = @department.about.html_safe
+
+        - if @department.social_media.present?
+          .card-title Social Media
+          .card
+            - @department.social_media.each do |account|
+              table
+                tr
+                  td = "#{account.type.to_s.humanize}:"
+                  td
+                    a href=account.url = account.account

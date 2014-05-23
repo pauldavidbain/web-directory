@@ -1,25 +1,25 @@
-#search_form
-  .container
-    = fa_icon 'search'
-    = form_tag '/search', method: :get do |f|
-      = text_field_tag 'q', params[:q], placeholder: 'Search...'
+= render 'shared/search_form'
 
 .search-body
   .container
     .row
       .col-sm-4.col-lg-3.nav-col
-        ul.side-nav
-          - @facets.each do |facet|
-            li = facet_link facet
+        - @facets.each do |term, result|
+          - if result['terms'].length > 0
+            p
+              strong = term.titleize
+            ul.side-nav
+              - result['terms'].each do |facet|
+                li = facet_link term, facet
 
       .col-sm-8.col-lg-9.nav-col
-        - if params[:q].present? || params[:facets].present?
-          p #{@results_count} #{'result'.pluralize(@results_count)}
+        - if params[:q].present? || @facet_is_active
+          p Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
 
           #search_results
             - @results.each do |es_result|
-              - result = es_result['_type'].classify.constantize.new es_result["_source"]
-              = render result, result: result
+              - result = result_object(es_result)
+              = render 'search_result', search_result: result
 
         - else
           p.action_text Choose a category to browse or search for a specific person or department in form above.

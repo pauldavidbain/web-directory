@@ -2,3 +2,6 @@ biola_web_api:
   scheme: https
   host: api.staging.biola.edu
   script_name: web
+
+profile_publisher:
+  url: https://wcms.staging.biola.edu/profiles

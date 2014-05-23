@@ -1,28 +1,41 @@
 module SearchHelper
 
-  def facet_link(facet)
-    link_to facet_url_params(facet), class: (facet_is_active?(facet) ? 'active' : '') do
+  def facet_link(group, facet)
+    link_to facet_url_params(group, facet), class: (facet_is_active?(group, facet) ? 'active' : '') do
       content_tag(:div, facet['count'], class: 'tag') +
       content_tag(:span, facet['term'].titleize)
     end
   end
 
-  def facet_url_params(facet)
-    merged_facets = if facet_is_active?(facet)
-      current_facets - [facet['term']]
+  def facet_url_params(group, facet)
+    merged_facets = if facet_is_active?(group, facet)
+      current_facets(group) - [facet['term']]
     else
-      current_facets | [facet['term']]
+      current_facets(group) | [facet['term']]
     end
-    params.merge(facets: merged_facets)
+    params.merge(group => merged_facets)
   end
+
+  def result_object(es_result)
+    SearchResult.new(es_result['_type'], es_result['_id'], es_result['_source']['normalized_data'])
+  end
+
+  def result_url(search_result)
+    url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id
+  end
+
 
 private
 
-  def facet_is_active?(facet)
-    current_facets.include? facet['term']
+  def facet_is_active?(group, facet)
+    current_facets(group).include? facet['term']
   end
 
-  def current_facets
-    params[:facets] || []
+  def current_facets(group)
+    params[group] || []
+  end
+
+  def param_facets
+    params[:facets] || {}
   end
 end

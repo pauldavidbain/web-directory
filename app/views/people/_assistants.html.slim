@@ -1,0 +1,8 @@
+.card-title Personal Assistants
+.card
+  table
+    - if @person.assistants.present?
+      - @person.assistants.each do |assistant|
+        tr
+          td Name
+          td = link_to assistant, assistant.name
