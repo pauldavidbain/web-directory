@@ -2,4 +2,4 @@
   .container
     = fa_icon 'search'
     = form_tag '/search', method: :get do |f|
-      = text_field_tag 'q', params[:q], placeholder: 'Search the directory...'
+      = text_field_tag 'q', params[:q], placeholder: 'Search the directory...', tabindex: '1'

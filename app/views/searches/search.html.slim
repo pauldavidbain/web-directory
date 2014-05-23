@@ -4,13 +4,17 @@
   .container
     .row
       .col-sm-4.col-lg-3.nav-col
-        ul.side-nav
-          - @facets.each do |facet|
-            li = facet_link facet
+        - @facets.each do |term, result|
+          - if result['terms'].length > 0
+            p
+              strong = term.titleize
+            ul.side-nav
+              - result['terms'].each do |facet|
+                li = facet_link term, facet
 
       .col-sm-8.col-lg-9.nav-col
-        - if params[:q].present? || params[:facets].present?
-          p #{@results_count} #{'result'.pluralize(@results_count)}
+        - if params[:q].present? || @facet_is_active
+          p Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
 
           #search_results
             - @results.each do |es_result|

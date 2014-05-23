@@ -12,8 +12,8 @@ class SearchResult
     when 'person' then 'user'
     when 'department' then 'building'
     when 'group' then 'users'
-    when 'service' then 'square'
-    else 'square'
+    when 'service' then 'support'
+    else 'square-o'
     end
   end
 end
