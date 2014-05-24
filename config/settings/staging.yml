@@ -7,5 +7,5 @@ profile_publisher:
   url: https://wcms.staging.biola.edu/profiles
 
 elasticsearch:
-  host: http://elastic1.staging.biola.edu
+  host: http://elastic1.staging.biola.edu:9200
   index_name: 'web_directory'
