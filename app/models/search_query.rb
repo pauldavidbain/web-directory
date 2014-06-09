@@ -15,7 +15,7 @@ class SearchQuery
 
     # pagination
     @page = [options[:page].to_i, 1].max
-    @per_page = (options[:limit] || options[:per_page] || 100).to_i
+    @per_page = (options[:limit] || options[:per_page] || 25).to_i
     @offset = options[:offset] || (page - 1) * per_page
   end
 
