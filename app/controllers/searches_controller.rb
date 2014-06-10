@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
   end
 
 
-private
+  private
 
   def facet_types
     ['_type', 'affiliations']
