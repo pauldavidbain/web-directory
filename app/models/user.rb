@@ -42,6 +42,26 @@ class User
     has_role?(:developer)
   end
 
+  def faculty?
+    has_role?(:faculty)
+  end
+
+  def student?
+    has_role?(:student)
+  end
+
+  def employee?
+    has_role?(:employee)
+  end
+
+  def alumnus?
+    has_role?(:alumnus)
+  end
+
+  def student_worker?
+    has_role?(:student_worker)
+  end
+
   def role_symbols
     roles ? roles.map(&:to_sym) : Array.new
   end
