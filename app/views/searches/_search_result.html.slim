@@ -11,7 +11,7 @@
         h4.media-heading
           = link_to search_result.data.title, result_url(search_result)
         h5.media-subheading = search_result.data.subtitle
-        p.about_me = search_result.data.description
+        p.about_me = search_result.data.description.html_safe
 
       .col-md-6
         p.contact_details

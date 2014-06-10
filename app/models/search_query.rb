@@ -38,7 +38,23 @@ private
       {
         multi_match: {
           query: term,
-          fields: ["title^4", "*name^4", "aliases^2", "subtitle", "department", "location", "email", "phone", "description"]
+          type: 'cross_fields',
+          operator: 'and',
+          analyzer: 'standard',
+          fields: [
+            "title^4",
+            "*_name",
+            "*_initial",
+            "preferred_name^4",
+            "aliases",
+            "subtitle^2",
+            "department",
+            "location",
+            "email",
+            "phone",
+            "description",
+            "custom_titles"
+          ]
         }
       }
     else
