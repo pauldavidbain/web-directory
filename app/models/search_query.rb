@@ -1,5 +1,5 @@
 class SearchQuery
-  attr_reader :term, :options, :search_params, :page, :per_page, :offset
+  attr_reader :term, :options, :search_params, :page, :per_page, :offset, :affiliations, :current_user
 
   def initialize(term, options={})
     if term.is_a?(Hash)
@@ -9,6 +9,8 @@ class SearchQuery
       term = term.to_s
     end
 
+    @current_user = options[:current_user]
+    @affiliations = @current_user.try(:affiliations) || []
     @term = term
     @options = options
     @search_params = options[:search_params] || {}
@@ -69,6 +71,51 @@ private
     { :and => _terms } if _terms.length > 0
   end
 
+  def can_access_filter
+    if affiliations.include?('employee') || affiliations.include?('faculty')
+      { :or => [
+        {:term => { :affiliations => "faculty" }},
+        {:term => { :affiliations => "employee" }},
+        {:term => { :affiliations => "trustee" }},
+        {:term => { :affiliations => "volunteer" }},
+        {:term => { :affiliations => "alumnus" }},
+        {:and => [
+          {:term => { :affiliations => "student" }},
+          {:term => { :privacy => false }}]
+        }]
+      }
+    elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
+      { :or => [
+        {:term => { :affiliations => "faculty" }},
+        {:term => { :affiliations => "employee" }},
+        {:term => { :affiliations => "volunteer" }},
+        {:term => { :affiliations => "alumnus" }}]
+      }
+    elsif affiliations.include?('student') || affiliations.include?('student worker')
+      { :or => [
+        {:term => { :affiliations => "employee" }},
+        {:term => { :affiliations => "faculty" }},
+        {:term => { :affiliations => "trustee" }},
+        {:term => { :affiliations => "volunteer" }},
+        {:and => [
+          {:term => { :affiliations => "student" }},
+          {:term => { :privacy => false }}]
+        }]
+      }
+    elsif affiliations.include?('alumnus')
+      { :or => [
+        {:term => { :affiliations => "faculty" }},
+        {:term => { :affiliations => "alumnus" }},
+        {:term => { :affiliations => "trustee" }},]
+      }
+    else
+      { :or => [
+        {:term => { :affiliations => "faculty" }},
+        {:term => { :affiliations => "trustee" }}]
+      }
+    end
+  end
+
   def facets
     _facets = {}
     (options[:facets] || []).each do |field|
@@ -82,7 +129,7 @@ private
       query: {
         filtered: {
           query: query,
-          filter: and_filters
+          filter: [and_filters, can_access_filter]
         }
       },
       facets: facets,

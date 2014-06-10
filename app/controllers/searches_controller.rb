@@ -7,8 +7,7 @@ class SearchesController < ApplicationController
     # See /config/initializers/webstubs.rb
 
     # results = Elasticsearch::Model.client.search index: Settings.elasticsearch.index_name, body: search_body
-
-    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params)
+    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params, current_user: current_user)
     results = search_query.execute
 
     @results_count = results['hits']['total']
