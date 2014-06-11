@@ -72,21 +72,21 @@ private
   end
 
   def can_access_filter
-    student   = [{term: { affiliations: "student"   }}, {term: { privacy: false }}]
-    faculty   =  {term: { affiliations: "faculty"   }}
-    employee  =  {term: { affiliations: "employee"  }}
-    trustee   =  {term: { affiliations: "trustee"   }}
-    volunteer =  {term: { affiliations: "volunteer" }}
-    alumnus   =  {term: { affiliations: "alumnus"   }}
+    student   = { term: { affiliations: "student"   }}
+    alumnus   = { term: { affiliations: "alumnus"   }}
+    faculty   = { term: { affiliations: "faculty"   }}
+    employee  = { term: { affiliations: "employee"  }}
+    trustee   = { term: { affiliations: "trustee"   }}
+    volunteer = { term: { affiliations: "volunteer" }}
 
     if affiliations.include?('employee') || affiliations.include?('faculty')
-      { :or => [ faculty, employee, trustee, volunteer, alumnus, {:and => student }]}
+      { :or => [ faculty, employee, trustee, volunteer, alumnus , student ]}
     elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
-      { :or => [ faculty, employee, volunteer, alumnus ]}
+      { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
     elsif affiliations.include?('student') || affiliations.include?('student worker')
-      { :or => [ employee, faculty, trustee, volunteer, {:and => student }]}
+      { :or => [ employee, faculty, trustee, volunteer, student ]}
     elsif affiliations.include?('alumnus')
-      { :or => [ faculty, alumnus, trustee ]}
+      { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
     elsif current_user.nil?
       { :or => [ faculty, trustee ]}
     else
