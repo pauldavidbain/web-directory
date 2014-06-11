@@ -72,47 +72,25 @@ private
   end
 
   def can_access_filter
+    student   = [{term: { affiliations: "student"   }}, {term: { privacy: false }}]
+    faculty   =  {term: { affiliations: "faculty"   }}
+    employee  =  {term: { affiliations: "employee"  }}
+    trustee   =  {term: { affiliations: "trustee"   }}
+    volunteer =  {term: { affiliations: "volunteer" }}
+    alumnus   =  {term: { affiliations: "alumnus"   }}
+
     if affiliations.include?('employee') || affiliations.include?('faculty')
-      { :or => [
-        {:term => { :affiliations => "faculty" }},
-        {:term => { :affiliations => "employee" }},
-        {:term => { :affiliations => "trustee" }},
-        {:term => { :affiliations => "volunteer" }},
-        {:term => { :affiliations => "alumnus" }},
-        {:and => [
-          {:term => { :affiliations => "student" }},
-          {:term => { :privacy => false }}]
-        }]
-      }
+      { :or => [ faculty, employee, trustee, volunteer, alumnus, {:and => student }]}
     elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
-      { :or => [
-        {:term => { :affiliations => "faculty" }},
-        {:term => { :affiliations => "employee" }},
-        {:term => { :affiliations => "volunteer" }},
-        {:term => { :affiliations => "alumnus" }}]
-      }
+      { :or => [ faculty, employee, volunteer, alumnus ]}
     elsif affiliations.include?('student') || affiliations.include?('student worker')
-      { :or => [
-        {:term => { :affiliations => "employee" }},
-        {:term => { :affiliations => "faculty" }},
-        {:term => { :affiliations => "trustee" }},
-        {:term => { :affiliations => "volunteer" }},
-        {:and => [
-          {:term => { :affiliations => "student" }},
-          {:term => { :privacy => false }}]
-        }]
-      }
+      { :or => [ employee, faculty, trustee, volunteer, {:and => student }]}
     elsif affiliations.include?('alumnus')
-      { :or => [
-        {:term => { :affiliations => "faculty" }},
-        {:term => { :affiliations => "alumnus" }},
-        {:term => { :affiliations => "trustee" }},]
-      }
+      { :or => [ faculty, alumnus, trustee ]}
+    elsif current_user.nil?
+      { :or => [ faculty, trustee ]}
     else
-      { :or => [
-        {:term => { :affiliations => "faculty" }},
-        {:term => { :affiliations => "trustee" }}]
-      }
+      { :or => [ faculty, trustee ]}
     end
   end
 
