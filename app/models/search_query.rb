@@ -84,7 +84,7 @@ private
     elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
       { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
     elsif affiliations.include?('student') || affiliations.include?('student worker')
-      { :or => [ employee, faculty, trustee, volunteer, student ]}
+      { :or => [ faculty, employee, trustee, volunteer, student ]}
     elsif affiliations.include?('alumnus')
       { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
     elsif current_user.nil?
