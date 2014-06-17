@@ -4,8 +4,9 @@ GIT
   specs:
     biola_style_guide (0.0.1)
 
-PATH
-  remote: /Users/ryanh17/Dropbox/projects/Gems/buweb-content-models
+GIT
+  remote: git://github.com/biola/buweb-content-models.git
+  revision: 49c1fbd56d9681b07e3b26e516c5827b875def52
   specs:
     buweb_content_models (0.9.0)
       aasm
@@ -19,7 +20,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (3.2.0)
+    aasm (3.2.1)
     actionmailer (4.0.4)
       actionpack (= 4.0.4)
       mail (~> 2.5.4)
