@@ -6,12 +6,12 @@
         td Year
         td
           = @person.graduation_year
-    - if @person.graduation_major.present?
+    - if @person.degree_received.present?
       tr
-        td Major
+        td Degree Recieved
         td
-          = @person.graduation_major
-    - elsif @person.major.present?
+          = @person.degree_received
+    - if @person.major.present?
       tr
         td Major
         td
