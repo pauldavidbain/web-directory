@@ -1,4 +1,7 @@
 class SearchesController < ApplicationController
+  # We don't need to authorize with pundit for these actions.
+  #  Anyone can see these pages and SearchQuery limits the results by user role.
+  #  These get skipped over verify_authorized in the application_controller.
 
   def landing
   end
