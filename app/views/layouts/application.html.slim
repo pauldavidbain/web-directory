@@ -9,7 +9,10 @@ html lang="en-us"
     = stylesheet_link_tag    "application", media: "all"
 
   body class="#{controller_name} #{action_name}"
-    = render 'style_guide/header', current_user: @current_user
+
+    / TODO: Fix style guide to use `current_user` instead of `@current_user`
+    - @current_user = current_user
+    = render 'style_guide/header', current_user: current_user
 
     .content
       = yield
