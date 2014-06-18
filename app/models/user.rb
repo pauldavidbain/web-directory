@@ -12,7 +12,6 @@ class User
   field :department, type: String
   field :affiliations, type: Array
   field :entitlements, type: Array
-  field :roles, type: Array
   alias_attribute :netid, :username
 
   # for logging in
@@ -30,20 +29,18 @@ class User
     name
   end
 
-  def has_role?(*role)
-    !(roles & role.flatten.map(&:to_s)).empty?
+  def has_role?(*roles)
+    (self.roles & roles).any?
   end
 
-  def admin?
-    has_role?(:admin)
+  def roles
+    (Array(affiliations) + relevant_entitlements).map(&:to_sym)
   end
 
-  def developer?
-    has_role?(:developer)
-  end
-
-  def role_symbols
-    roles ? roles.map(&:to_sym) : Array.new
+  [:admin, :developer, :faculty, :student, :employee, :alumnus, :student_worker, :trustee, :volunteer].each do |affl|
+    define_method "#{affl}?" do
+      has_role? affl
+    end
   end
 
   def update_login_info!
@@ -53,30 +50,14 @@ class User
     self.save
   end
 
-  def update_from_cas!(extra_attributes)
-    cas_attr = HashWithIndifferentAccess.new(extra_attributes)
-
-    self.entitlements = User.urns_to_roles(cas_attr[:eduPersonEntitlement], Settings.urn_namespaces)
-    self.affiliations = cas_attr[:eduPersonAffiliation]
-    self.username ||= cas_attr[:cn].try(:first)
-    self.biola_id ||= cas_attr[:employeeId].try(:first)
-    self.photo_url ||= cas_attr[:url].try(:first)
-    self.department ||= cas_attr[:department].try(:first)
-    self.title ||= cas_attr[:title].try(:first)
-    self.email ||= cas_attr[:mail].try(:first)
-    self.first_name ||= cas_attr[:eduPersonNickname].try(:first)
-    self.last_name ||= cas_attr[:sn].try(:first)
-
-    self.save && self.update_roles!
-  end
-
-  def self.allowed_roles
-    Authorization::Engine.instance.roles.map(&:to_s)
-  end
+  private
 
   # Find URNs that match the namespaces and remove the namespace
   # See http://en.wikipedia.org/wiki/Uniform_Resource_Name
-  def self.urns_to_roles(urns, nids)
+  def relevant_entitlements
+    urns = Array(entitlements)
+    nids = Settings.urn_namespaces
+
     return [] if urns.blank?
 
     clean_urns = urns.map { |e| e.gsub(/^urn:/i, '') }
@@ -89,9 +70,9 @@ class User
     }.flatten.compact
   end
 
-  def update_roles!
-    #TODO
-    self[:roles] = (affiliations + entitlements).uniq.compact
-    self.save
+  def self.role_to_entitlement(role)
+    Settings.urn_namespaces.map do |namespace|
+      "#{namespace}#{role}"
+    end
   end
 end
