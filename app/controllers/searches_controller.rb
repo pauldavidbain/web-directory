@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
   end
 
   def search
-    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params)
+    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params, current_user: current_user)
     results = search_query.execute
 
     @results_count = results['hits']['total']
