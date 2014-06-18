@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include WhatAUserCanSee
 
   field :trogdir_id, type: String
   field :username, type: String
