@@ -1,32 +1,36 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  before_filter :set_current_user, :check_authentication_param, :try_cas_gateway_login
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :check_authentication_param, :try_cas_gateway_login
   after_action :verify_authorized, except: [:landing, :search]
   after_action :verify_policy_scoped, only: :index
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :permission_denied!
+
+  helper_method :current_user
+  def current_user
+    authentication.user
+  end
+
+  def user_logged_in?
+    current_user.present?
+  end
 
 
   protected
 
-  def set_current_user
-    Authorization.current_user = current_user
-  end
-
   def check_authentication_param
     if params[:login] == 'true' && !user_logged_in?
-      authenticate_user!
+      authenticate!
       false
     end
   end
 
   def try_cas_gateway_login
-    unless user_logged_in? || session[:gateway_login_attempted] || params[:embedded] || Rails.env.test?
+    unless user_logged_in? || session[:gateway_login_attempted] || Rails.env.test?
       cas_server = RackCAS::Server.new(Settings.cas.url)
 
       session[:gateway_login_attempted] = true
@@ -34,34 +38,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_user!
-    render_error_page 401 unless user_logged_in?
+  def authenticate!
+    authentication.perform or render_error_page(401)
   end
 
-  def current_user
-    return @current_user unless @current_user.nil?
-
-    username = session[:username] || session['cas'].try(:[], 'user')
-    cas_attrs = session['cas'].try(:[], 'extra_attributes') || {}
-
-    return nil if username.nil?
-
-    @current_user = User.find_or_initialize_by(username: username).tap do |user|
-      if !session[:username] # first time returning from CAS
-        user.update_from_cas! cas_attrs unless Rails.env.test?
-        user.update_login_info!
-      end
-
-      if user.new_record?
-        user = nil
-      else
-        session[:username] = user.username
-      end
-    end
-  end
-
-  def user_logged_in?
-    current_user.present?
+  def authentication
+    @authentication ||= CasAuthentication.new(session)
   end
 
   def permission_denied!
@@ -71,10 +53,6 @@ class ApplicationController < ActionController::Base
 
   def render_error_page(status)
     render file: "#{Rails.root}/public/#{status}", formats: [:html], status: status, layout: false
-  end
-
-  def user_not_authorized
-    render_error_page(403)
   end
 
 end

@@ -14,7 +14,7 @@
 
       .col-md-6
         p.contact_details
-          - if search_result.data.phone.present? && (@current_user.employee? || @current_user.student_worker? || @current_user.faculty? || @current_user.trustee?)
+          - if search_result.data.phone.present? && current_user && (current_user.employee? || current_user.student_worker? || current_user.faculty? || current_user.trustee?)
             = fa_icon 'phone', text: search_result.data.phone
             br
           - if search_result.data.email.present?

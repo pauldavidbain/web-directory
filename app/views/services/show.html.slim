@@ -18,7 +18,7 @@
             h3 = @service.department.title
           h3 Open today until 5pm
 
-- if @service.actors.include? @current_user
+- if @service.actors.include? current_user
   .profile-editor
     = link_to 'Edit Service', Settings.profile_publisher.url + '/services/' + @service.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
 
