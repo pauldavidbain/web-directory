@@ -72,25 +72,30 @@ private
   end
 
   def can_access_filter
-    student   = { term: { affiliations: "student"   }}
-    alumnus   = { term: { affiliations: "alumnus"   }}
-    faculty   = { term: { affiliations: "faculty"   }}
-    employee  = { term: { affiliations: "employee"  }}
-    trustee   = { term: { affiliations: "trustee"   }}
-    volunteer = { term: { affiliations: "volunteer" }}
+    student    = { term: { affiliations: "student"   }}
+    alumnus    = { term: { affiliations: "alumnus"   }}
+    faculty    = { term: { affiliations: "faculty"   }}
+    employee   = { term: { affiliations: "employee"  }}
+    trustee    = { term: { affiliations: "trustee"   }}
+    volunteer  = { term: { affiliations: "volunteer" }}
+    non_person = { :or => [
+                    { term: { _type: "department" }},
+                    { term: { _type: "service" }},
+                    { term: { _type: "group" }}
+                  ]}
 
     if affiliations.include?('employee') || affiliations.include?('faculty')
-      { :or => [ faculty, employee, trustee, volunteer, alumnus , student ]}
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus , student ]}
     elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
-      { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
     elsif affiliations.include?('student') || affiliations.include?('student worker')
-      { :or => [ faculty, employee, trustee, volunteer, student ]}
+      { :or => [ non_person, faculty, employee, trustee, volunteer, student ]}
     elsif affiliations.include?('alumnus')
-      { :or => [ faculty, employee, trustee, volunteer, alumnus ]}
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
     elsif current_user.nil?
-      { :or => [ faculty, trustee ]}
+      { :or => [ non_person, faculty, trustee ]}
     else
-      { :or => [ faculty, trustee ]}
+      { :or => [ non_person, faculty, trustee ]}
     end
   end
 
