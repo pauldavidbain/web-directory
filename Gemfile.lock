@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/biola/buweb-content-models.git
-  revision: 999798e397fead21a674ab73b393a9b31473c268
+  revision: 8cd379aaff48fe84a98a9de529cb3193dd4db26b
   specs:
     buweb_content_models (0.9.0)
       aasm
