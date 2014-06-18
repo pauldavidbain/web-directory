@@ -43,16 +43,6 @@ class User
     end
   end
 
-  def affiliations_to_sym
-    affiliations.to_a.map(&:to_sym)
-  end
-
-  [:faculty, :student, :employee, :alumnus, :student_worker, :trustee].each do |affl|
-    define_method "#{affl}?" do
-      affiliations_to_sym.include? affl
-    end
-  end
-
   def update_login_info!
     self.last_login_at = current_login_at
     self.current_login_at = Time.now
