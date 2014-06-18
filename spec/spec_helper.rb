@@ -7,7 +7,6 @@ require 'factory_girl'
 
 
 Mongoid.load!("spec/config/mongoid.yml")
-BuwebContentModels.config.elasticsearch_index = 'directory_test'
 
 # BuwebContentModels.load_factories
 # FactoryGirl.find_definitions
