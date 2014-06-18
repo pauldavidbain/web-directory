@@ -9,11 +9,11 @@ describe SearchQuery do
   let(:person) { create(:person, person_atters) }
   let(:current_user) { create(:user) }
   let(:dont_index) { true }
-  let(:desired_result) { Elasticsearch::Model.client.search({index: Person.index_name, body: {query:{match_all: {}}} })['hits']['hits'] }
+  let(:desired_result) { Elasticsearch::Model.client.search({index: Settings.elasticsearch.index_name, body: {query:{match_all: {}}} })['hits']['hits'] }
 
   before(:each) do
     Person.delete_all
-    Elasticsearch::Model.client.indices.delete index: Person.index_name rescue nil
+    Elasticsearch::Model.client.indices.delete index: Settings.elasticsearch.index_name rescue nil
 
     person
     Person.__elasticsearch__.refresh_index!
