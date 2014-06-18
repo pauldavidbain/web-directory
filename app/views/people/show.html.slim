@@ -13,8 +13,8 @@
 
       .profile-header-details.col-sm-7.col-lg-8
         .profile-tags
-          - @person.affiliations.each do |aff|
-            .tag = aff.titleize
+          - @person.visible_affiliations.each do |aff|
+            .tag = aff.to_s.titleize
         .profile-title
           h2 = @person.name
           - if @person.given_title.present?
