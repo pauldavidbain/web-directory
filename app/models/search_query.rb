@@ -64,7 +64,7 @@ private
     end
   end
 
-  def and_filters
+  def facet_filter
     _terms = (options[:facets] || []).map do |type|
       { term: { type => search_params[type] }} if search_params[type]
     end.compact
@@ -107,12 +107,18 @@ private
     _facets
   end
 
+  def all_filters
+    {
+      :and => [facet_filter, can_access_filter].compact
+    }
+  end
+
   def body
     {
       query: {
         filtered: {
           query: query,
-          filter: [and_filters, can_access_filter]
+          filter: all_filters
         }
       },
       facets: facets,
