@@ -3,8 +3,15 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'factory_girl'
+
 
 Mongoid.load!("spec/config/mongoid.yml")
+
+# BuwebContentModels.load_factories
+# FactoryGirl.find_definitions
+
+WebMock.disable_net_connect!(allow: ['login.biola.edu', 'localhost:9200'])
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

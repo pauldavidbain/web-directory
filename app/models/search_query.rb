@@ -1,5 +1,5 @@
 class SearchQuery
-  attr_reader :term, :options, :search_params, :page, :per_page, :offset
+  attr_reader :term, :options, :search_params, :page, :per_page, :offset, :affiliations, :current_user
 
   def initialize(term, options={})
     if term.is_a?(Hash)
@@ -9,6 +9,8 @@ class SearchQuery
       term = term.to_s
     end
 
+    @current_user = options[:current_user]
+    @affiliations = @current_user.try(:affiliations) || []
     @term = term
     @options = options
     @search_params = options[:search_params] || {}
@@ -69,6 +71,34 @@ private
     { :and => _terms } if _terms.length > 0
   end
 
+  def can_access_filter
+    student    = { term: { affiliations: "student"   }}
+    alumnus    = { term: { affiliations: "alumnus"   }}
+    faculty    = { term: { affiliations: "faculty"   }}
+    employee   = { term: { affiliations: "employee"  }}
+    trustee    = { term: { affiliations: "trustee"   }}
+    volunteer  = { term: { affiliations: "volunteer" }}
+    non_person = { :or => [
+                    { term: { _type: "department" }},
+                    { term: { _type: "service" }},
+                    { term: { _type: "group" }}
+                  ]}
+
+    if affiliations.include?('employee') || affiliations.include?('faculty')
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus , student ]}
+    elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
+    elsif affiliations.include?('student') || affiliations.include?('student worker')
+      { :or => [ non_person, faculty, employee, trustee, volunteer, student ]}
+    elsif affiliations.include?('alumnus')
+      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
+    elsif current_user.nil?
+      { :or => [ non_person, faculty, trustee ]}
+    else
+      { :or => [ non_person, faculty, trustee ]}
+    end
+  end
+
   def facets
     _facets = {}
     (options[:facets] || []).each do |field|
@@ -82,7 +112,7 @@ private
       query: {
         filtered: {
           query: query,
-          filter: and_filters
+          filter: [and_filters, can_access_filter]
         }
       },
       facets: facets,
