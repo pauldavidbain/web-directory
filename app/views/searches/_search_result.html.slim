@@ -1,18 +1,14 @@
 .media.search_result
   .pull-left
-    - if search_result.linkable?
-      a href=result_url(search_result)
-        - if search_result.data.image_url.present?
-          .media-object.square-img style="background-image: url('#{search_result.data.image_url}')"
-        - else
-          .media-object.square-img
-            = fa_icon search_result.icon
-    -else
+    - profile_image = capture do
       - if search_result.data.image_url.present?
         .media-object.square-img style="background-image: url('#{search_result.data.image_url}')"
       - else
         .media-object.square-img
           = fa_icon search_result.icon
+
+    = link_to_if search_result.linkable?, profile_image, result_url(search_result)
+
   .media-body
     .row
       .col-md-6
