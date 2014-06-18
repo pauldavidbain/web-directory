@@ -16,7 +16,7 @@
           h2 = @department.title
           h3 Open Today until 5pm
 
-- if @department.actors.include? @current_user
+- if @department.actors.include? current_user
   .profile-editor
     = link_to 'Edit Department', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
 

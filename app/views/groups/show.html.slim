@@ -16,7 +16,7 @@
           h2 = @group.title
           h3 Open Today until 5pm
 
-- if @group.actors.include? @current_user
+- if @group.actors.include? current_user
   .profile-editor
     = link_to 'Edit Group', Settings.profile_publisher.url + '/groups/' + @group.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
 
