@@ -7,10 +7,6 @@ class SearchesController < ApplicationController
   end
 
   def search
-    # See /config/initializers/webstubs.rb
-
-    # results = Elasticsearch::Model.client.search index: Settings.elasticsearch.index_name, body: search_body
-
     search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params)
     results = search_query.execute
 
