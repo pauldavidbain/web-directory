@@ -65,9 +65,12 @@ private
   end
 
   def facet_filter
-    _terms = (options[:facets] || []).map do |type|
-      { term: { type => search_params[type] }} if search_params[type]
-    end.compact
+    _terms = []
+    options[:facets].to_a.each do |type|
+      search_params[type].to_a.each do |val|
+        _terms << { term: { type => val }} if search_params[type]
+      end
+    end
     { :and => _terms } if _terms.length > 0
   end
 
