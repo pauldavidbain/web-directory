@@ -68,9 +68,10 @@
               td
                 = @department.location
 
-        .card-title Description
-        .card
-          = @department.description.html_safe
+        - if @department.description.present?
+          .card-title Description
+          .card
+            = @department.description.html_safe
 
         - if @department.social_media.present?
           .card-title Social Media
