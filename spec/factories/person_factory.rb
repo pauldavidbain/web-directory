@@ -10,7 +10,6 @@ FactoryGirl.define do
     birth_date { 20.years.ago }
     affiliations { [[:student, :employee, :alumnus, :trustee].sample] }
     biola_email "jane.doe@fakebiola.edu"
-    biola_personal_email "jdoe@gmail.com"
     personal_email { "#{first_name}.#{last_name}@example.com" }
     previous_last_name { [Faker::Name.last_name] }
     personal_phone { Faker::PhoneNumber.cell_phone }
@@ -26,13 +25,12 @@ FactoryGirl.define do
     trait :employee do
       affiliations [:employee]
       department { Faker::Commerce.department }
-      given_title { Faker::Name.title }
-      # employee_type { ["Faculty", "Staff", "Student Worker"].sample }
-      employee_phone { Faker::PhoneNumber.extension }
       biola_title { Faker::Name.title }
-      custom_titles { [Faker::Name.title, Faker::Name.title] }
+      employee_phone { Faker::PhoneNumber.extension }
+      friendly_biola_title { Faker::Name.title }
+      additional_titles { [Faker::Name.title, Faker::Name.title] }
       office_location { Faker::Address.street_name }
-      job_functions { [Faker::Company.catch_phrase] }
+      job_description { Faker::Company.catch_phrase }
     end
 
     trait :student do

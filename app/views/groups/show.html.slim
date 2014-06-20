@@ -41,8 +41,8 @@
                 td = @group.website
 
       .col-md-7.content-col
-        -if @group.about.present?
-          .card-title About
+        -if @group.description.present?
+          .card-title Description
           .card
-            = @group.about.html_safe
+            = @group.description.html_safe
 
