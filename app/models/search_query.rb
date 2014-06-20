@@ -55,7 +55,7 @@ private
             "email",
             "phone",
             "description",
-            "custom_titles"
+            "titles"
           ]
         }
       }

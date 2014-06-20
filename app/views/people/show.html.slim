@@ -17,8 +17,9 @@
             .tag = aff.to_s.titleize
         .profile-title
           h2 = @person.name
-          - if @person.given_title.present?
-            h3 = @person.given_title
+          - if @person.titles.present?
+            - @person.titles.each do |title|
+              h3 = title
           - if @person.major.present?
             h3 = @person.major
           - if @person.level.present?
@@ -44,10 +45,10 @@
         - if @person.employee? || @person.faculty? || @person.trustee?
           = render 'contact_info'
 
-        - if @person.job_functions.present?
+        - if @person.job_description.present?
           .card-title Responsibilities
           .card
-            p = @person.job_functions_string
+            p = @person.job_description
 
         - if @person.alumnus?
           = render 'graduation_info'

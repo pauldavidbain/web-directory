@@ -46,10 +46,10 @@
               td
                 = @service.location
 
-        -if @service.about.present?
-          .card-title About
+        -if @service.description.present?
+          .card-title Description
           .card
-            = @service.about.html_safe
+            = @service.description.html_safe
 
         -if @service.social_media.present?
           .card-title Social Media
