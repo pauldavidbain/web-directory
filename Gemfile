@@ -44,7 +44,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'mongoid-rspec'
   gem 'pry'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'thin'
 end
 
