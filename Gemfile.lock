@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/biola/buweb-content-models.git
-  revision: 999798e397fead21a674ab73b393a9b31473c268
+  revision: b4f0a2e7f559964f049deaa36094e373528026c4
   specs:
     buweb_content_models (0.9.0)
       aasm
@@ -110,7 +110,7 @@ GEM
       elasticsearch-transport (= 1.0.2)
     elasticsearch-api (1.0.2)
       multi_json
-    elasticsearch-model (0.1.3)
+    elasticsearch-model (0.1.4)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
