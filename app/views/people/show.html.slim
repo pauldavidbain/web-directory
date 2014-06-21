@@ -39,8 +39,8 @@
       .col-sm-5.col-lg-4.content-col
         / = render 'personal_info'
         - if current_user && current_user.employee?
-          = render 'assistants'
-          = render 'assistant_to'
+          = render 'assistants' if @person.assistants.present?
+          = render 'assistant_to' if @person.assistant_to
       .col-sm-7.col-lg-8.content-col
         - if @person.employee? || @person.faculty? || @person.trustee?
           = render 'contact_info'
