@@ -5,18 +5,15 @@
     .row
       .profile-header-image.col-sm-4.col-lg-3
         .profile-image
-          / img src=@service.image_url
           = fa_icon 'building-o'
 
       .profile-header-details.col-sm-8.col-lg-9
         .profile-tags
-          / .tag = @service.roles.first.titleize
-          / .tag = @service.roles.last.titleize
         .profile-title
           h2 = @service.title
           - if @service.department.present?
-            h3 = @service.department.title
-          h3 Open today until 5pm
+            h3 = "from "+@service.department.title
+          / h3 Hours go here
 
 - if @service.actors.include? current_user
   .profile-editor
@@ -26,25 +23,29 @@
   .container
     .row
       .col-md-5.nav-col.content-col
-        .card-title
-          = 'Contact Info'
-        .card
-          table
-            tr
-              td Email
-              td = @service.email
-            tr
-              td Phone
-              td = @service.full_biola_phone_number
+        - if @service.email.present? || @service.full_biola_phone_number.present?
+          .card-title
+            = 'Contact Info'
+          .card
+            table
+              - if @service.email.present?
+                tr
+                  td Email
+                  td = mail_to @service.email
+              - if @service.full_biola_phone_number.present?
+                tr
+                  td Phone
+                  td = @service.full_biola_phone_number
 
       .col-md-7.content-col
-        .card-title service Details
-        .card
-          table
-            tr
-              td Location
-              td
-                = @service.location
+        - if @service.location.present?
+          .card-title service Details
+          .card
+            table
+              tr
+                td Location
+                td
+                  = @service.location
 
         -if @service.description.present?
           .card-title Description
@@ -58,5 +59,4 @@
               table
                 tr
                   td = "#{account.type.to_s.humanize}:"
-                  td
-                    a href=account.url = account.account
+                  td = link_to account.account, account.url

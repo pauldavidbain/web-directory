@@ -5,44 +5,49 @@
     .row
       .profile-header-image.col-sm-4.col-lg-3
         .profile-image
-          / img src=@group.image_url
           = fa_icon 'building-o'
 
       .profile-header-details.col-sm-8.col-lg-9
         .profile-tags
-          / .tag = @group.roles.first.titleize
-          / .tag = @group.roles.last.titleize
         .profile-title
           h2 = @group.title
-          h3 Open Today until 5pm
 
 - if @group.actors.include? current_user
   .profile-editor
     = link_to 'Edit Group', Settings.profile_publisher.url + '/groups/' + @group.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
 
-
 .profile-body
   .container
     .row
       .col-md-5.nav-col.content-col
-        .card-title
-          = 'Contact Info'
-        .card
-          table
-            tr
-              td Email
-              td = @group.email
-            tr
-              td Phone
-              td = @group.full_biola_phone_number
-            - if @group.website.present?
-              tr
-                td Website
-                td = @group.website
+        - if @group.email.present? || @group.full_biola_phone_number.present? || @group.website.present?
+          .card-title
+            = 'Contact Info'
+          .card
+            table
+              - if @group.email.present?
+                tr
+                  td Email
+                  td = mail_to @group.email
+              - if @group.full_biola_phone_number.present?
+                tr
+                  td Phone
+                  td = @group.full_biola_phone_number
+              - if @group.website.present?
+                tr
+                  td Website
+                  td = link_to @group.website.truncate(40).gsub(/^http:\/\//, ""), @group.website
 
       .col-md-7.content-col
         -if @group.description.present?
           .card-title Description
           .card
             = @group.description.html_safe
-
+        -if @group.people.present?
+          .card-title Members
+          .card
+            ul
+              - @group.people.each do |person|
+                li
+                  = link_to person.name, person
+                  = ", #{person.department_title}" if person.department_title.present?
