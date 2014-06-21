@@ -1,5 +1,5 @@
-#  biola-style-guide includes jquery, jquery_ujs, and bootstrap
-#= require biola-style-guide
+#  biola-frontend-toolkit includes jquery, jquery_ujs, and bootstrap
+#= require biola-frontend-toolkit
 #= require_tree .
 
 
