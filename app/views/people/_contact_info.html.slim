@@ -6,13 +6,21 @@
         td Office Phone
         td
           = @person.full_biola_phone_number ? @person.full_biola_phone_number : 'Unknown'
-    - if @person.department.present?
+    - if @person.department.present? || @person.departments.present?
       tr
         td Department
         td
-          = @person.department
+          - if @person.departments.first
+            = link_to @person.departments.first.title, @person.departments.first
+          - else
+            = @person.department
     - if @person.office_location.present?
       tr
         td Office Location
         td
           = @person.office_location
+    - @person.social_media.each do |account|
+      tr
+        td = "#{account.type.to_s.humanize}:"
+        td
+          a href=account.url = account.account

@@ -50,9 +50,5 @@
           .card
             p = @person.job_description
 
-        - if @person.alumnus?
+        - if @person.alumnus? && (@person.degree_received.present? || @person.graduation_year.present?)
           = render 'graduation_info'
-
-        / .card-title Other Random Facts
-        / .card
-        /   p Quisque convallis quam enim, vitae tincidunt felis lobortis ac. Duis vitae felis ac metus laoreet auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur varius pharetra neque, quis posuere erat consequat eu. In nunc risus, porta ut pulvinar eget, rhoncus id ipsum. Nulla quis.
