@@ -17,7 +17,7 @@ module SearchHelper
   end
 
   def result_object(es_result)
-    SearchResult.new(es_result['_type'], es_result['_id'], es_result['_source']['normalized_data'], es_result['_source']['affiliations'])
+    SearchResult.new(es_result['_type'], es_result['_id'], es_result['_source']['normalized_data'], es_result['_source']['affiliations'], es_result['_source']['department'])
   end
 
   def result_url(search_result)

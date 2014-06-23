@@ -15,6 +15,8 @@
         h4.media-heading
           = link_to_if search_result.linkable?, search_result.data.title, result_url(search_result)
         h5.media-subheading = search_result.data.subtitle
+        - if search_result.department.present?
+          h5.media-subheading = search_result.department
 
       .col-md-6
         p.contact_details
