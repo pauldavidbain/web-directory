@@ -18,8 +18,7 @@
 
           #search_results
             - @results.each do |es_result|
-              - result = result_object(es_result)
-              = render 'search_result', search_result: result
+              = render 'search_result', search_result: result_object(es_result)
             - if @results_count > 25
               br
               br
