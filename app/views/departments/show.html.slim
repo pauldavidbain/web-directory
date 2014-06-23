@@ -5,68 +5,70 @@
     .row
       .profile-header-image.col-sm-4.col-lg-3
         .profile-image
-          / img src=@department.image_url
           = fa_icon 'building-o'
 
       .profile-header-details.col-sm-8.col-lg-9
         .profile-tags
-          / .tag = @department.roles.first.titleize
-          / .tag = @department.roles.last.titleize
         .profile-title
           h2 = @department.title
-          h3 Open Today until 5pm
+          / h3 Open hours go here (TODO)
 
 - if @department.actors.include? current_user
   .profile-editor
     = link_to 'Edit Department', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
 
-
-
-
 .profile-body
   .container
     .row
       .col-md-5.nav-col.content-col
-        .card-title
-          = 'Contact Info'
-        .card
-          table
-            tr
-              td Email
-              td = @department.email
-            tr
-              td Phone
-              td = @department.full_biola_phone_number
-        .card-title
-          = 'Department Contacts'
-        - @department.department_contacts.each_with_index do |contact|
+        - if @department.email || @department.full_biola_phone_number
+          .card-title
+            = 'Contact Info'
           .card
-            p.text-center
-              strong = contact['name']
-            hr
             table
-              tr
-                td Purpose
-                td
-                  = contact['purpose']
-              tr
-                td Phone
-                td
-                  = contact['phone']
-              tr
-                td Email
-                td
-                  a href="mailto:#{contact['email']}"
-                    = contact['email']
+              - if @department.email
+                tr
+                  td Email
+                  td = mail_to @department.email
+              - if @department.full_biola_phone_number
+                tr
+                  td Phone
+                  td = @department.full_biola_phone_number
+        - if @department.department_contacts.present?
+          .card-title
+            = 'Department Contacts'
+          - @department.department_contacts.each_with_index do |contact|
+            .card
+              p.text-center
+                strong = contact.name
+              hr
+              table
+                - if contact.purpose.present?
+                  tr
+                    td Purpose
+                    td
+                      = contact.purpose
+                - if contact.full_biola_phone_number.present?
+                  tr
+                    td Phone
+                    td
+                      = contact.full_biola_phone_number
+                - if contact.email.present?
+                  tr
+                    td Email
+                    td
+                      a href="mailto:#{contact.email}"
+                        = contact.email
 
       .col-md-7.content-col
-        .card-title Department Details
-        .card
-          table
-            tr
-              td Location
-              td
-                = @department.location
+        - if @department.location.present?
+          .card-title Department Details
+          .card
+            table
+              tr
+                td Location
+                td
+                  = @department.location
 
         - if @department.description.present?
           .card-title Description
@@ -79,6 +81,6 @@
             - @department.social_media.each do |account|
               table
                 tr
-                  td = "#{account.type.to_s.humanize}:"
+                  td = "#{account.type.to_s.humanize}"
                   td
                     a href=account.url = account.account
