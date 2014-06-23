@@ -74,31 +74,28 @@ private
     { :and => _terms } if _terms.length > 0
   end
 
+  # This is to be used in the can_access_filter method
+  def user_access_term_array(user)
+    affiliations_to_term_array(user.affiliations_i_can_see)
+  end
+
+  def affiliations_to_term_array(affiliations = [])
+    affiliations.map{|aff| { term: { affiliations: aff.to_s }}}
+  end
+
   def can_access_filter
-    student    = { term: { affiliations: "student"   }}
-    alumnus    = { term: { affiliations: "alumnus"   }}
-    faculty    = { term: { affiliations: "faculty"   }}
-    employee   = { term: { affiliations: "employee"  }}
-    trustee    = { term: { affiliations: "trustee"   }}
-    volunteer  = { term: { affiliations: "volunteer" }}
+    # We only need to restrict access to people, not departments, groups, or services.
+    #  So this is meant to be a catch all for those types of search results.
     non_person = { :or => [
                     { term: { _type: "department" }},
                     { term: { _type: "service" }},
                     { term: { _type: "group" }}
                   ]}
 
-    if affiliations.include?('employee') || affiliations.include?('faculty')
-      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus , student ]}
-    elsif affiliations.include?('trustee') || affiliations.include?('volunteer')
-      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
-    elsif affiliations.include?('student') || affiliations.include?('student worker')
-      { :or => [ non_person, faculty, employee, trustee, volunteer, student ]}
-    elsif affiliations.include?('alumnus')
-      { :or => [ non_person, faculty, employee, trustee, volunteer, alumnus ]}
-    elsif current_user.nil?
-      { :or => [ non_person, faculty, trustee ]}
+    if current_user.nil?
+      { :or => [ non_person ] + affiliations_to_term_array([:faculty, :trustee]) }
     else
-      { :or => [ non_person, faculty, trustee ]}
+      { :or => [ non_person ] + user_access_term_array(current_user) }
     end
   end
 

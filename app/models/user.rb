@@ -51,6 +51,20 @@ class User
     self.save
   end
 
+  def affiliations_i_can_see
+    if employee? || faculty?
+      [:faculty, :employee, :trustee, :volunteer, :alumnus, :student]
+    elsif trustee? || volunteer?
+      [:faculty, :employee, :trustee, :volunteer, :alumnus]
+    elsif student? || student_worker?
+      [:faculty, :employee, :trustee, :volunteer, :student]
+    elsif alumnus?
+      [:faculty, :employee, :trustee, :volunteer, :alumnus]
+    else
+      [:faculty, :trustee]
+    end
+  end
+
   private
 
   # Find URNs that match the namespaces and remove the namespace
