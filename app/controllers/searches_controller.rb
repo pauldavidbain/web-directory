@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
     @results_count = results['hits']['total']
     @results = results['hits']['hits'] # these get turned into SearchResults in the view/helper
-    @facets = results['facets']
+    @facets = filter_facet_affiliations(results['facets'])
     @facet_is_active = search_query.any_active_facets?
   end
 
@@ -21,6 +21,16 @@ class SearchesController < ApplicationController
 
   def facet_types
     ['_type', 'affiliations']
+  end
+
+  def filter_facet_affiliations(facets)
+    permitted_affiliations = current_user.try(:affiliations_i_can_see) || [:faculty, :trustee]
+
+    facets["affiliations"]["terms"] = facets["affiliations"]["terms"].map do |term|
+      term if permitted_affiliations.include?(term["term"].to_sym)
+    end.compact
+
+    facets
   end
 
 end
