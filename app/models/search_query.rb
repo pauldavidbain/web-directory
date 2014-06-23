@@ -74,29 +74,27 @@ private
     { :and => _terms } if _terms.length > 0
   end
 
-  # This is to be used in the can_access_filter method
-  def user_access_term_array(user)
-    affiliations_to_term_array(user.affiliations_i_can_see)
+  def affiliations_user_can_see(user)
+    affiliations_to_term_array(UserPermissables.new(user).affiliations)
   end
 
   def affiliations_to_term_array(affiliations = [])
     affiliations.map{|aff| { term: { affiliations: aff.to_s }}}
   end
 
-  def can_access_filter
+  def non_person_filter
     # We only need to restrict access to people, not departments, groups, or services.
     #  So this is meant to be a catch all for those types of search results.
-    non_person = { :or => [
-                    { term: { _type: "department" }},
-                    { term: { _type: "service" }},
-                    { term: { _type: "group" }}
-                  ]}
+    { :or => [
+      { term: { _type: "department" }},
+      { term: { _type: "service" }},
+      { term: { _type: "group" }}
+    ]}
+  end
 
-    if current_user.nil?
-      { :or => [ non_person ] + affiliations_to_term_array([:faculty, :trustee]) }
-    else
-      { :or => [ non_person ] + user_access_term_array(current_user) }
-    end
+  def can_access_filter
+    # Either it is not a person or the user has permission on one of the person's indexed affiliations
+    { :or => [non_person_filter] + affiliations_user_can_see(current_user) }
   end
 
   def facets

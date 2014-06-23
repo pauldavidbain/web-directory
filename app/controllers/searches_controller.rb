@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
   end
 
   def filter_facet_affiliations(facets)
-    permitted_affiliations = current_user.try(:affiliations_i_can_see) || [:faculty, :trustee]
+    permitted_affiliations = UserPermissables.new(current_user).affiliations
 
     facets["affiliations"]["terms"] = facets["affiliations"]["terms"].map do |term|
       term if permitted_affiliations.include?(term["term"].to_sym)
