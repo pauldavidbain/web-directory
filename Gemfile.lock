@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/biola/biola-style-guide.git
-  revision: 8bb02cdf094e5f450457689da3c2c98af16eece4
-  specs:
-    biola_style_guide (0.0.1)
-
-GIT
   remote: git://github.com/biola/buweb-content-models.git
   revision: f0ec692920846dfd73f37dee32e36ffaeaddf6c8
   specs:
@@ -59,6 +53,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     biola_deploy (0.6.1)
+    biola_frontend_toolkit (0.0.2)
     blazing (0.4.1)
       activesupport
       grit
@@ -320,7 +315,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biola_deploy
-  biola_style_guide!
+  biola_frontend_toolkit (~> 0.0.2)
   blazing
   bootstrap-sass
   buweb_content_models!

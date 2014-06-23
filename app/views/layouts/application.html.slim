@@ -2,7 +2,7 @@ doctype html
 html lang="en-us"
   head
     / handles default html head tags and csrf_meta_tags
-    = render 'style_guide/head', title: 'Directory'
+    = render 'frontend_toolkit/head', title: 'Directory'
 
     / link href='http://fonts.googleapis.com/css?family=Lusitana:400,700' rel='stylesheet' type='text/css'
 
@@ -12,7 +12,8 @@ html lang="en-us"
 
     / TODO: Fix style guide to use `current_user` instead of `@current_user`
     - @current_user = current_user
-    = render 'style_guide/header', current_user: current_user
+    = render 'frontend_toolkit/header', current_user: current_user
+    = render 'frontend_toolkit/prerelease_banner', feedback_form_url: Settings.feedback.form_url
 
     .content
       = yield
