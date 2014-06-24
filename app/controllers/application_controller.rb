@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   def current_user
-    authentication.user
+    authentication.authenticated_user
   end
 
   def user_logged_in?
-    current_user.present?
+    authentication.perform
   end
 
 
