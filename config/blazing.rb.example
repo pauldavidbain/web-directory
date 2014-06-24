@@ -1,6 +1,6 @@
-target :'ruby1.staging', 'johnd0@ruby1.staging.biola.edu:/srv/rails/directory', rails_env: 'staging'
-target :'ruby1.prod',    'johnd0@ruby1.prod.biola.edu:/srv/rails/directory',    rails_env: 'production'
-target :'ruby2.prod',    'johnd0@ruby2.prod.biola.edu:/srv/rails/directory',    rails_env: 'production'
+target :'ruby1.staging', 'johnd0@ruby1.staging.biola.edu:/srv/rails/web-directory', rails_env: 'staging'
+target :'ruby1.prod',    'johnd0@ruby1.prod.biola.edu:/srv/rails/web-directory',    rails_env: 'production'
+target :'ruby2.prod',    'johnd0@ruby2.prod.biola.edu:/srv/rails/web-directory',    rails_env: 'production'
 
 env_scripts '/etc/profile'
 
