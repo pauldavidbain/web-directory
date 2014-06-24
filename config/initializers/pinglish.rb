@@ -1,6 +1,6 @@
 Directory::Application.config.middleware.use Pinglish do |ping|
-  ping.check :db do
-    ActiveRecord::Base.connected?
+  ping.check :mongodb do
+    Mongoid.default_session.command(ping: 1).has_key? 'ok'
   end
 
   ping.check :smtp do
@@ -10,5 +10,9 @@ Directory::Application.config.middleware.use Pinglish do |ping|
     smtp.finish
 
     ok
+  end
+
+  ping.check :elasticsearch do
+    Elasticsearch::Model.client.indices.exists index: Settings.elasticsearch.index_name
   end
 end
