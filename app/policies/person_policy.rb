@@ -6,20 +6,14 @@ class PersonPolicy < ApplicationPolicy
   end
 
   def show?
-    if user.nil?
-      # You need to check user.nil? because if it is nil none of the checks below will work if it isn't caught here first.
-      (record.visible_affiliations & [:trustee, :faculty]).present?
-    elsif user.admin? || user.developer?
-      true
-    elsif user.employee? || user.faculty?
-      (record.visible_affiliations & [:employee, :student, :alumnus, :trustee, :faculty]).present?
-    elsif user.student?
-      (record.visible_affiliations & [:employee, :student, :trustee, :faculty]).present?
-    elsif user.alumnus?
-      (record.visible_affiliations & [:alumnus, :trustee, :faculty]).present?
-    else
-      (record.visible_affiliations & [:trustee, :faculty]).present?
-    end
+    permitted_to_see_affiliations? || user.try(:admin?) || user.try(:developer?)
+  end
+
+
+  private
+
+  def permitted_to_see_affiliations?
+    (record.visible_affiliations & UserPermissables.new(user).affiliations).any?
   end
 
 end
