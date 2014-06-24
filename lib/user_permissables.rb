@@ -9,11 +9,11 @@ class UserPermissables
   def affiliations
     if user.present?
       if user.employee? || user.faculty?
-        [:faculty, :employee, :trustee, :volunteer, :alumnus, :student]
+        [:faculty, :employee, :trustee, :volunteer, :alumnus, :student, :student_worker]
       elsif user.trustee? || user.volunteer?
-        [:faculty, :employee, :trustee, :volunteer, :alumnus]
+        [:faculty, :employee, :trustee, :volunteer, :alumnus, :student_worker]
       elsif user.student? || user.student_worker?
-        [:faculty, :employee, :trustee, :volunteer, :student]
+        [:faculty, :employee, :trustee, :volunteer, :student, :student_worker]
       elsif user.alumnus?
         [:faculty, :employee, :trustee, :volunteer, :alumnus]
       else
