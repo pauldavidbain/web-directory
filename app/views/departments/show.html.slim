@@ -26,14 +26,18 @@
             = 'Contact Info'
           .card
             table
-              - if @department.email
+              - if @department.email.present?
                 tr
                   td Email
                   td = mail_to @department.email
-              - if @department.full_biola_phone_number
+              - if @department.full_biola_phone_number.present?
                 tr
                   td Phone
                   td = @department.full_biola_phone_number
+              - if @department.website.present?
+                tr
+                  td Website
+                  td = link_to @department.website.truncate(40).gsub(/^http:\/\//, ""), @department.website
         - if @department.department_contacts.present?
           .card-title
             = 'Department Contacts'
