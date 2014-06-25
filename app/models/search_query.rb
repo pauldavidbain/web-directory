@@ -49,13 +49,14 @@ private
             "*_initial",
             "preferred_name^4",
             "aliases",
-            "subtitle^2",
             "department",
+            "department_aliases",
             "location",
             "email",
             "phone",
             "description",
-            "titles"
+            "titles^2",
+            "biola_title"
           ]
         }
       }
