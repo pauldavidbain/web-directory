@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/biola/web-directory.svg?branch=master)](https://travis-ci.org/biola/web-directory)
+[![Code Climate](https://codeclimate.com/github/biola/web-directory.png)](https://codeclimate.com/github/biola/web-directory)
 
 README
 ==
