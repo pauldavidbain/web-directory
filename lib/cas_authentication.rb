@@ -3,10 +3,8 @@ class CasAuthentication
     @session = session
   end
 
-  def user
-    if username.present?
-      @user ||= User.find_or_initialize_by(username: username)
-    end
+  def authenticated_user
+    user if authenticated? && user
   end
 
   def perform
@@ -27,6 +25,12 @@ class CasAuthentication
   private
 
   attr_reader :session
+
+  def user
+    if username.present?
+      @user ||= User.find_or_initialize_by(username: username)
+    end
+  end
 
   def present?
     session['cas'].present?
