@@ -9,6 +9,13 @@ class PersonPolicy < ApplicationPolicy
     permitted_to_see_affiliations? || user.try(:admin?) || user.try(:developer?)
   end
 
+  def can_see_employee_phone?
+    UserPermissables.new(user).phones.include?(:employee_phone)
+  end
+
+  def can_see_alternate_phone?
+    UserPermissables.new(user).phones.include?(:alternate_employee_phone)
+  end
 
   private
 

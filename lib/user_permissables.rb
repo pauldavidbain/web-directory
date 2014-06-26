@@ -23,4 +23,25 @@ class UserPermissables
       [:faculty, :trustee]
     end
   end
+
+  def phones
+    all_phones = [:personal_phone, :full_biola_phone_number, :employee_phone, :alternate_employee_phone]
+    if user.present?
+      if user.employee? || user.faculty?
+        all_phones
+      elsif user.trustee? || user.volunteer?
+        all_phones
+      elsif user.student_worker?
+        all_phones
+      elsif user.student? 
+        all_phones - [:full_biola_phone_number, :employee_phone]
+      elsif user.alumnus?
+        all_phones - [:full_biola_phone_number, :employee_phone]
+      else
+        all_phones - [:full_biola_phone_number, :employee_phone]
+      end
+    else
+      all_phones - [:full_biola_phone_number, :employee_phone]
+    end
+  end
 end
