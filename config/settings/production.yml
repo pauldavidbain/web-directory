@@ -9,3 +9,8 @@ profile_publisher:
 elasticsearch:
   host: http://elastic1a.prod.biola.edu:9200
   index_name: directory
+
+google_analytics:
+  account: UA-31491589-10
+  domain: biola.edu
+  enabled: true
