@@ -11,4 +11,6 @@ elasticsearch:
   index_name: directory
 
 google_analytics:
+  account: UA-31491589-10
+  domain: biola.edu
   enabled: true

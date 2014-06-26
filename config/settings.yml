@@ -49,6 +49,6 @@ profile_publisher:
   url:  # set this in environment settings.
 
 google_analytics:
-  account: UA-31491589-10
+  account: UA-31491589-5  # this is the testing/staging account
   domain: biola.edu
   enabled: false
