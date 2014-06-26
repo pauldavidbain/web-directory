@@ -21,7 +21,7 @@
   .container
     .row
       .col-md-5.nav-col.content-col
-        - if @department.email || @department.full_biola_phone_number
+        - if @department.email.present? || @department.full_biola_phone_number.present? || @department.website.present?
           .card-title
             = 'Contact Info'
           .card
