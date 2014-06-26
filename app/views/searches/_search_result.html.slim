@@ -20,12 +20,21 @@
 
       .col-md-6
         p.contact_details
-          - if search_result.data.phone.present? && current_user && current_user.can_see_phone?
+          - if search_result.data.email.present?
+            = fa_icon 'envelope-o'
+            = mail_to search_result.data.email
+            br
+          - if search_result.data.phone.present? && search_result.type == 'person'
+            - if policy(Person).can_see_employee_phone?
+              = fa_icon 'phone', text: search_result.data.phone+' (Direct)'
+              br
+            - if search_result.data.alternate_phone.present?
+              = fa_icon 'phone', text: search_result.data.alternate_phone
+              br
+          - elsif search_result.data.phone.present?
             = fa_icon 'phone', text: search_result.data.phone
             br
-          - if search_result.data.email.present?
-            = fa_icon 'envelope-o', text: search_result.data.email
-            br
+
           - if search_result.data.location.present?
             = fa_icon 'map-marker', text: search_result.data.location
             br
