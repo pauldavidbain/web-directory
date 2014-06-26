@@ -9,7 +9,7 @@ BiolaFrontendToolkit.configure do |config|
     {title: 'Forms', url: 'http://forms.biola.edu', icon: 'check-square-o'},
   ]
   config.profile_links = [
-    {title: 'My Profile', url: (Settings.profile_publisher.url + '/my_profile'), icon: 'user'},
+    {title: 'My Profile', url: (Settings.profile_publisher.url.to_s + '/my_profile'), icon: 'user'},
   ]
 
   config.ga_account = Settings.google_analytics.account
