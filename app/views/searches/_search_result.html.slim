@@ -16,6 +16,8 @@
           = link_to_if search_result.linkable?, search_result.data.title, result_url(search_result)
         - search_result.data.subtitles.to_a.each do |subtitle|
           h5.media-subheading = subtitle
+        - if search_result.data.short_description.present?
+          p.media-subheading = search_result.data.short_description
 
 
       .col-md-6
