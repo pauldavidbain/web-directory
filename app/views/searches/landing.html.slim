@@ -1,21 +1,36 @@
-.jumbotron.homepage
-  .container
-    h1 Directory
-    p Find people, departments, groups, or services.
-
 = render 'shared/search_form'
 
 .container
-  .row#quick_contacts
-    .contact.col-sm-6
-        h3 Emergency?
-        ' Campus Safety: <strong>(562) 777-4000</strong>
-        br
-        ' Or from on campus: <strong>5111</strong>
-    .contact.col-sm-6
-        h3 Contact Biola
-        ' 13800 Biola Avenue
-        br
-        ' La Mirada, California 90639
-        br
-        strong = '(562) 903-6000'
+  #search_results
+    .result_card
+      .padding
+        .title Biola University
+
+        .details
+          .divider
+            .line
+            .circle = fa_icon 'joomla'
+
+          dl
+            dt Address
+            dd
+              ' 13800 Biola Avenue
+              br
+              ' La Mirada, California 90639
+            dt Phone
+            dd (562) 903-6000
+
+    .result_card
+      .padding
+        .title Emergency Contact
+
+        .details
+          .divider
+            .line
+            .circle = fa_icon 'support'
+
+          dl
+            dt Campus Safety
+            dd (562) 777-4000
+            dt From on campus
+            dd 5111

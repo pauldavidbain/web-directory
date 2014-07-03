@@ -1,11 +1,22 @@
 module SearchHelper
 
-  def facet_link(group, facet)
-    link_to facet_url_params(group, facet), class: (facet_is_active?(group, facet) ? 'active' : '') do
-      content_tag(:div, facet['count'], class: 'tag') +
-      content_tag(:span, facet['term'].titleize)
+  def li_filter(title, type)
+    active_class = ''
+    if (params['_type'] == type) || (params['_type'].blank? && type == 'all')
+      active_class = 'active'
+    end
+    content_tag :li, class: "filter #{active_class}", 'data-type' => type do
+      link_to title, search_path(q: params[:q], '_type' => type) #, remote: true
     end
   end
+
+
+  # def facet_link(group, facet)
+  #   link_to facet_url_params(group, facet), class: (facet_is_active?(group, facet) ? 'active' : '') do
+  #     content_tag(:div, facet['count'], class: 'tag') +
+  #     content_tag(:span, facet['term'].titleize)
+  #   end
+  # end
 
   def facet_url_params(group, facet)
     merged_facets = if facet_is_active?(group, facet)

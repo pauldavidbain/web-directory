@@ -3,11 +3,28 @@
 #= require_tree .
 
 
-if $('body.searches.landing').length > 0
-  button_text = $('.jumbotron form button .text')
-  $('#q').keyup ->
-    console.log('pressed...')
-    if $('#q').val().length > 0
-      button_text.html('Search')
-    else
-      button_text.html('Browse')
+
+closeAllCards = ->
+  $('#search_results .result_card').each ->
+    $(this).removeClass('open')
+    $(this).find('.details').slideUp()
+  $('#backdrop').fadeOut()
+closeCard = (card, target) ->
+  unless target.parents('.details').length > 0 || target.is('.details')
+    card.removeClass('open')
+    card.find('.details').slideUp()
+    $('#backdrop').fadeOut()
+openCard = (card, target) ->
+  closeAllCards()
+  card.addClass('open')
+  card.find('.details').slideDown()
+  $('#backdrop').fadeIn()
+
+$('#search_results').on 'click', '.result_card', (e) ->
+  if $(this).hasClass('open')
+    closeCard $(this), $(e.target)
+  else
+    openCard $(this), $(e.target)
+
+$('#backdrop').click (e) ->
+  closeAllCards()

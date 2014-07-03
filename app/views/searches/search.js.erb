@@ -1,0 +1,5 @@
+$("#search_results").html("<%= escape_javascript(render('search_results')) %>");
+
+$("li.filter.active").removeClass('active');
+$("li.filter[data-type='<%= params['_type'] || 'all' %>']").addClass('active');
+$('#type_hidden_field input').val("<%= params['_type'] || 'all' %>")

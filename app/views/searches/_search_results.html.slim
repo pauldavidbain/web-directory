@@ -1,0 +1,4 @@
+- if params[:q].present? || @facet_is_active
+  p.results_count Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
+- @results.each do |es_result|
+  = render 'search_result', search_result: result_object(es_result)
