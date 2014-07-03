@@ -33,6 +33,10 @@
                 tr
                   td Phone
                   td = @group.full_biola_phone_number
+              - if @group.fax.present?
+                tr
+                  td Fax
+                  td = @group.fax
               - if @group.website.present?
                 tr
                   td Website

@@ -5,20 +5,6 @@ GIT
   specs:
     biola_frontend_toolkit (0.1.0)
 
-GIT
-  remote: git://github.com/biola/buweb-content-models.git
-  revision: 0ffabcf6e87cdf602cd3c0867b5bd757dda1ed91
-  specs:
-    buweb_content_models (0.9.0)
-      aasm
-      carrierwave-mongoid (~> 0.7.1)
-      elasticsearch (~> 1.0.1)
-      elasticsearch-model (~> 0.1.1)
-      mail (~> 2.5.0)
-      mini_magick (~> 3.7.0)
-      mongoid (~> 4.0.0.beta1)
-      mongoid_slug (~> 3.2.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,6 +56,15 @@ GEM
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.1.4)
+    buweb_content_models (0.11.0)
+      aasm
+      carrierwave-mongoid (~> 0.7.1)
+      elasticsearch (~> 1.0.1)
+      elasticsearch-model (~> 0.1.1)
+      mail (~> 2.5.0)
+      mini_magick (~> 3.7.0)
+      mongoid (~> 4.0.0.beta1)
+      mongoid_slug (~> 3.2.1)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -324,7 +319,7 @@ DEPENDENCIES
   biola_frontend_toolkit!
   blazing
   bootstrap-sass
-  buweb_content_models!
+  buweb_content_models (~> 0.11.0)
   coffee-rails
   compass-rails
   declarative_authorization
