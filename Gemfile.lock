@@ -50,7 +50,7 @@ GEM
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.1.4)
-    buweb_content_models (0.10.0)
+    buweb_content_models (0.11.0)
       aasm
       carrierwave-mongoid (~> 0.7.1)
       elasticsearch (~> 1.0.1)
@@ -313,7 +313,7 @@ DEPENDENCIES
   biola_frontend_toolkit (~> 0.1.0)
   blazing
   bootstrap-sass
-  buweb_content_models (~> 0.10.0)
+  buweb_content_models (~> 0.11.0)
   coffee-rails
   compass-rails
   declarative_authorization
