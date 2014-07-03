@@ -30,7 +30,7 @@
     -webkit-transition: all .5s; transition: all .5s;
     &.open { margin: -30px -15px -10px -15px; box-shadow: -1px 1px 14px rgba(0, 0, 0, 0.4); z-index: 100; }
     .padding { margin: 20px; }
-    .card_circle_image { height: 50px; width: 50px; border-radius: 100px; background-size: cover; background-position: center center; float: right; border: 1px solid #A2A2A2; }
+    .card_circle_image { height: 50px; width: 50px; border-radius: 100px; background-size: contain; background-position: center center; float: right; border: 1px solid #A2A2A2; }
     .title { font-size: 22px; font-weight: 500; }
     .subtitle { font-size: 13px;
       &:first-child { margin-top: 10px; }
