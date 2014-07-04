@@ -8,7 +8,6 @@ closeAllCards = ->
   $('#search_results .result_card').each ->
     $(this).removeClass('open')
     $(this).find('.details').slideUp()
-  $('#backdrop').fadeOut()
 closeCard = (card, target) ->
   unless target.parents('.details').length > 0 || target.is('.details')
     card.removeClass('open')
@@ -25,6 +24,8 @@ $('#search_results').on 'click', '.result_card', (e) ->
     closeCard $(this), $(e.target)
   else
     openCard $(this), $(e.target)
+  e.stopPropagation() # So body doesn't recieve the click
 
-$('#backdrop').click (e) ->
+$('body').click (e) ->
   closeAllCards()
+  $('#backdrop').fadeOut()
