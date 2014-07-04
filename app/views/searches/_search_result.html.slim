@@ -2,12 +2,20 @@
   .padding
     - if search_result.data.image_url.present?
       .card_circle_image style="background-image: url('#{search_result.data.image_url}')"
+    - elsif calced_image = biola_person_image(search_result.raw_data['biola_id'])
+      .card_circle_image style="background-image: url('#{calced_image}')"
 
-    .title = search_result.data.title
+
+    .affiliations
+      - search_result.affiliations.each do |aff|
+        .label.label-default = aff.titleize
+    .title
+      = search_result.data.title
+
     - search_result.data.subtitles.to_a.each do |subtitle|
       .subtitle = subtitle
 
-    - if search_result.data.image_url.present?
+    - if search_result.data.image_url.present? || calced_image.present?
       .clearfix
 
 

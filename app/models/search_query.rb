@@ -56,7 +56,8 @@ private
             "phone",
             "description",
             "titles^2",
-            "biola_title"
+            "biola_title",
+            "affiliations"
           ]
         }
       }

@@ -1,11 +1,12 @@
 class SearchResult
-  attr_reader :type, :id, :data, :affiliations
+  attr_reader :type, :id, :data, :affiliations, :raw_data
 
-  def initialize(type, id, data={}, affiliations=[])
+  def initialize(type, id, raw_data)
     @type = type
     @id = id
-    @data = OpenStruct.new(data)  # this is the normalized data field from Elasticsearch.
-    @affiliations = affiliations
+    @data = OpenStruct.new(raw_data['normalized_data'])  # this is the normalized data field from Elasticsearch.
+    @affiliations = raw_data['affiliations'] || []
+    @raw_data = raw_data || {}
   end
 
   def icon
