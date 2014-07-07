@@ -33,3 +33,8 @@
   .footer { padding: 20px 0; }
 }
 
+
+
+@media (min-width: 1200px) {
+  .container { width: 970px; }  // Disabling the largest breakpoint. It is too wide for this project.
+}
