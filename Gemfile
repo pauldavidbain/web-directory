@@ -30,7 +30,6 @@ gem 'slim', '>= 2.0.2'
 gem 'therubyracer'
 gem 'turnout'
 gem 'uglifier'
-gem 'version'
 gem 'virtus', '~> 1.0.2'
 
 
