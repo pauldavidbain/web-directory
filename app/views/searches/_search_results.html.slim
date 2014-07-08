@@ -1,3 +1,10 @@
+- if current_user.blank? && in_private_scope
+  .alert.alert-info
+    = fa_icon 'lock'
+    span<> Not everyone in the directory is public. Please
+    = link_to 'login', params.merge(login: 'true')
+    span< to see more results.
+
 - if params[:q].present? || @facet_is_active
   p.results_count Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
 - @results.each do |es_result|

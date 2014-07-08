@@ -5,6 +5,7 @@ module SearchHelper
     if (params['_type'] == type) || (params['_type'].blank? && type == 'all')
       active_class = 'active'
     end
+    title = title.pluralize unless title == 'All'
     content_tag :li, class: "filter #{active_class}", 'data-type' => type do
       link_to title, search_path(q: params[:q], '_type' => type) #, remote: true
     end
@@ -33,6 +34,16 @@ module SearchHelper
 
   def result_url(search_result)
     url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id
+  end
+
+  # If you are in a scope that would require you to login to see all results
+  def in_private_scope
+    case params['_type']
+    when nil, 'all', 'person'
+      true
+    else
+      false
+    end
   end
 
 
