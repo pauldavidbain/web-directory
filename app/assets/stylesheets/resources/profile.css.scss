@@ -1,62 +1,27 @@
 @import 'settings';
 
-body.people, body.departments, body.groups, body.services { background-color: #eee;
-  .content {
-    .profile-header { padding: 30px 0; background: #424242; color: #eee;
-      .profile-header-image { text-align: center;
-        .profile-image {
-          margin: 0; padding: 10px; background-color: #777; display: inline-block;
-          #general_photo { font-size: 100px; }
-          i.fa { font-size: 50px; padding: 15px 20px; }
-        }
-      }
-      .profile-header-details {
-        padding-right: 0px;
-        .profile-tags {
-          .tag { display: inline-block; margin: 0 5px 5px 0; background-color: $biola-red; padding: 3px 8px; font-size: 12px; border-radius: 2px; letter-spacing: .7px; font-weight: 500; }
-        }
-        .profile-title {
-          h2 { font-size: 35px; margin-top: 10px; }
-          h3 { font-size: 18px; margin: 10px 0; font-weight: 100; }
-        }
-      }
-    }
-
-    .profile-editor {
-      #edit-in-publisher {
-        width: 100%;
-        border-radius: 0px;
-        font-size: 17px;
-      }
-    }
-
-    .profile-body { padding: 20px 0;
-      .content-col {
-        .card-title { border-bottom: none; border-top: none; color: #888; font-size: 12px; font-weight: bold; margin-top: 0; padding: 10px 5px; text-transform: uppercase;
-          &.icon { padding-left: 30px; }
-          &.icon-contact { background: image-url('contacts_gray.png') no-repeat 5px center; }
-        }
-        .card { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #E0E0E0; border-bottom-width: 2px; background-color: white; padding: 15px; width: 100%; margin-bottom: 15px;
-          hr { margin: 10px 0; }
-          table {
-            tr {
-              td { padding: 5px; vertical-align: top;
-                &:first-child { color: #999; text-align: right; padding-right: 10px; }
-              }
-            }
-          }
-        }
-
-        section { margin-bottom: 30px; }
-      }
-    }
+// This is the show page for person, department, group, and service
+#profile { background-color: white; @extend .shadow; padding: 20px; margin: 0px -15px -10px -15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  .profile-image { height: 120px; width: 120px; border-radius: 100px; background-size: contain; background-position: center center; float: right; border: 1px solid #A2A2A2; }
+  .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; position: relative;
+    .label { margin-right: 5px; }
   }
-
-  @media screen and (max-width: 768px) {
-    .profile-header { padding: 20px 0;
-      .profile-header-image { float: right;
-        .profile-image { padding: 3px; }
+  &:hover .affiliations { opacity: 1; }
+  .title { font-size: 22px; font-weight: 500; white-space: nowrap; }
+  .subtitle { font-size: 13px;
+    &:first-child { margin-top: 10px; }
+  }
+  .details {
+    .divider { position: relative; height: 32px; overflow: auto; margin: 10px 0;
+      .line { margin-top: 15px; margin-bottom: 15px; border-top: 1px solid #ddd; }
+      .circle { height: 30px; width: 30px; border: 1px solid #ddd; background-color: #fafafa; border-radius: 100px; position: absolute; top: 1px; left: 50%; margin-left: -15px; text-align: center;
+        .fa { padding: 7px 0; color: #777;}
       }
+    }
+    dl { margin: 0;
+      // -moz-columns: 2; -webkit-columns: 2; columns: 2;
+      dt { margin-top: 15px; }
+      // dd { column-break-before: avoid; break-before: avoid; }
     }
   }
 }

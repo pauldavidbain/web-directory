@@ -1,99 +1,67 @@
-= render 'shared/search_form'
+.container
+  #profile
+    - if @department.actors.include? current_user
+      .pull-right
+        = link_to 'Edit', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
 
-.profile-header
-  .container
+    .title = @department.title
+
+    / h3 Open hours go here (TODO)
+    br
+
     .row
-      .profile-header-image.col-sm-4.col-lg-3
-        .profile-image
-          = fa_icon 'building-o'
+      .col-md-6
+        dl
+          - if @department.email.present?
+            dt Email
+            dd = mail_to @department.email
+          - if @department.full_biola_phone_number.present?
+            dt Phone
+            dd = @department.full_biola_phone_number
+          - if @department.fax.present?
+            dt Fax
+            dd = @department.fax
+          - if @department.website.present?
+            dt Website
+            dd = link_to @department.website.truncate(40).gsub(/^http:\/\//, ""), @department.website
 
-      .profile-header-details.col-sm-8.col-lg-9
-        .profile-tags
-        .profile-title
-          h2 = @department.title
-          / h3 Open hours go here (TODO)
-
-- if @department.actors.include? current_user
-  .profile-editor
-    = link_to 'Edit Department', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
-
-.profile-body
-  .container
-    .row
-      .col-md-5.nav-col.content-col
-        - if @department.email.present? || @department.full_biola_phone_number.present? || @department.website.present?
-          .card-title
-            = 'Contact Info'
-          .card
-            table
-              - if @department.email.present?
-                tr
-                  td Email
-                  td = mail_to @department.email
-              - if @department.full_biola_phone_number.present?
-                tr
-                  td Phone
-                  td = @department.full_biola_phone_number
-              - if @department.fax.present?
-                tr
-                  td Fax
-                  td = @department.fax
-              - if @department.website.present?
-                tr
-                  td Website
-                  td = link_to @department.website.truncate(40).gsub(/^http:\/\//, ""), @department.website
-        - if @department.department_contacts.present?
-          .card-title
-            = 'Department Contacts'
-          - @department.department_contacts.each_with_index do |contact|
-            .card
-              p.text-center
-                strong = contact.name
-              hr
+      .col-md-6
+        dl
+          - if @department.location.present?
+            dt Location
+            dd = @department.location
+          - if @department.description.present?
+            dt Description
+            dd= @department.description.html_safe
+          - if @department.social_media.present?
+            dt Social Media
+            dd
               table
-                - if contact.purpose.present?
+                - @department.social_media.each do |account|
                   tr
-                    td Purpose
+                    td = "#{account.type.to_s.humanize}"
                     td
-                      = contact.purpose
-                - if contact.full_biola_phone_number.present?
-                  tr
-                    td Phone
-                    td
-                      = contact.full_biola_phone_number
-                - if contact.fax.present?
-                  tr
-                    td Fax
-                    td
-                      = contact.fax
-                - if contact.email.present?
-                  tr
-                    td Email
-                    td
-                      a href="mailto:#{contact.email}"
-                        = contact.email
+                      a href=account.url = account.account
+    .clearfix
 
-      .col-md-7.content-col
-        - if @department.location.present?
-          .card-title Department Details
-          .card
-            table
-              tr
-                td Location
-                td
-                  = @department.location
+    .details
 
-        - if @department.description.present?
-          .card-title Description
-          .card
-            = @department.description.html_safe
+      - if @department.department_contacts.present?
+        = divider
+        .title = 'Department Contacts'
+        - @department.department_contacts.each_with_index do |contact|
+          h4 = contact.name
+          dl
+            - if contact.purpose.present?
+              dt Purpose
+              dd = contact.purpose
+            - if contact.full_biola_phone_number.present?
+              dt Phone
+              dd = contact.full_biola_phone_number
+            - if contact.fax.present?
+              dt Fax
+              dd = contact.fax
+            - if contact.email.present?
+              dt Email
+              dd = mail_to(contact.email)
 
-        - if @department.social_media.present?
-          .card-title Social Media
-          .card
-            - @department.social_media.each do |account|
-              table
-                tr
-                  td = "#{account.type.to_s.humanize}"
-                  td
-                    a href=account.url = account.account

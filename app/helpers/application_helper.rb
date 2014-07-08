@@ -7,4 +7,11 @@ module ApplicationHelper
     end
   end
 
+  def divider(icon='joomla')
+    content_tag :div, class: 'divider' do
+      content_tag(:div, '', class: 'line') +
+      content_tag(:div, fa_icon(icon), class: 'circle')
+    end
+  end
+
 end

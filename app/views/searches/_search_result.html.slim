@@ -1,9 +1,13 @@
 .result_card
   .padding
     - if search_result.data.image_url.present?
-      .card_circle_image style="background-image: url('#{search_result.data.image_url}')"
+      / style="background-image: url('#{search_result.data.image_url}')"
+      .result_image
+        = image_tag search_result.data.image_url
     - elsif calced_image = biola_person_image(search_result.raw_data['biola_id'])
-      .card_circle_image style="background-image: url('#{calced_image}')"
+      / style="background-image: url('#{calced_image}')"
+      .result_image
+        = image_tag calced_image
 
 
     .affiliations
@@ -20,9 +24,7 @@
 
 
     .details
-      .divider
-        .line
-        .circle = fa_icon 'joomla'
+      = divider
 
       dl
         - if search_result.data.email.present?
@@ -41,6 +43,9 @@
         - if search_result.data.location.present?
           dt Office Location
           dd = search_result.data.location
+
+      - if search_result.linkable?
+        .more_details_link = link_to 'More Details', result_url(search_result)
 
 / .media.search_result
 /   .pull-left

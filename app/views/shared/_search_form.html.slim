@@ -15,11 +15,3 @@
         = li_filter('Group', 'group')
       .clearfix
 
-/ - @facets.each do |term, result|
-/   - if result['terms'].length > 0
-/     p
-/       strong = term.titleize
-/     ul.side-nav
-/       - result['terms'].each do |facet|
-/         li = facet_link term, facet
-
