@@ -38,12 +38,7 @@ module SearchHelper
 
   # If you are in a scope that would require you to login to see all results
   def in_private_scope
-    case params['_type']
-    when nil, 'all', 'person'
-      true
-    else
-      false
-    end
+    params['_type'].blank? || params['_type'] == 'all' || params['_type'] == 'person'
   end
 
 
