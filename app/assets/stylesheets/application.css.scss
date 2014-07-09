@@ -6,16 +6,15 @@
 
 @import 'settings';
 
-// h1, h2, h3, h4, h5, h6 {
-//   &:first-child { margin-top: 0; }
-// }
+body { font-family: 'avenir next'; }
+a, a:hover { color: $biola-red; }
 
 #colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
 #directory_header, #body { position: relative; /* this is so they display above colorbar */ }
 
 #directory_header { margin: 15px 0; color: white;
   .container { position: relative; }
-  h1 { font-weight: 300; font-size: 24px; margin: 15px;
+  h1 { font-weight: 400; font-size: 24px; margin: 15px;
     a { color: white; text-decoration: none; }
   }
   #profile_link { position: absolute; right: 20px; top: 3px;
