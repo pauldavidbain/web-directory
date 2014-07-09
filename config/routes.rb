@@ -5,7 +5,13 @@ Directory::Application.routes.draw do
   resources :services, only: [:show]
   resources :groups, only: [:show]
 
-  get '/search', to: 'searches#search'
+  get "/search", to: "searches#search"
+  get "/people" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
+  get "/departments" => redirect { |params, request| "/search?#{request.params.merge({_type: 'department'}).to_query}" }
+  get "/groups" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
+  get "/services" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
+
+
   root to: 'searches#landing'
 
   # this is just a convenience to create a named route to rack-cas' logout
