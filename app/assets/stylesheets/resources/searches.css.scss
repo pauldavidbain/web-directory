@@ -58,3 +58,16 @@
     pointer-events: none; // This allows you to click on the cards underneath
   }
 }
+
+
+@media (max-width: 650px) {
+  #search_form {
+    #search_import {}
+    #search_filters { margin: 0; margin-bottom: 10px;
+      > ul > li.filter { float: none; border-left: 3px solid white; border-bottom: none;
+        &:hover { border-left: 3px solid #ce1126; border-bottom: none; background-color: #fafafa; }
+        a { display: block; padding-left: 30px; }
+      }
+    }
+  }
+}
