@@ -3,31 +3,3 @@
 .container
   #search_results
     = render 'search_results'
-
-
-/ .search-body
-/   .container
-/     .row
-/       .col-sm-4.col-lg-3.nav-col
-/         - @facets.each do |term, result|
-/           - if result['terms'].length > 0
-/             p
-/               strong = term.titleize
-/             ul.side-nav
-/               - result['terms'].each do |facet|
-/                 li = facet_link term, facet
-
-/       .col-sm-8.col-lg-9.nav-col
-/         - if params[:q].present? || @facet_is_active
-/           p Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
-
-/           #search_results
-/             - @results.each do |es_result|
-/               = render 'search_result', search_result: result_object(es_result)
-/             - if @results_count > 25
-/               br
-/               br
-/               .text-center
-/                 p.action_text search is limited to 25 results
-/         - else
-/           p.action_text Choose a category to browse or search for a specific person or department in form above.
