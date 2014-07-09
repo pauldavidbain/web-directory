@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/biola/biola-frontend-toolkit.git
-  revision: 42e3635f6dbdc2bb39934b310b02015b0dc918ad
+  revision: c22f29d57907b4f1e6a86db53016f594209b9f9e
   branch: making_more_flexible
   specs:
     biola_frontend_toolkit (0.1.0)
