@@ -1,17 +1,18 @@
 .container
+  = render 'shared/breadcrumbs'
+
   #profile
+
     - if @department.actors.include? current_user
       .pull-right
         = link_to 'Edit', Settings.profile_publisher.url + '/departments/' + @department.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
 
     .title = @department.title
 
-    / h3 Open hours go here (TODO)
     br
-
     .row
-      .col-md-6
-        dl
+      .col-md-4
+        dl.contact-info
           - if @department.email.present?
             dt Email
             dd = mail_to @department.email
@@ -25,43 +26,37 @@
             dt Website
             dd = link_to @department.website.truncate(40).gsub(/^http:\/\//, ""), @department.website
 
-      .col-md-6
+      .col-md-8
         dl
-          - if @department.location.present?
-            dt Location
-            dd = @department.location
           - if @department.description.present?
             dt Description
             dd= @department.description.html_safe
+          - if @department.location.present?
+            dt Location
+            dd = @department.location
           - if @department.social_media.present?
             dt Social Media
-            dd
-              table
-                - @department.social_media.each do |account|
-                  tr
-                    td = "#{account.type.to_s.humanize}"
-                    td
-                      a href=account.url = account.account
-    .clearfix
+            dd.social_media
+              - @department.social_media.each do |account|
+                = social_link(account)
 
-    .details
+
+    .department_contacts
 
       - if @department.department_contacts.present?
-        = divider
-        .title = 'Department Contacts'
+        = divider 'Department Contacts'
         - @department.department_contacts.each_with_index do |contact|
-          h4 = contact.name
-          dl
-            - if contact.purpose.present?
-              dt Purpose
-              dd = contact.purpose
-            - if contact.full_biola_phone_number.present?
-              dt Phone
-              dd = contact.full_biola_phone_number
-            - if contact.fax.present?
-              dt Fax
-              dd = contact.fax
-            - if contact.email.present?
-              dt Email
-              dd = mail_to(contact.email)
 
+          table.table
+            tr
+              th Name
+              th Purpose
+              th Phone
+              th Fax
+              th Email
+            tr
+              td = contact.name
+              td = contact.purpose
+              td = contact.full_biola_phone_number
+              td = contact.fax
+              td = mail_to(contact.email)

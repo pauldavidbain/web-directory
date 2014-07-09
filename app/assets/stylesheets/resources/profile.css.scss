@@ -1,21 +1,35 @@
 @import 'settings';
 
+#breadcrumb { background-color: white; padding: 8px 15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); font-size: 14px; margin: 0 -7px;
+  ul { margin: 0; padding: 0; list-style: none; }
+  li { display: inline-block;
+    +li:before { content: '‣'; padding: 1px 15px; color: rgb(207, 156, 156); }
+  }
+}
+
 // This is the show page for person, department, group, and service
-#profile { background-color: white; @extend .shadow; padding: 20px; margin: 0px -15px -10px -15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-  .profile-image { height: 120px; width: 120px; border-radius: 100px; background-size: contain; background-position: center center; float: right; border: 1px solid #A2A2A2; }
+#profile { background-color: white; @extend .shadow2; padding: 20px; margin: 0px -15px -10px -15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  .profile-image img { width: 120px; border-radius: 2px; float: right; border: 3px double #ccc;
+    @media (max-width: 600px) { width: 60px; }
+  }
   .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; position: relative;
     .label { margin-right: 5px; }
   }
   &:hover .affiliations { opacity: 1; }
-  .title { font-size: 22px; font-weight: 500; white-space: nowrap; }
+  .title { font-size: 26px; font-weight: 500; white-space: nowrap; }
   .subtitle { font-size: 13px;
     &:first-child { margin-top: 10px; }
   }
-  .details {
-    dl { margin: 0;
-      // -moz-columns: 2; -webkit-columns: 2; columns: 2;
-      dt { margin-top: 15px; }
-      // dd { column-break-before: avoid; break-before: avoid; }
+  dl {
+    &.contact-info { border: 3px double #ddd; background: #eee; padding: 15px; }
+    dd { margin-bottom: 5px; }
+  }
+  .social_media {
+    a { font-size: 25px; padding-right: 10px;
+      &:hover { opacity: 0.7; }
     }
+  }
+  table.table {
+    th { border-top: none; }
   }
 }

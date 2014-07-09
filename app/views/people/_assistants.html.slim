@@ -1,8 +1,0 @@
-.card-title Admin Assistant
-.card
-  table
-    - if @person.assistants.present?
-      - @person.assistants.each do |assistant|
-        tr
-          td Name
-          td = link_to assistant.name, assistant

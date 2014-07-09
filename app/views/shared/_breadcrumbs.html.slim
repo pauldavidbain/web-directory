@@ -1,0 +1,12 @@
+#breadcrumb
+  ul
+    li = link_to fa_icon('home'), root_path
+    - if params[:_type].present?
+      - if params[:_type] == 'all'
+        li = link_to params[:_type].to_s.titleize, search_path(_type: params[:_type])
+      - else
+        li = link_to params[:_type].to_s.pluralize.titleize, search_path(_type: params[:_type])
+    - else
+      li = link_to controller_name.titleize, search_path(_type: controller_name.singularize)
+    - if params[:q].present?
+      li = link_to params[:q], search_path(_type: params[:_type], q: params[:q])
