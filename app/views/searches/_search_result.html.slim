@@ -41,6 +41,9 @@
         - if search_result.data.location.present?
           dt Office Location
           dd = search_result.data.location
+        - if search_result.data.short_description.present?
+          dt Description
+          dd = search_result.data.short_description
 
       - if search_result.linkable?
         .more_details_link = link_to 'More Details', result_url(search_result)

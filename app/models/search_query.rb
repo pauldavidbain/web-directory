@@ -54,7 +54,6 @@ private
             "location",
             "email",
             "phone",
-            "description",
             "titles^2",
             "biola_title",
             "affiliations"
