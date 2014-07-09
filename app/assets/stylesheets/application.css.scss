@@ -33,8 +33,15 @@
   .footer { padding: 20px 0; }
 }
 
-
-
 @media (min-width: 1200px) {
   .container { width: 970px; }  // Disabling the largest breakpoint. It is too wide for this project.
+}
+
+
+///////  Misc Css Objects  ////////////
+.divider { position: relative; height: 32px; overflow: auto; margin: 10px 0;
+  .line { margin-top: 15px; margin-bottom: 15px; border-top: 1px solid #ddd; }
+  .box_wrapper { position: absolute; left: 50%; text-align: center; top: 0;
+    .box { position: relative; left: -50%; border: 1px solid #ddd; background-color: #fafafa; border-radius: 3px; top: 0px; padding: 4px 10px; }
+  }
 }

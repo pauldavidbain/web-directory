@@ -12,12 +12,6 @@
     &:first-child { margin-top: 10px; }
   }
   .details {
-    .divider { position: relative; height: 32px; overflow: auto; margin: 10px 0;
-      .line { margin-top: 15px; margin-bottom: 15px; border-top: 1px solid #ddd; }
-      .circle { height: 30px; width: 30px; border: 1px solid #ddd; background-color: #fafafa; border-radius: 100px; position: absolute; top: 1px; left: 50%; margin-left: -15px; text-align: center;
-        .fa { padding: 7px 0; color: #777;}
-      }
-    }
     dl { margin: 0;
       // -moz-columns: 2; -webkit-columns: 2; columns: 2;
       dt { margin-top: 15px; }
