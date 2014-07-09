@@ -1,32 +1,23 @@
 = render 'shared/search_form'
 
 .container
-  #search_results
-    .result_card
-      .padding
+  #landing_page
+    .row
+      .col-sm-6
         .title Biola University
+        dl
+          dt Address
+          dd
+            ' 13800 Biola Avenue
+            br
+            ' La Mirada, California 90639
+          dt Phone
+          dd = "(562) 903-6000"
 
-        .details
-          = divider
-
-          dl
-            dt Address
-            dd
-              ' 13800 Biola Avenue
-              br
-              ' La Mirada, California 90639
-            dt Phone
-            dd (562) 903-6000
-
-    .result_card
-      .padding
+      .col-sm-6
         .title Emergency Contact
-
-        .details
-          = divider 'support'
-
-          dl
-            dt Campus Safety
-            dd (562) 777-4000
-            dt From on campus
-            dd 5111
+        dl
+          dt From off campus
+          dd = "(562) 777-4000"
+          dt From on campus
+          dd x5111
