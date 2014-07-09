@@ -23,7 +23,7 @@
 
 #search_results { position: relative;
   .results_count { padding-left: 20px; font-style: italic; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-  .result_card { background-color: white; margin-bottom: 20px; overflow: auto; cursor: pointer; position: relative; border-bottom: 1px solid #ddd;
+  .result_card { background-color: white; overflow: auto; cursor: pointer; position: relative; border-bottom: 1px solid #ddd;
     -webkit-transition: all .5s; transition: all .5s;
     &.open { @extend .shadow2; margin: -30px -15px -10px -15px; z-index: 100; border-color: white; }
     .padding { margin: 20px; }
