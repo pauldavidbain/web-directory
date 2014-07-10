@@ -294,7 +294,6 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    version (1.0.0)
     virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -348,6 +347,5 @@ DEPENDENCIES
   thin
   turnout
   uglifier
-  version
   virtus (~> 1.0.2)
   webmock (>= 1.17.4)
