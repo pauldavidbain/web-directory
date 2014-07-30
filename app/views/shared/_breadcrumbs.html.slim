@@ -9,4 +9,4 @@
     - else
       li = link_to controller_name.titleize, search_path(_type: controller_name.singularize)
     - if params[:q].present?
-      li = link_to params[:q], search_path(_type: params[:_type], q: params[:q])
+      li = link_to "\"#{params[:q]}\"", search_path(_type: params[:_type], q: params[:q])
