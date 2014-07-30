@@ -14,7 +14,6 @@ class SearchesController < ApplicationController
     @pages_count = (@results_count / Settings.pagination_limit.to_f).ceil
     @results = results['hits']['hits'] # these get turned into SearchResults in the view/helper
     @facets = filter_facet_affiliations(results['facets'])
-    @facet_is_active = search_query.any_active_facets?
   end
 
 
