@@ -6,8 +6,20 @@
     span< to see more results.
 
 - if params[:q].present? || @facet_is_active
-  p.results_count Showing #{@results.length} of #{@results_count} #{'result'.pluralize(@results_count)}
+  - if @results_count > 0
+    p.results_count Showing #{currently_showing(@results_count)} #{@results_count} #{'result'.pluralize(@results_count)}
+  - else
+    p.results_count There are no results matching your search
+
 - @results.each do |es_result|
   = render 'search_result', search_result: result_object(es_result)
+
+- if params[:q].present? || @facet_is_active
+  ul.pager
+    - if previous_page.present?
+      li.previous = link_to 'Previous', params.merge(page: previous_page)
+    - if next_page(@pages_count).present?
+      li.next = link_to 'Next', params.merge(page: next_page(@pages_count))
+
 
 #backdrop

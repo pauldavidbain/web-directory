@@ -52,3 +52,5 @@ google_analytics:
   account: UA-31491589-5  # this is the testing/staging account
   domain: biola.edu
   enabled: false
+
+pagination_limit: 50

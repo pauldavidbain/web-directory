@@ -7,10 +7,11 @@ class SearchesController < ApplicationController
   end
 
   def search
-    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params, current_user: current_user)
+    search_query = SearchQuery.new(params[:q], facets: facet_types, search_params: params, current_user: current_user, page: params[:page], limit: Settings.pagination_limit)
     results = search_query.execute
 
     @results_count = results['hits']['total']
+    @pages_count = (@results_count / Settings.pagination_limit.to_f).ceil
     @results = results['hits']['hits'] # these get turned into SearchResults in the view/helper
     @facets = filter_facet_affiliations(results['facets'])
     @facet_is_active = search_query.any_active_facets?

@@ -42,6 +42,27 @@ module SearchHelper
   end
 
 
+  def current_page
+    (params[:page] || 1).to_i
+  end
+  def previous_page # we don't need to know the total_results for previous page
+    current_page - 1 if current_page > 1
+  end
+  def next_page(total_results)
+    current_page + 1 if current_page < total_results.to_i
+  end
+
+  def currently_showing(total_results)
+    if total_results <= Settings.pagination_limit
+      "all"
+    else
+      first = 1 + (current_page - 1) * Settings.pagination_limit
+      last = [((first - 1) + Settings.pagination_limit), total_results].min
+      "#{first} - #{last} of"
+    end
+  end
+
+
 private
 
   def facet_is_active?(group, facet)
