@@ -25,17 +25,13 @@ html lang="en-us"
                 i.fa.fa-circle.fa-stack-2x
                 i.fa.fa-user.fa-stack-1x.fa-inverse
           = render 'frontend_toolkit/shared/profile_dropdown'
-        / #profile_link style="background-image: url('https://avatars3.githubusercontent.com/u/957859?s=140')"
 
 
     #body
       = yield
 
-    #footer
-      .container
-        .footer
 
-          p ♥ from the Biola Apps team
+    = render 'frontend_toolkit/global_marketing_footer'
 
 
     = javascript_include_tag "application"
