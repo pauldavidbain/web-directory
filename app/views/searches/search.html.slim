@@ -1,5 +1,4 @@
-= render 'shared/search_form'
+/ Note, this is also updated in javascript when loading by ajax.
+- content_for :title, "Directory > #{(params[:_type] || 'all').pluralize.titleize} > \"#{params[:q]}\""
 
-.container
-  #search_results
-    = render 'search_results'
+#search_results_container = render 'search_page'
