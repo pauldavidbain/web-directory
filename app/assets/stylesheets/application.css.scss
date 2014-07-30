@@ -6,7 +6,7 @@
 
 @import 'settings';
 
-body { font-family: 'avenir next'; }
+body { font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 a, a:hover { color: $biola-red; }
 
 #colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
