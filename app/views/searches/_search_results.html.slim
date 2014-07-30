@@ -17,9 +17,9 @@
 - if params[:q].present? || @facet_is_active
   ul.pager
     - if previous_page.present?
-      li.previous = link_to 'Previous', params.merge(page: previous_page)
+      li.previous = link_to 'Previous', params.merge(page: previous_page), remote: true
     - if next_page(@pages_count).present?
-      li.next = link_to 'Next', params.merge(page: next_page(@pages_count))
+      li.next = link_to 'Next', params.merge(page: next_page(@pages_count)), remote: true
 
 
 #backdrop

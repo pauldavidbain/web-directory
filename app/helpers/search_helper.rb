@@ -7,7 +7,7 @@ module SearchHelper
     end
     title = title.pluralize unless title == 'All'
     content_tag :li, class: "filter #{active_class}", 'data-type' => type do
-      link_to title, search_path(q: params[:q], '_type' => type) #, remote: true
+      link_to title, search_path(q: params[:q], '_type' => type), remote: true
     end
   end
 
