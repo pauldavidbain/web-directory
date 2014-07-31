@@ -3,25 +3,35 @@ html lang="en-us"
   head
     / handles default html head tags and csrf_meta_tags
     = render 'frontend_toolkit/head', title: 'Directory'
-
-    / link href='http://fonts.googleapis.com/css?family=Lusitana:400,700' rel='stylesheet' type='text/css'
-
     = stylesheet_link_tag    "application", media: "all"
 
   body class="#{controller_name} #{action_name}"
 
-    / TODO: Fix style guide to use `current_user` instead of `@current_user`
-    - @current_user = current_user
-    = render 'frontend_toolkit/header', current_user: current_user
-    = render 'frontend_toolkit/prerelease_banner', feedback_form_url: Settings.feedback.form_url
+    = render 'frontend_toolkit/global_marketing_header'
+    / = render 'frontend_toolkit/global_app_header'
+    = render 'frontend_toolkit/prerelease_banner', feedback_form_url: Settings.feedback.form_url, background_color: '#4EE9CA'
 
-    .content
+    #colorbar
+    #directory_header
+      .container
+        h1#directory_title = link_to 'Web Directory', root_url
+
+        #profile_link.dropdown.custom-dropdown
+          a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
+            - if current_user.try(:photo_url).present?
+              #profile-img style="background-image: url('#{current_user.photo_url}')"
+            - else
+              span.fa-stack.fa-lg
+                i.fa.fa-circle.fa-stack-2x
+                i.fa.fa-user.fa-stack-1x.fa-inverse
+          = render 'frontend_toolkit/shared/profile_dropdown'
+
+
+    #body
       = yield
 
-    .container
-      .footer
 
-        p ♥ from the Biola Apps team
+    = render 'frontend_toolkit/global_marketing_footer'
 
 
     = javascript_include_tag "application"

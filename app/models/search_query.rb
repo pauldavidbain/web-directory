@@ -55,7 +55,8 @@ private
             "email",
             "phone",
             "titles^2",
-            "biola_title"
+            "biola_title",
+            "affiliations"
           ]
         }
       }
@@ -67,9 +68,13 @@ private
   def facet_filter
     _terms = []
     options[:facets].to_a.each do |type|
-      search_params[type].to_a.each do |val|
-        _terms << { term: { type => val }} if search_params[type]
+      if val = search_params[type]
+        _terms << { term: { type => val }} unless val == 'all' || val.blank?
       end
+
+      # search_params[type].to_a.each do |val|
+      #   _terms << { term: { type => val }} if search_params[type]
+      # end
     end
     { :and => _terms } if _terms.length > 0
   end

@@ -1,62 +1,35 @@
 @import 'settings';
 
-body.people, body.departments, body.groups, body.services { background-color: #eee;
-  .content {
-    .profile-header { padding: 30px 0; background: #424242; color: #eee;
-      .profile-header-image { text-align: center;
-        .profile-image {
-          margin: 0; padding: 10px; background-color: #777; display: inline-block;
-          #general_photo { font-size: 100px; }
-          i.fa { font-size: 50px; padding: 15px 20px; }
-        }
-      }
-      .profile-header-details {
-        padding-right: 0px;
-        .profile-tags {
-          .tag { display: inline-block; margin: 0 5px 5px 0; background-color: $biola-red; padding: 3px 8px; font-size: 12px; border-radius: 2px; letter-spacing: .7px; font-weight: 500; }
-        }
-        .profile-title {
-          h2 { font-size: 35px; margin-top: 10px; }
-          h3 { font-size: 18px; margin: 10px 0; font-weight: 100; }
-        }
-      }
-    }
+#breadcrumb { background-color: white; padding: 8px 15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); font-size: 14px; margin: 0 -7px;
+  ul { margin: 0; padding: 0; list-style: none; }
+  li { display: inline-block;
+    +li:before { content: '‣'; padding: 1px 15px; color: rgb(207, 156, 156); }
+  }
+}
 
-    .profile-editor {
-      #edit-in-publisher {
-        width: 100%;
-        border-radius: 0px;
-        font-size: 17px;
-      }
-    }
-
-    .profile-body { padding: 20px 0;
-      .content-col {
-        .card-title { border-bottom: none; border-top: none; color: #888; font-size: 12px; font-weight: bold; margin-top: 0; padding: 10px 5px; text-transform: uppercase;
-          &.icon { padding-left: 30px; }
-          &.icon-contact { background: image-url('contacts_gray.png') no-repeat 5px center; }
-        }
-        .card { -webkit-border-radius: 3px; border-radius: 3px; border: 1px solid #E0E0E0; border-bottom-width: 2px; background-color: white; padding: 15px; width: 100%; margin-bottom: 15px;
-          hr { margin: 10px 0; }
-          table {
-            tr {
-              td { padding: 5px; vertical-align: top;
-                &:first-child { color: #999; text-align: right; padding-right: 10px; }
-              }
-            }
-          }
-        }
-
-        section { margin-bottom: 30px; }
-      }
+// This is the show page for person, department, group, and service
+#profile { background-color: white; @extend .shadow2; padding: 20px; margin: 0px -15px -10px -15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
+  .profile-image img { width: 120px; border-radius: 2px; float: right; border: 3px double #ccc;
+    @media (max-width: 600px) { width: 60px; }
+  }
+  .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; position: relative;
+    .label { margin-right: 5px; }
+  }
+  &:hover .affiliations { opacity: 1; }
+  .title { font-size: 26px; font-weight: 500; white-space: nowrap; }
+  .subtitle { font-size: 13px;
+    &:first-child { margin-top: 10px; }
+  }
+  dl {
+    &.contact-info { border: 3px double #ddd; background: #eee; padding: 15px; }
+    dd { margin-bottom: 5px; }
+  }
+  .social_media {
+    a { font-size: 25px; padding-right: 10px;
+      &:hover { opacity: 0.7; }
     }
   }
-
-  @media screen and (max-width: 768px) {
-    .profile-header { padding: 20px 0;
-      .profile-header-image { float: right;
-        .profile-image { padding: 3px; }
-      }
-    }
+  table.table {
+    th { border-top: none; }
   }
 }

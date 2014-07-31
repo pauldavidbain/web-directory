@@ -1,5 +1,17 @@
-#search_form
-  .container
-    = fa_icon 'search'
-    = form_tag search_path, method: :get do |f|
-      = text_field_tag 'q', params[:q], placeholder: 'Search the directory...', tabindex: '1'
+.container
+  #search_form
+    #search_input
+      = fa_icon 'search'
+      = form_tag search_path, method: :get, remote: true do |f|
+        #type_hidden_field = hidden_field_tag '_type', params['_type']
+        = text_field_tag 'q', params[:q], placeholder: 'Search the directory...', tabindex: '1'
+
+    #search_filters
+      ul
+        = li_filter('All', 'all')
+        = li_filter('Person', 'person')
+        = li_filter('Department', 'department')
+        = li_filter('Service', 'service')
+        = li_filter('Group', 'group')
+      .clearfix
+

@@ -1,66 +1,43 @@
-= render 'shared/search_form'
+.container
+  = render 'shared/breadcrumbs'
 
-.profile-header
-  .container
+  #profile
+
+    - if @service.actors.include? current_user
+      .pull-right
+        = link_to 'Edit', Settings.profile_publisher.url + '/services/' + @service.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
+
+    .title = @service.title
+    - if @service.department.present?
+      .subtitle = ("- " + link_to(@service.department.title, @service.department)).html_safe
+
+    br
     .row
-      .profile-header-image.col-sm-4.col-lg-3
-        .profile-image
-          = fa_icon 'building-o'
+      .col-md-4
+        dl.contact-info
+          - if @service.email.present?
+            dt Email
+            dd = mail_to @service.email
+          - if @service.full_biola_phone_number.present?
+            dt Phone
+            dd = @service.full_biola_phone_number
+          - if @service.fax.present?
+            dt Fax
+            dd = @service.fax
+          / - if @service.website.present?
+          /   dt Website
+          /   dd = link_to @service.website.truncate(40).gsub(/^http:\/\//, ""), @service.website
 
-      .profile-header-details.col-sm-8.col-lg-9
-        .profile-tags
-        .profile-title
-          h2 = @service.title
-          - if @service.department.present?
-            h3 = "from "+@service.department.title
-          / h3 Hours go here
-
-- if @service.actors.include? current_user
-  .profile-editor
-    = link_to 'Edit Service', Settings.profile_publisher.url + '/services/' + @service.id + '/edit', class: 'btn btn-primary', id: 'edit-in-publisher'
-
-.profile-body
-  .container
-    .row
-      .col-md-5.nav-col.content-col
-        - if @service.email.present? || @service.full_biola_phone_number.present?
-          .card-title
-            = 'Contact Info'
-          .card
-            table
-              - if @service.email.present?
-                tr
-                  td Email
-                  td = mail_to @service.email
-              - if @service.full_biola_phone_number.present?
-                tr
-                  td Phone
-                  td = @service.full_biola_phone_number
-              - if @service.fax.present?
-                tr
-                  td Fax
-                  td = @service.fax
-
-      .col-md-7.content-col
-        - if @service.location.present?
-          .card-title service Details
-          .card
-            table
-              tr
-                td Location
-                td
-                  = @service.location
-
-        -if @service.description.present?
-          .card-title Description
-          .card
-            = @service.description.html_safe
-
-        -if @service.social_media.present?
-          .card-title Social Media
-          .card
-            - @service.social_media.each do |account|
-              table
-                tr
-                  td = "#{account.type.to_s.humanize}:"
-                  td = link_to account.account, account.url
+      .col-md-8
+        dl
+          - if @service.description.present?
+            dt Description
+            dd= @service.description.html_safe
+          - if @service.location.present?
+            dt Location
+            dd = @service.location
+          - if @service.social_media.present?
+            dt Social Media
+            dd.social_media
+              - @service.social_media.each do |account|
+                = social_link(account)

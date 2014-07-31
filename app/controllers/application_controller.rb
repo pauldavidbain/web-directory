@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :check_authentication_param, :try_cas_gateway_login
+  before_filter :check_authentication_param, :try_cas_gateway_login, :set_no_cache
   after_action :verify_authorized, except: [:landing, :search]
   after_action :verify_policy_scoped, only: :index
   rescue_from Pundit::NotAuthorizedError, with: :permission_denied!
@@ -53,6 +53,17 @@ class ApplicationController < ActionController::Base
 
   def render_error_page(status)
     render file: "#{Rails.root}/public/#{status}", formats: [:html], status: status, layout: false
+  end
+
+  # There is a bug when pushing history state after clicking on a remote:true link, then when you hit the back
+  #   button you see the javascript code to update the page instead of the actual page. This expires js responses
+  #   so that the browser doesn't cache those pages.
+  def set_no_cache
+    if request.format.symbol == :js
+      response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+      response.headers["Pragma"] = "no-cache"
+      response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    end
   end
 
 end

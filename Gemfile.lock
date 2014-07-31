@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/biola/biola-frontend-toolkit.git
+  revision: a537216ca3d561923933a30cc0e2805381022135
+  branch: making_more_flexible
+  specs:
+    biola_frontend_toolkit (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -39,7 +46,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     biola_deploy (0.6.1)
-    biola_frontend_toolkit (0.1.0)
     blazing (0.4.1)
       activesupport
       grit
@@ -311,7 +317,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biola_deploy
-  biola_frontend_toolkit (~> 0.1.0)
+  biola_frontend_toolkit!
   blazing
   bootstrap-sass
   buweb_content_models (~> 0.11.0)

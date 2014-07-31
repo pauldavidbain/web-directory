@@ -1,42 +1,49 @@
-.media.search_result
-  .pull-left
-    - profile_image = capture do
-      - if search_result.data.image_url.present?
-        .media-object.square-img style="background-image: url('#{search_result.data.image_url}')"
-      - else
-        .media-object.square-img
-          = fa_icon search_result.icon
+.result_card
+  .padding
+    - if search_result.data.image_url.present?
+      .result_image
+        = image_tag search_result.data.image_url
+    - elsif calced_image = biola_person_image(search_result.raw_data['biola_id'])
+      .result_image
+        = image_tag calced_image
 
-    = link_to_if search_result.linkable?, profile_image, result_url(search_result)
 
-  .media-body
-    .row
-      .col-md-6
-        h4.media-heading
-          = link_to_if search_result.linkable?, search_result.data.title, result_url(search_result)
-        - search_result.data.subtitles.to_a.each do |subtitle|
-          h5.media-subheading = subtitle
+    .affiliations
+      - search_result.affiliations.each do |aff|
+        .label.label-default = aff.titleize
+    .title
+      = search_result.data.title
+
+    - search_result.data.subtitles.to_a.each do |subtitle|
+      .subtitle = subtitle
+
+    - if search_result.data.image_url.present? || calced_image.present?
+      .clearfix
+
+
+    .details
+      = divider 'Contact Info'
+
+      dl
+        - if search_result.data.email.present?
+          dt Email
+          dd = mail_to search_result.data.email
+        - if search_result.data.phone.present? && search_result.type == 'person'
+          - if policy(Person).can_see_employee_phone?
+            dt Phone
+            dd = search_result.data.phone + ' (Direct)'
+          - if search_result.data.alternate_phone.present?
+            dt Alternate Phone
+            dd = search_result.data.alternate_phone
+        - elsif search_result.data.phone.present?
+          dt Phone
+          dd = search_result.data.phone
+        - if search_result.data.location.present?
+          dt Office Location
+          dd = search_result.data.location
         - if search_result.data.short_description.present?
-          p.media-subheading = search_result.data.short_description
+          dt Description
+          dd = search_result.data.short_description
 
-
-      .col-md-6
-        p.contact_details
-          - if search_result.data.email.present?
-            = fa_icon 'envelope-o'
-            = mail_to search_result.data.email
-            br
-          - if search_result.data.phone.present? && search_result.type == 'person'
-            - if policy(Person).can_see_employee_phone?
-              = fa_icon 'phone', text: search_result.data.phone+' (Direct)'
-              br
-            - if search_result.data.alternate_phone.present?
-              = fa_icon 'phone', text: search_result.data.alternate_phone
-              br
-          - elsif search_result.data.phone.present?
-            = fa_icon 'phone', text: search_result.data.phone
-            br
-
-          - if search_result.data.location.present?
-            = fa_icon 'map-marker', text: search_result.data.location
-            br
+      - if search_result.linkable?
+        .more_details_link = link_to 'More Details', result_url(search_result)
