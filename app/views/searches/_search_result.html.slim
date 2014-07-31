@@ -9,8 +9,10 @@
 
 
     .affiliations
-      - search_result.affiliations.each do |aff|
-        .label.label-default = aff.titleize
+      - visible_affiliations = search_result.affiliations.map(&:to_sym) & UserPermissables.new(current_user).affiliations
+      - visible_affiliations.each do |aff|
+        .label.label-default = aff.to_s.titleize
+
     .title
       = search_result.data.title
 
