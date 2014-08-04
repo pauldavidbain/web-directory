@@ -10,14 +10,11 @@
 - else
   p.results_count There are no results matching your search
 
-- @results.each do |es_result|
-  = render 'search_result', search_result: result_object(es_result)
+- @results.each_with_index do |es_result, index|
+  = render 'search_result', search_result: result_object(es_result), index: index
 
 ul.pager
   - if previous_page.present?
     li.previous = link_to 'Previous', params.merge(page: previous_page), remote: true
   - if next_page(@pages_count).present?
     li.next = link_to 'Next', params.merge(page: next_page(@pages_count)), remote: true
-
-
-#backdrop
