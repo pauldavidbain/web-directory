@@ -38,7 +38,7 @@
       .row
         .col-sm-6
           h4.section-title What We Do
-          .section-content = @department.description.html_safe
+          .section-content = @department.description.to_s.html_safe
         .col-sm-6
           h4.section-title Open Hours
           .section-content
@@ -51,10 +51,11 @@
               br
               | 8:00am - 12:00pm, Friday
 
-          h4.section-title Follow Us
-          .section-content.social_media
-            - @department.social_media.each do |account|
-              = social_link(account)
+          - if @department.social_media.present?
+            h4.section-title Follow Us
+            .section-content.social_media
+              - @department.social_media.each do |account|
+                = social_link(account)
 
 
       - if @department.department_contacts.present?
@@ -73,22 +74,23 @@
                 td = contact.purpose
                 td = contact.full_biola_phone_number
                 td = contact.fax
-                td = mail_to(contact.email)
+                td = mail_to(contact.email) if contact.email.present
 
-      .staff-members
-        h4.section-title Staff Members
+      - if @department.people.present?
+        .staff-members
+          h4.section-title Staff Members
 
-        .row
-          - @department.people.each do |person|
-            .member.col-md-4.col-sm-6
-              .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
-              .details
-                .name = link_to person.name, person
-                .titles = person.best_biola_title
-              .clearfix
+          .row
+            - @department.people.each do |person|
+              .member.col-md-4.col-sm-6
+                .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
+                .details
+                  .name = link_to person.name, person
+                  .titles = person.best_biola_title
+                .clearfix
 
-        .text-center
-          = link_to 'See All', search_url(q: @department.title, _type: 'person')
+          .text-center
+            = link_to 'See All', search_url(q: @department.title, _type: 'person')
 
 
   .clearfix
