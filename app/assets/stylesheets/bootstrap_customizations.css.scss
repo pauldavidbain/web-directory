@@ -1,0 +1,5 @@
+.table.hide-top-border {
+  tr:first-child {
+    th, td { border-top: none; }
+  }
+}
