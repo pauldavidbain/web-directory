@@ -10,14 +10,17 @@ if $("#search_results_container").length > 0
       card.find('.details').slideUp()
       $('#backdrop').fadeOut()
   openCard = (card, target) ->
-    closeAllCards()
-    card.addClass('open')
-    card.find('.details').slideDown()
-    $('#backdrop').fadeIn()
+    if card.data('profile-url')
+      window.location = card.data('profile-url')
+    else
+      closeAllCards()
+      card.addClass('open')
+      card.find('.details').slideDown()
+      $('#backdrop').fadeIn()
 
-    # replace medium image with large image
-    if medium_img = card.find('.result_image img').attr('src')
-      card.find('.result_image img').attr('src', medium_img.replace('medium', 'large'))
+      # replace medium image with large image
+      if medium_img = card.find('.result_image img').attr('src')
+        card.find('.result_image img').attr('src', medium_img.replace('medium', 'large'))
 
   $('#search_results_container').on 'click', '.result_card', (e) ->
     if $(this).hasClass('open')
