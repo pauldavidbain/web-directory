@@ -20,10 +20,16 @@ window.toggleGlobalSearch = ->
 
 
 # Setup shortcut keys
-$(document).keypress (e) ->
-  if e.target == document.body
-    switch e.charCode
-      when 115 then toggleGlobalSearch(); return false; # "s" should bring up the global search.
+$(document).keyup (e) ->
+
+  # ESC - lose focus from whatever is currently selected
+  if e.keyCode == 27
+    document.activeElement.blur()
+
+  # "s" - bring up the global search.
+  else if e.keyCode == 83 && e.target == document.body
+    toggleGlobalSearch()
+    return false # Otherwise the "s" will get put into the search field
 
 # This closes the global search form if you hit the esc key inside of it
 $('#global_search_form input#q').keydown (e) ->
