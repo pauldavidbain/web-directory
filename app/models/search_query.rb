@@ -47,6 +47,7 @@ private
             "title^4",
             "*_name",
             "*_initial",
+            "last_name^2",
             "preferred_name^4",
             "aliases",
             "department",
@@ -116,8 +117,21 @@ private
     }
   end
 
+  def sort_by
+    if term.blank?  # only sort alphabetically if there is no search term, otherwise use the default sorting.
+      [
+        { "_type" => { order: :asc }},
+        { "normalized_data.title" => { order: :asc }},
+        "_score"
+      ]
+    else
+      []
+    end
+  end
+
   def body
     {
+      sort: sort_by,
       query: {
         filtered: {
           query: query,
