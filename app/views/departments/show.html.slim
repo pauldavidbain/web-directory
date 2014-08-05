@@ -74,7 +74,7 @@
                 td = contact.purpose
                 td = contact.full_biola_phone_number
                 td = contact.fax
-                td = mail_to(contact.email) if contact.email.present
+                td = mail_to(contact.email) if contact.email.present?
 
       - if @department.people.present?
         .staff-members
