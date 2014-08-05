@@ -6,10 +6,10 @@ Directory::Application.routes.draw do
   resources :groups, only: [:show]
 
   get "/search", to: "searches#search"
-  get "/people" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
-  get "/departments" => redirect { |params, request| "/search?#{request.params.merge({_type: 'department'}).to_query}" }
-  get "/groups" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
-  get "/services" => redirect { |params, request| "/search?#{request.params.merge({_type: 'person'}).to_query}" }
+  get "/people" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'person'}).to_query}" }
+  get "/departments" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'department'}).to_query}" }
+  get "/groups" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'group'}).to_query}" }
+  get "/services" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'service'}).to_query}" }
 
 
   root to: 'searches#landing'
