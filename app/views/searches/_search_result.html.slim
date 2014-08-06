@@ -1,4 +1,4 @@
-.result_card
+.result_card data-profile-url=result_url(search_result)
   .padding
     - if search_result.data.image_url.present?
       .result_image
@@ -13,39 +13,23 @@
       - visible_affiliations.each do |aff|
         .label.label-default = aff.to_s.titleize
 
-    .title
-      = search_result.data.title
 
-    - search_result.data.subtitles.to_a.each do |subtitle|
-      .subtitle = subtitle
-
-    - if search_result.data.image_url.present? || calced_image.present?
-      .clearfix
+    .contact-titles
+      .title = link_to_if search_result.linkable?, search_result.data.title, result_url(search_result), tabindex: index+1
+      - search_result.data.subtitles.to_a.each do |subtitle|
+        .subtitle = subtitle
 
 
-    .details
-      = divider 'Contact Info'
+    .contact-info
+      - if search_result.data.email.present?
+        div = mail_to search_result.data.email
+      - if search_result.data.phone.present? && search_result.type == 'person'
+        - if policy(Person).can_see_employee_phone?
+          div = search_result.data.phone + ' (Direct)'
+        - if search_result.data.alternate_phone.present?
+          div = search_result.data.alternate_phone + ' (Alt)'
+      - elsif search_result.data.phone.present?
+        div = search_result.data.phone
 
-      dl
-        - if search_result.data.email.present?
-          dt Email
-          dd = mail_to search_result.data.email
-        - if search_result.data.phone.present? && search_result.type == 'person'
-          - if policy(Person).can_see_employee_phone?
-            dt Phone
-            dd = search_result.data.phone + ' (Direct)'
-          - if search_result.data.alternate_phone.present?
-            dt Alternate Phone
-            dd = search_result.data.alternate_phone
-        - elsif search_result.data.phone.present?
-          dt Phone
-          dd = search_result.data.phone
-        - if search_result.data.location.present?
-          dt Office Location
-          dd = search_result.data.location
-        - if search_result.data.short_description.present?
-          dt Description
-          dd = search_result.data.short_description
+    .clearfix
 
-      - if search_result.linkable?
-        .more_details_link = link_to 'More Details', result_url(search_result)

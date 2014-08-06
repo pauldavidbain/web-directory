@@ -9,6 +9,10 @@ class PersonPolicy < ApplicationPolicy
     permitted_to_see_affiliations? || user.try(:admin?) || user.try(:developer?)
   end
 
+  def edit?
+    user && ((user.biola_id == record.biola_id) || record.actors.include?(user) || super)
+  end
+
   def can_see_employee_phone?
     UserPermissables.new(user).phones.include?(:employee_phone)
   end

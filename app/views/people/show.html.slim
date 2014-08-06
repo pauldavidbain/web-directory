@@ -4,9 +4,9 @@
   = render 'shared/breadcrumbs'
 
   #profile
-    - if current_user && ((current_user.biola_id == @person.biola_id) || @person.actors.include?(current_user))
+    - if policy(@person).edit?
       .pull-right
-        = link_to "Edit Profile", Settings.profile_publisher.url + '/my_profile', class: 'btn btn-default', id: 'edit-in-publisher'
+        = link_to "Edit Profile", Settings.profile_publisher.url + "/people/#{@person.id}", class: 'btn btn-default', id: 'edit-in-publisher'
 
     .title = @person.name
 

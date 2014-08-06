@@ -1,31 +1,7 @@
 if $("#search_results_container").length > 0
 
-  closeAllCards = ->
-    $('#search_results .result_card').each ->
-      $(this).removeClass('open')
-      $(this).find('.details').slideUp()
-  closeCard = (card, target) ->
-    unless target.parents('.details').length > 0 || target.is('.details')
-      card.removeClass('open')
-      card.find('.details').slideUp()
-      $('#backdrop').fadeOut()
-  openCard = (card, target) ->
-    closeAllCards()
-    card.addClass('open')
-    card.find('.details').slideDown()
-    $('#backdrop').fadeIn()
+  $("#search_results_container").on 'ajax:before', (event, xhr, status) ->
+    $("#search_results").html("<div class='spinner-wrapper'><i class='fa fa-spinner fa-spin'></i></div>")
 
-    # replace medium image with large image
-    if medium_img = card.find('.result_image img').attr('src')
-      card.find('.result_image img').attr('src', medium_img.replace('medium', 'large'))
-
-  $('#search_results_container').on 'click', '.result_card', (e) ->
-    if $(this).hasClass('open')
-      closeCard $(this), $(e.target)
-    else
-      openCard $(this), $(e.target)
-    e.stopPropagation() # So body doesn't recieve the click
-
-  $('body').click (e) ->
-    closeAllCards()
-    $('#backdrop').fadeOut()
+  $("#search_results_container").on 'ajax:error', (event, xhr, status) ->
+    $("#search_results").html("<div class='alert alert-danger'>There was an while searching. Please refresh the page and try again.</div>")
