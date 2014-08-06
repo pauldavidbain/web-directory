@@ -33,7 +33,9 @@ module SearchHelper
   end
 
   def result_url(search_result)
-    url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id, q: params[:q], _type: (params[:_type].presence || 'all')
+    if search_result.linkable?
+      url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id, q: params[:q], _type: (params[:_type].presence || 'all')
+    end
   end
 
   # If you are in a scope that would require you to login to see all results

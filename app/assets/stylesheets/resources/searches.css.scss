@@ -1,15 +1,17 @@
 @import 'settings';
 
 // This can get reused around the site
-#search_form { background-color: white; @extend .shadow; overflow: auto; margin-bottom: 20px;
-  #search_input { position: relative; margin: 25px; margin-bottom: 20px; background-color: white; @extend .shadow;
+.search_form { background-color: white; @extend .shadow; overflow: auto; margin-bottom: 20px;
+  .search_input { position: relative; margin: 25px; margin-bottom: 20px; background-color: white; @extend .shadow;
     i { position: absolute; font-size: 20px; top: 17px; left: 18px; color: #aaa; }
     input { width: 100%; border: none; outline: none; padding: 10px 20px 10px 50px; font-size: 24px; background: none; border: 1px solid #ccc;
       -webkit-appearance: none; border-radius: 0; // For iOS
     }
   }
+}
 
-  #search_filters { margin: -15px 20px 0 20px;
+#search_results_container {
+  .search_filters { margin: -15px 20px 0 20px;
     ul { list-style: none; margin: 0; padding: 0;
       li.filter { float: left; font-size: 20px; cursor: pointer; border-bottom: 3px solid white;
         a { display: inline-block; padding: 15px 20px; color: black; text-decoration: none; }
@@ -17,55 +19,8 @@
         &.active a { color: $biola-red; }
       }
     }
-  }
-}
-
-
-#search_results { position: relative;
-  .results_count { padding-left: 20px; font-style: italic; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
-  .result_card { background-color: white; overflow: auto; cursor: pointer; position: relative; border-bottom: 1px solid #ddd;
-    -webkit-transition: all .5s; transition: all .5s;
-    &.open { @extend .shadow2; margin: -30px -15px -10px -15px; z-index: 100; border-color: white; }
-    &:hover { background-color: rgb(255, 247, 247);
-      &.open { background-color: white; }
-    }
-    .padding { margin: 20px; }
-    .result_image {
-      float: right; padding: 2px; border: 1px solid #ddd; border-radius: 2px;
-      img { width: 50px; -webkit-transition: all .5s; transition: all .5s; }
-    }
-    &.open .result_image img { width: 100px; }
-    .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; opacity: 0.4; position: relative;
-      -webkit-transition: opacity .5s; transition: opacity .5s;
-      .label { margin-right: 5px; }
-      @media (max-width: 450px) { display: none; }
-    }
-    &:hover .affiliations { opacity: 1; }
-    .title { font-size: 22px; font-weight: 500; white-space: nowrap; }
-    .subtitle { font-size: 13px;
-      &:first-child { margin-top: 10px; }
-    }
-    .details { display: none; cursor: text;
-      dl { margin: 0;
-        dt { margin-top: 15px; }
-      }
-    }
-    .more_details_link { text-align: center; margin-top: 20px; }
-  }
-
-  // for fade out trick. I tried fading out all the other cards, but that hurt performance.
-  #backdrop {
-    display: none; position: absolute; z-index: 10; background-color: rgba(255,255,255,.7);
-    top: 0; bottom: -10px; left: -10px; right: -10px; // You need the negative values so it covers the card shadows completely
-    pointer-events: none; // This allows you to click on the cards underneath
-  }
-}
-
-
-@media (max-width: 650px) {
-  #search_form {
-    #search_import {}
-    #search_filters { margin: 0; margin-bottom: 10px;
+    // Stack search filters on smaller screens.
+    @media (max-width: 650px) { margin: 0; margin-bottom: 10px;
       > ul > li.filter { float: none; border-left: 3px solid white; border-bottom: none;
         &:hover { border-left: 3px solid #ce1126; border-bottom: none; background-color: #fafafa; }
         a { display: block; padding-left: 30px; }
@@ -73,3 +28,33 @@
     }
   }
 }
+
+
+#search_results { position: relative;
+  .results_count { padding-left: 20px; font-style: italic; border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 0; }
+  .result_card { position: relative; border-bottom: 1px solid #ddd;
+    .padding { margin: 20px; }
+    .result_image { float: right; padding: 2px; border: 1px solid #ddd; border-radius: 2px;
+      img { width: 50px; }
+    }
+    .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; opacity: 0.7; position: relative;
+      .label { margin-right: 5px; }
+      @media (max-width: 450px) { display: none; }
+    }
+    .contact-titles { margin-bottom: 10px;
+      .title { font-size: 22px; font-weight: 500; }
+      .subtitle { font-size: 13px;
+        &:first-child { margin-top: 10px; }
+      }
+    }
+    @media (min-width: 992px) {
+      .contact-titles { display: inline-block; width: 350px; margin-right: 20px; margin-bottom: 0; }
+      .contact-info { display: inline-block; vertical-align: top; margin-right: 20px; }
+    }
+  }
+
+  .spinner-wrapper { text-align: center; padding: 15px 0 30px 0; font-size: 20px; }
+}
+
+
+#global_search_form { position: fixed; top: 0; width: 100%; display: none; }

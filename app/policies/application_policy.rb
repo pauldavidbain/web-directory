@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user.try(:admin?) || user.try(:developer?)
   end
 
   def edit?
