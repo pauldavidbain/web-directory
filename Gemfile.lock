@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (3.2.1)
+    aasm (3.3.1)
     actionmailer (4.0.4)
       actionpack (= 4.0.4)
       mail (~> 2.5.4)
@@ -50,15 +50,15 @@ GEM
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.1.4)
-    buweb_content_models (0.11.0)
-      aasm
-      carrierwave-mongoid (~> 0.7.1)
-      elasticsearch (~> 1.0.1)
-      elasticsearch-model (~> 0.1.1)
-      mail (~> 2.5.0)
-      mini_magick (~> 3.7.0)
-      mongoid (~> 4.0.0.beta1)
-      mongoid_slug (~> 3.2.1)
+    buweb_content_models (0.25.0)
+      aasm (~> 3.3)
+      carrierwave-mongoid (~> 0.7)
+      elasticsearch (~> 1.0)
+      elasticsearch-model (~> 0.1)
+      email_validator (~> 1.4)
+      mini_magick (~> 3.7)
+      mongoid (~> 4.0)
+      mongoid_slug (~> 3.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -107,6 +107,8 @@ GEM
     elasticsearch-transport (1.0.2)
       faraday
       multi_json
+    email_validator (1.4.0)
+      activemodel
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -159,7 +161,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_magick (3.7.0)
+    mini_magick (3.8.0)
       subexec (~> 0.2.1)
     mini_portile (0.6.0)
     minitest (4.7.5)
@@ -312,7 +314,7 @@ DEPENDENCIES
   biola_frontend_toolkit (~> 0.2.0)
   blazing
   bootstrap-sass
-  buweb_content_models (~> 0.11.0)
+  buweb_content_models (~> 0.25.0)
   coffee-rails
   compass-rails
   declarative_authorization
