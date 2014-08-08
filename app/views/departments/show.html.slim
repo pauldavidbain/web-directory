@@ -79,9 +79,9 @@
       - if @department.people.present?
         .staff-members
           h4.section-title Staff Members
-
           .row
-            - @department.people.each do |person|
+            / TODO: This should probably only list certain "featured" people or something
+            - @department.people.limit(6).each do |person|
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
                 .details
