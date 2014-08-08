@@ -42,6 +42,8 @@
         .col-sm-6
           h4.section-title Open Hours
           .section-content
+            .alert.alert-info
+              em These are normal university hours. We are actively working on adding custom department hours.
             strong Regular Hours
             p 8:00am - 5:00pm, Monday - Friday
             br
@@ -79,7 +81,6 @@
       - if @department.people.present?
         .staff-members
           h4.section-title Staff Members
-
           .row
             - @department.people.each do |person|
               .member.col-md-4.col-sm-6
