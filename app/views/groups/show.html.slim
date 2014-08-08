@@ -24,7 +24,7 @@
             dd = @group.fax
           - if @group.website.present?
             dt Website
-            dd = link_to @group.website.truncate(40).gsub(/^http:\/\//, ""), @group.website
+            dd = website_link @group.website
 
       .col-md-8
         dl

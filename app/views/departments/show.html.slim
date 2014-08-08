@@ -27,7 +27,7 @@
         - if @department.website.present?
           tr
             th Web
-            td = link_to @department.website.truncate(40).gsub(/^http:\/\//, ""), @department.website
+            td = website_link @department.website
         - if @department.location.present?
           tr
             th Location
