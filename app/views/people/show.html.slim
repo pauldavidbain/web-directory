@@ -6,7 +6,7 @@
   #profile
     - if policy(@person).edit?
       .pull-right
-        = link_to "Edit Profile", Settings.profile_publisher.url + "/people/#{@person.id}", class: 'btn btn-default', id: 'edit-in-publisher'
+        = profile_publisher_link @person, name: 'Edit Profile'
 
     .title = @person.name
 

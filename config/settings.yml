@@ -46,7 +46,7 @@ elasticsearch:
   index_name: 'directory'
 
 profile_publisher:
-  url:  # set this in environment settings.
+  url:  # set in settings.local.yml in development
 
 google_analytics:
   account: UA-31491589-5  # this is the testing/staging account

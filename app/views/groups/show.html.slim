@@ -3,9 +3,9 @@
 
   #profile
 
-    - if @group.actors.include? current_user
+    - if policy(@group).edit?
       .pull-right
-        = link_to 'Edit', Settings.profile_publisher.url + '/groups/' + @group.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
+        = profile_publisher_link @group
 
     .title = @group.title
 

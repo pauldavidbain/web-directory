@@ -19,4 +19,9 @@ module LinkHelper
 
     link_to url.to_s.gsub(/^https?:\/\//, '').truncate(40), url
   end
+
+  def profile_publisher_link(object, name: 'Edit', action: 'edit', route: nil, css_class: 'btn btn-default', html_id: 'edit-in-publisher')
+    route ||= object.class.to_s.downcase.pluralize
+    link_to name, "#{Settings.profile_publisher.url}/#{route}/#{object.id}/#{action}", class: css_class, id: html_id
+  end
 end
