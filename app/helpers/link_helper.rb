@@ -17,6 +17,6 @@ module LinkHelper
   def website_link(url)
     return nil if url.blank?
 
-    link_to url.to_s.gsub(/^https?:\/\//, '').truncate(40)
+    link_to url.to_s.gsub(/^https?:\/\//, '').truncate(40), url
   end
 end
