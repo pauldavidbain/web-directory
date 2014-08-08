@@ -4,24 +4,32 @@
   }
   .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
     .title { font-size: 25px; font-weight: bold; margin-bottom: 20px; }
+    .subtitle { margin-top: -15px; margin-bottom: 20px; color: #666; }
     .table {
+      th:first-child, td:first-child { padding-left: 0; }
       th { font-weight: 500; color: #777; }
+    }
+    .profile-image { text-align: right;
+      img { max-width: 100px; }
     }
   }
   .fw-content { margin: 20px 0;
     .section-title { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
-    .section-content { margin-bottom: 20px;
-      &.social_media {
-        a { font-size: 25px; padding-right: 10px;
-          &:hover { opacity: 0.7; }
+    .section-content { margin-bottom: 60px;
+      &.small_bottom { margin-bottom: 20px; }
+      .social_media {
+        a { padding-right: 5px;
+          .fa { padding-right: 5px; }
         }
       }
     }
 
-    .department-contacts { margin-bottom: 40px;
+    .section-with-table {
       .section-title { border-bottom: none; padding-bottom: 0; }
       table {
         th { font-weight: 600; }
+        th:first-child, td:first-child { padding-left: 0; }
+        th { font-weight: 500; color: #777; }
       }
     }
 
