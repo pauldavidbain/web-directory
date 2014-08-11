@@ -7,7 +7,6 @@
 
   .fw-banner
     .container
-
       .row
         .col-sm-9
           .title = @person.name
@@ -52,7 +51,7 @@
 
       - if policy(@person).edit?
         .edit_profile_link
-          = link_to "Edit Profile", Settings.profile_publisher.url + "/people/#{@person.id}", class: 'btn btn-default', id: 'edit-in-publisher'
+          = profile_publisher_link @person, name: 'Edit Profile'
 
   .fw-content
     .container

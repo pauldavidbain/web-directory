@@ -9,7 +9,7 @@
     .container
       - if @group.actors.include? current_user
         .edit-profile-link.pull-right
-          = link_to 'Edit', Settings.profile_publisher.url + '/groups/' + @group.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
+          = profile_publisher_link @group
 
       .title = @group.title
 
@@ -29,7 +29,7 @@
         - if @group.website.present?
           tr
             th Website
-            td = link_to @group.website.truncate(40).gsub(/^http:\/\//, ""), @group.website
+            td = website_link @group.website
 
   .fw-content
     .container
@@ -56,4 +56,3 @@
 
           .text-center
             = link_to 'See All', search_url(q: @group.title, _type: 'person')
-

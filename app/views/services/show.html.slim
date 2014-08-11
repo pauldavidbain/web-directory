@@ -9,7 +9,7 @@
     .container
       - if @service.actors.include? current_user
         .edit-profile-link.pull-right
-          = link_to 'Edit', Settings.profile_publisher.url + '/services/' + @service.id + '/edit', class: 'btn btn-default', id: 'edit-in-publisher'
+          = profile_publisher_link @service
 
       .title = @service.title
       - if @service.department.present?
