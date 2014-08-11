@@ -1,46 +1,58 @@
-.container
-  = render 'shared/breadcrumbs'
+- content_for :title, "Directory > Group > #{@group.title}"
 
-  #profile
+#profile.full-width-page
+  .fw-breadcrumbs
+    .container
+      = render 'shared/breadcrumbs'
 
-    - if policy(@group).edit?
-      .pull-right
-        = profile_publisher_link @group
+  .fw-banner
+    .container
+      - if @group.actors.include? current_user
+        .edit-profile-link.pull-right
+          = profile_publisher_link @group
 
-    .title = @group.title
+      .title = @group.title
 
-    br
-    .row
-      .col-md-4
-        dl.contact-info
-          - if @group.email.present?
-            dt Email
-            dd = mail_to @group.email
-          - if @group.full_biola_phone_number.present?
-            dt Phone
-            dd = @group.full_biola_phone_number
-          - if @group.fax.present?
-            dt Fax
-            dd = @group.fax
-          - if @group.website.present?
-            dt Website
-            dd = website_link @group.website
+      table.table.hide-top-border
+        - if @group.email.present?
+          tr
+            th Email
+            td = mail_to @group.email
+        - if @group.full_biola_phone_number.present?
+          tr
+            th Phone
+            td = @group.full_biola_phone_number
+        - if @group.fax.present?
+          tr
+            th Fax
+            td = @group.fax
+        - if @group.website.present?
+          tr
+            th Website
+            td = website_link @group.website
 
-      .col-md-8
-        dl
-          - if @group.description.present?
-            dt Description
-            dd= @group.description.html_safe
-          / - if @group.social_media.present?
-          /   dt Social Media
-          /   dd.social_media
-          /     - @group.social_media.each do |account|
-          /       = social_link(account)
+  .fw-content
+    .container
 
-    .group_members
-      = divider 'Group Members'
-      ul
-        - @group.people.each do |person|
-          li
-            = link_to person.name, person
-            = ", #{person.department_title}" if person.department_title.present?
+      - if @group.description.present?
+        .section-with-table
+          h4.section-title What We Do
+          .section-content = @group.description.html_safe
+
+
+
+      - if @group.people.present?
+        .staff-members
+          h4.section-title Group Members
+
+          .row
+            - @group.people.each do |person|
+              .member.col-md-4.col-sm-6
+                .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
+                .details
+                  .name = link_to person.name, person
+                  .titles = person.best_biola_title
+                .clearfix
+
+          .text-center
+            = link_to 'See All', search_url(q: @group.title, _type: 'person')

@@ -7,9 +7,6 @@
 
 @import 'settings';
 
-body { font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-a, a:hover { color: $biola-red; }
-
 #colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
 #directory_header, #body { position: relative; /* this is so they display above colorbar */ }
 

@@ -1,117 +1,109 @@
 - content_for :title, "Directory > #{@person.name}"
 
-.container
-  = render 'shared/breadcrumbs'
+#profile.full-width-page
+  .fw-breadcrumbs
+    .container
+      = render 'shared/breadcrumbs'
 
-  #profile
-    - if policy(@person).edit?
-      .pull-right
-        = profile_publisher_link @person, name: 'Edit Profile'
+  .fw-banner
+    .container
+      .row
+        .col-sm-9
+          .title = @person.name
+          .subtitle = @person.titles.join("<br/>").html_safe
 
-    .title = @person.name
+          table.table.hide-top-border
 
-    br
-    .row
-      .col-md-4
-        dl.contact-info
-          - if @person.use_work_email && @person.work_email.present?
-            dt Work Email
-            dd = mail_to @person.work_email
-          - if @person.biola_email.present?
-            dt Email
-            dd = mail_to @person.biola_email
-          - if @person.full_biola_phone_number.present? && policy(@person).can_see_employee_phone?
-            dt Phone (Direct)
-            dd = @person.full_biola_phone_number
-          - if @person.alternate_employee_phone.present?
-            dt Phone (Alternate)
-            dd = @person.full_biola_phone_number(:alternate_employee_phone)
-          - if @person.office_location.present?
-            dt Office Location
-            dd = @person.office_location
+            - if current_user && current_user.employee?
+              - if @person.assistants.present?
+                - @person.assistants.each do |assistant|
+                  tr
+                    th Admin Assistant
+                    td = link_to assistant.name, assistant
 
-      .col-md-8
-        - if @person.biola_photo_url.present?
-          .profile-image = image_tag @person.biola_photo_url
-        - elsif calced_image = biola_person_image(@person.try(:biola_id), :large)
-          .profile-image = image_tag calced_image
+            - if @person.use_work_email && @person.work_email.present?
+              tr
+                th Work Email
+                td = mail_to @person.work_email
+            - if @person.biola_email.present?
+              tr
+                th Email
+                td = mail_to @person.biola_email
+            - if @person.full_biola_phone_number.present? && policy(@person).can_see_employee_phone?
+              tr
+                th Phone (Direct)
+                td = @person.full_biola_phone_number
+            - if @person.alternate_employee_phone.present?
+              tr
+                th Phone (Alternate)
+                td = @person.full_biola_phone_number(:alternate_employee_phone)
+            - if @person.assistant_to
+              tr
+                th Assistant To
+                td = link_to @person.assistant_to.name, @person.assistant_to
+
+        .col-sm-3.profile-image.hidden-xs
+          - if @person.biola_photo_url.present?
+            .profile-image = image_tag @person.biola_photo_url
+          - elsif calced_image = biola_person_image(@person.try(:biola_id), :large)
+            .profile-image = image_tag calced_image
 
 
-        dl
-          - if @person.department.present? || @person.departments.present?
-            dt Department
-            dd
-              - if @person.departments.first
-                = link_to @person.departments.first.title, @person.departments.first
-              - else
-                = @person.department
-          - if @person.titles.present?
-            dt Titles
-            dd = @person.titles.join('<br/>').html_safe
-          - if @person.job_description.present?
-            dt Job Description
-            dd = @person.job_description
-          - if (affiliations = (@person.visible_affiliations & UserPermissables.new(current_user).affiliations)).present?
-            dt Biola Affiliations
-            dd = affiliations.map{|a| a.to_s.titleize }.join(', ')
-          - if @person.major.present?
-            dt Major
-            dd
-              = @person.major
-              - if @person.level.present?
-                = " - #{@person.level}"
+      - if policy(@person).edit?
+        .edit_profile_link
+          = profile_publisher_link @person, name: 'Edit Profile'
 
-          - if @person.social_media.present?
-            dt Social Media
-            dd.social_media
-              - @person.social_media.each do |account|
-                = social_link(account)
+  .fw-content
+    .container
+      .row
+        .col-md-12.section-with-table
+          h4.section-title Additional Details
+          .section-content
+            table.table
+              - if @person.department.present? || @person.departments.present?
+                tr
+                  th Department
+                  td
+                    - if @person.departments.first
+                      = link_to @person.departments.first.title, @person.departments.first
+                    - else
+                      = @person.department
+              - if @person.office_location.present?
+                tr
+                  th Office Location
+                  td = @person.office_location
+              - if (affiliations = (@person.visible_affiliations & UserPermissables.new(current_user).affiliations)).present?
+                tr
+                  th Biola Affiliations
+                  td = affiliations.map{|a| a.to_s.titleize }.join(', ')
+              - if @person.major.present?
+                tr
+                  th Major
+                  td
+                    = @person.major
+                    - if @person.level.present?
+                      = " - #{@person.level}"
+
+              - if @person.graduation_year.present?
+                tr
+                  th Graduation Year
+                  td = @person.graduation_year
+              - if @person.degree_received.present?
+                tr
+                  th Degree Recieved
+                  td = @person.degree_received
+
+              - if @person.social_media.present?
+                tr
+                  th Social Media
+                  td.social_media
+                    - @person.social_media.each do |account|
+                      .link = social_link(account)
+
+        - if @person.job_description.present?
+          .col-md-12
+            h4.section-title What I Do
+            .section-content = @person.job_description
 
 
     .clearfix
-
-
-    - if current_user && current_user.employee?
-      - if @person.assistants.present?
-        = divider 'Admin Assistants'
-        table.table
-          tr
-            th Name
-            th Email
-            th Phone
-          - @person.assistants.each do |assistant|
-            tr
-              td = link_to assistant.name, assistant
-              td
-                - if assistant.use_work_email && assistant.work_email.present?
-                  = mail_to assistant.work_email
-                - else
-                  = mail_to assistant.biola_email
-              td = assistant.full_biola_phone_number
-
-      - if @person.assistant_to
-        = divider 'Assistant to'
-        table.table
-          tr
-            th Name
-            th Email
-            th Phone
-          tr
-            td = link_to @person.assistant_to.name, @person.assistant_to
-            td
-              - if @person.assistant_to.use_work_email && @person.assistant_to.work_email.present?
-                = mail_to @person.assistant_to.work_email
-              - else
-                = mail_to @person.assistant_to.biola_email
-            td = @person.assistant_to.full_biola_phone_number
-
-
-    - if @person.alumnus? && (@person.degree_received.present? || @person.graduation_year.present?)
-      = divider 'Graduation Info'
-        dl
-          - if @person.graduation_year.present?
-            dt Year
-            dd = @person.graduation_year
-          - if @person.degree_received.present?
-            dt Degree Recieved
-            dd = @person.degree_received

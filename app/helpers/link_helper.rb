@@ -1,17 +1,21 @@
 module LinkHelper
   def social_link(account)
-    icon = case account.type.to_s
-    when 'linked_in' then 'linkedin-square'
-    when 'facebook' then 'facebook-square'
-    when 'twitter' then 'twitter-square'
-    when 'gplus' then 'google-plus-square'
-    when 'instagram' then 'instagram'
-    when 'pinterest' then 'pinterest-square'
-    when 'youtube' then 'youtube-square'
-    else nil
+    icon, title = case account.type.to_s
+    when 'linked_in' then ['linkedin-square', 'Linkedin']
+    when 'facebook' then ['facebook-square', 'Facebook']
+    when 'twitter' then ['twitter-square', 'Twitter']
+    when 'google' then ['google-plus-square', 'Google+']
+    when 'instagram' then ['instagram', 'Instagram']
+    when 'pinterest' then ['pinterest-square', 'Pinterest']
+    when 'youtube' then ['youtube-square', 'Youtube']
+    else [nil, account.type.to_s.titleize]
     end
 
-    link_to fa_icon(icon), account.url, target: '_blank'
+    if icon
+      link_to fa_icon(icon, text: title), account.url, target: '_blank'
+    else
+      link_to title, account.url, target: '_blank'
+    end
   end
 
   def website_link(url)

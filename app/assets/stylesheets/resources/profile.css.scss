@@ -1,35 +1,55 @@
 @import 'settings';
 
 #breadcrumb { background-color: white; padding: 8px 15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16); font-size: 14px; margin: 0 -7px;
+  a { color: #777; }
   ul { margin: 0; padding: 0; list-style: none; }
   li { display: inline-block;
     +li:before { content: '‣'; padding: 1px 15px; color: rgb(207, 156, 156); }
   }
 }
 
-// This is the show page for person, department, group, and service
-#profile { background-color: white; @extend .shadow2; padding: 20px; margin: 0px -15px -10px -15px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16);
-  .profile-image img { width: 120px; border-radius: 2px; float: right; border: 3px double #ccc;
-    @media (max-width: 600px) { width: 60px; }
+#profile.full-width-page { background-color: white;
+  .fw-breadcrumbs {
+    #breadcrumb { box-shadow: none; margin: 0; padding: 10px 0; }
   }
-  .affiliations { font-size: 12px; margin-bottom: 10px; float: right; margin-right: 20px; position: relative;
-    .label { margin-right: 5px; }
-  }
-  &:hover .affiliations { opacity: 1; }
-  .title { font-size: 26px; font-weight: 500; white-space: nowrap; }
-  .subtitle { font-size: 13px;
-    &:first-child { margin-top: 10px; }
-  }
-  dl {
-    &.contact-info { border: 3px double #ddd; background: #eee; padding: 15px; }
-    dd { margin-bottom: 5px; }
-  }
-  .social_media {
-    a { font-size: 25px; padding-right: 10px;
-      &:hover { opacity: 0.7; }
+  .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
+    .title { font-size: 25px; font-weight: bold; margin-bottom: 20px; }
+    .subtitle { margin-top: -15px; margin-bottom: 20px; color: #666; }
+    .table {
+      th:first-child, td:first-child { padding-left: 0; }
+      th { font-weight: 500; color: #777; }
+    }
+    .profile-image { text-align: right;
+      img { max-width: 100px; }
     }
   }
-  table.table {
-    th { border-top: none; }
+  .fw-content { margin: 20px 0;
+    .section-title { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
+    .section-content { margin-bottom: 60px;
+      &.small_bottom { margin-bottom: 20px; }
+      .social_media {
+        a { padding-right: 5px;
+          .fa { padding-right: 5px; }
+        }
+      }
+    }
+
+    .section-with-table {
+      .section-title { border-bottom: none; padding-bottom: 0; }
+      table {
+        th { font-weight: 600; }
+        th:first-child, td:first-child { padding-left: 0; }
+        th { font-weight: 500; color: #777; }
+      }
+    }
+
+    .staff-members {
+      .member { margin-bottom: 25px; max-height: 70px; overflow: hidden; }
+      .photo { height: 70px; width: 70px; margin-right: 20px; float: left; background-position: 50% 50%; background-size: cover; }
+      .details { margin-left: 90px;
+        .name { font-size: 16px; margin-bottom: 8px; font-weight: 500; }
+        .titles { font-size: 12px; }
+      }
+    }
   }
 }

@@ -1,4 +1,6 @@
-.full-width-page
+- content_for :title, "Directory > Department > #{@department.title}"
+
+#profile.full-width-page
   .fw-breadcrumbs
     .container
       = render 'shared/breadcrumbs'
@@ -57,26 +59,25 @@
             h4.section-title Follow Us
             .section-content.social_media
               - @department.social_media.each do |account|
-                = social_link(account)
+                .link = social_link(account)
 
 
       - if @department.department_contacts.present?
-        .department-contacts
+        .department-contacts.section-with-table
           h4.section-title Department Contacts
-          table.table
-            tr
-              th Name
-              th Purpose
-              th Phone
-              th Fax
-              th Email
-            - @department.department_contacts.each do |contact|
+          .section-content
+            table.table
               tr
-                td = contact.name
-                td = contact.purpose
-                td = contact.full_biola_phone_number
-                td = contact.fax
-                td = mail_to(contact.email) if contact.email.present?
+                th Name
+                th Purpose
+                th Phone
+                th Email
+              - @department.department_contacts.each do |contact|
+                tr
+                  td = contact.name
+                  td = contact.purpose
+                  td = contact.full_biola_phone_number
+                  td = mail_to(contact.email) if contact.email.present?
 
       - if @department.people.present?
         .staff-members

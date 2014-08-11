@@ -1,43 +1,54 @@
-.container
-  = render 'shared/breadcrumbs'
+- content_for :title, "Directory > Service > #{@service.title}"
 
-  #profile
+#profile.full-width-page
+  .fw-breadcrumbs
+    .container
+      = render 'shared/breadcrumbs'
 
-    - if policy(@service).edit?
-      .pull-right
-        = profile_publisher_link @service
+  .fw-banner
+    .container
+      - if @service.actors.include? current_user
+        .edit-profile-link.pull-right
+          = profile_publisher_link @service
 
-    .title = @service.title
-    - if @service.department.present?
-      .subtitle = ("- " + link_to(@service.department.title, @service.department)).html_safe
+      .title = @service.title
+      - if @service.department.present?
+        .subtitle = ("- " + link_to(@service.department.title, @service.department)).html_safe
 
-    br
-    .row
-      .col-md-4
-        dl.contact-info
-          - if @service.email.present?
-            dt Email
-            dd = mail_to @service.email
-          - if @service.full_biola_phone_number.present?
-            dt Phone
-            dd = @service.full_biola_phone_number
-          - if @service.fax.present?
-            dt Fax
-            dd = @service.fax
-          / - if @service.website.present?
-          /   dt Website
-          /   dd = website_link @service.website
+      table.table.hide-top-border
+        - if @service.email.present?
+          tr
+            th Email
+            td = mail_to @service.email
+        - if @service.full_biola_phone_number.present?
+          tr
+            th Phone
+            td = @service.full_biola_phone_number
+        - if @service.fax.present?
+          tr
+            th Fax
+            td = @service.fax
 
-      .col-md-8
-        dl
-          - if @service.description.present?
-            dt Description
-            dd= @service.description.html_safe
-          - if @service.location.present?
-            dt Location
-            dd = @service.location
-          - if @service.social_media.present?
-            dt Social Media
-            dd.social_media
-              - @service.social_media.each do |account|
-                = social_link(account)
+
+
+  .fw-content
+    .container
+
+      .section-with-table
+        h4.section-title What We Do
+        .section-content
+          table.table
+            - if @service.description.present?
+              tr
+                th Description
+                td= @service.description.html_safe
+            - if @service.location.present?
+              tr
+                th Location
+                td = @service.location
+            - if @service.social_media.present?
+              tr
+                th Social Media
+                td.social_media
+                  - @service.social_media.each do |account|
+                    .link = social_link(account)
