@@ -42,18 +42,9 @@
           h4.section-title What We Do
           .section-content = @department.description.to_s.html_safe
         .col-sm-6
-          h4.section-title Open Hours
-          .section-content
-            .alert.alert-info
-              em These are normal university hours. We are actively working on adding custom department hours.
-            strong Regular Hours
-            p 8:00am - 5:00pm, Monday - Friday
-            br
-            strong Summer Hours
-            p
-              | 8:00am - 5:00pm, Monday - Thursday
-              br
-              | 8:00am - 12:00pm, Friday
+          - if @department.open_hours.present?
+            h4.section-title Open Hours
+            .section-content = @department.open_hours.to_s.html_safe
 
           - if @department.social_media.present?
             h4.section-title Follow Us
