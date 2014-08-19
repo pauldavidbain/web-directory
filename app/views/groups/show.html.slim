@@ -50,9 +50,6 @@
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
                 .details
-                  .name = link_to person.name, person
+                  .name = person.name
                   .titles = person.best_biola_title
                 .clearfix
-
-          .text-center
-            = link_to 'See All', search_url(q: @group.title, _type: 'person')
