@@ -1,7 +1,7 @@
 module LinkHelper
   def social_link(account)
     icon, title = case account.type.to_s
-    when 'linked_in' then ['linkedin-square', 'Linkedin']
+    when 'linkedin' then ['linkedin-square', 'Linkedin']
     when 'facebook' then ['facebook-square', 'Facebook']
     when 'twitter' then ['twitter-square', 'Twitter']
     when 'google' then ['google-plus-square', 'Google+']
