@@ -9,16 +9,6 @@ class SearchResult
     @raw_data = raw_data || {}
   end
 
-  def icon
-    case type
-    when 'person' then 'user'
-    when 'department' then 'building'
-    when 'group' then 'users'
-    when 'service' then 'support'
-    else 'square-o'
-    end
-  end
-
   def linkable?
     type == 'person' ? (affiliations & ['faculty','employee']).any? : true
   end
