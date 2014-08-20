@@ -10,7 +10,10 @@ class GroupsController < ApplicationController
   private
 
   def set_group
-    @group = Group.find(params[:id]) if params[:id]
+    if params[:id]
+      @group = Group.any_of({id: params[:id]}, {slug: params[:id]}).first
+      render_error_page(404) if @group.blank?
+    end
   end
 
   def pundit_authorize

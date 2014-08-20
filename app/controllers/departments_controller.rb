@@ -10,7 +10,10 @@ class DepartmentsController < ApplicationController
   private
 
   def set_department
-    @department = Department.find(params[:id]) if params[:id]
+    if params[:id]
+      @department = Department.any_of({id: params[:id]}, {slug: params[:id]}).first
+      render_error_page(404) if @department.blank?
+    end
   end
 
   def pundit_authorize

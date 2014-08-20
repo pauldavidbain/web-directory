@@ -10,7 +10,10 @@ class PeopleController < ApplicationController
   private
 
   def set_person
-    @person = Person.find(params[:id]) if params[:id]
+    if params[:id]
+      @person = Person.any_of({id: params[:id]}, {slug: params[:id]}).first
+      render_error_page(404) if @person.blank?
+    end
   end
 
   def pundit_authorize
