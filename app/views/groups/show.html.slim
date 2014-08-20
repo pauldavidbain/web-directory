@@ -46,10 +46,11 @@
           h4.section-title Group Members
 
           .row
-            - @group.people.each do |person|
+            - @group.memberships.where(published: true).each do |membership|
+              - person = membership.person
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
                 .details
-                  .name = person.name
-                  .titles = person.best_biola_title
+                  .name = link_to_if (person.published? && policy(person).show?), person.name, person
+                  .membership_role = membership.role.titleize
                 .clearfix
