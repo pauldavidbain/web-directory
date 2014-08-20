@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
   before_filter :pundit_authorize
 
   def show
+    render_error_page(404) if @person.dont_index?
   end
 
 

@@ -3,6 +3,7 @@ class DepartmentsController < ApplicationController
   before_filter :pundit_authorize
 
   def show
+    render_error_page(404) if @department.dont_index?
   end
 
 
