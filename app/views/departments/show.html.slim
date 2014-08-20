@@ -1,4 +1,4 @@
-- content_for :title, "Directory > Department > #{@department.title}"
+- content_for :title, "Directory > Offices & Services > #{@department.title}"
 
 #profile.full-width-page
   .fw-breadcrumbs
@@ -9,7 +9,7 @@
     .container
       - if policy(@department).edit?
         .pull-right
-          = profile_publisher_link @department
+          = profile_publisher_link @department, route: 'offices-services'
 
       .title = @department.title
 

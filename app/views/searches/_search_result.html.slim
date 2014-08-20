@@ -21,7 +21,7 @@
 
 
     .contact-info
-      - if search_result.data.email.present?
+      - if search_result.data.email.present? && policy(Person).can_see_biola_email?
         div = mail_to search_result.data.email
       - if search_result.data.phone.present? && search_result.type == 'person'
         - if policy(Person).can_see_employee_phone?

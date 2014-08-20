@@ -25,7 +25,7 @@
               tr
                 th Work Email
                 td = mail_to @person.work_email
-            - if @person.biola_email.present?
+            - if @person.biola_email.present? && policy(@person).can_see_biola_email?
               tr
                 th Email
                 td = mail_to @person.biola_email
