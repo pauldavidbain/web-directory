@@ -13,6 +13,10 @@ class PersonPolicy < ApplicationPolicy
     user && ((user.biola_id == record.biola_id) || record.actors.include?(user) || super)
   end
 
+  def can_see_biola_email?
+    user.present?
+  end
+
   def can_see_employee_phone?
     UserPermissables.new(user).phones.include?(:employee_phone)
   end
