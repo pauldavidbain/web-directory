@@ -9,7 +9,7 @@
     .container
       - if policy(@department).edit?
         .pull-right
-          = profile_publisher_link @department
+          = profile_publisher_link @department, route: 'offices-services'
 
       .title = @department.title
 
