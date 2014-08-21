@@ -34,7 +34,7 @@ module SearchHelper
 
   def result_url(search_result)
     if search_result.linkable?
-      url_for controller: search_result.type.pluralize, action: 'show', id: search_result.id, q: params[:q], _type: (params[:_type].presence || 'all')
+      url_for controller: search_result.type.pluralize, action: 'show', id: (search_result.raw_data['slug'].presence || search_result.id), q: params[:q], _type: (params[:_type].presence || 'all')
     end
   end
 
