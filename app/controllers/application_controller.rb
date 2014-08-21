@@ -55,6 +55,16 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/#{status}", formats: [:html], status: status, layout: false
   end
 
+  def get_object(klass)
+    object = params[:id] ? klass.any_of({id: params[:id]}, {slug: params[:id]}).first : nil
+    render_error_page(404) if object.blank? || object.dont_index?
+    object
+  end
+
+  def set_object
+    instance_variable_set "@#{params[:controller].singularize}", get_object(params[:controller].classify.constantize)
+  end
+
   # There is a bug when pushing history state after clicking on a remote:true link, then when you hit the back
   #   button you see the javascript code to update the page instead of the actual page. This expires js responses
   #   so that the browser doesn't cache those pages.
