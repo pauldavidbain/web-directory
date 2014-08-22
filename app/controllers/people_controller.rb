@@ -3,6 +3,10 @@ class PeopleController < ApplicationController
   before_filter :pundit_authorize
 
   def show
+    @person_presenter = PersonPresenter.new(view_context, @person)
+    @bio_presenter = BiographyPresenter.new(view_context, @person.bio_edition)
+
+    @profile_img = @person.biola_photo_url || view_context.biola_person_image(@person.try(:biola_id), :large)
   end
 
 

@@ -1,0 +1,2 @@
+class BiographyPresenter < ApplicationPresenter
+end

@@ -19,8 +19,8 @@
       th:first-child, td:first-child { padding-left: 0; }
       th { font-weight: 500; color: #777; }
     }
-    .profile-image { text-align: right;
-      img { max-width: 100px; }
+    .profile-image { text-align: left;
+      img { max-width: 150px; border: 1px solid #ddd; padding: 1px; background-color: white; }
     }
   }
   .fw-content { margin: 20px 0;
