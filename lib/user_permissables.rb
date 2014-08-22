@@ -41,7 +41,7 @@ class UserPermissables
         all_phones - [:full_biola_phone_number, :employee_phone]
       end
     else
-      all_phones - [:full_biola_phone_number, :employee_phone, :alternate_employee_phone]
+      []
     end
   end
 end
