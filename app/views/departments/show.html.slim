@@ -74,17 +74,14 @@
         .staff-members
           h4.section-title Staff Members
           .row
-            - @department.people.each do |person|
+            - @department.memberships.where(published: true).each do |membership|
+              - person = membership.person
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
                 .details
-                  .name = link_to person.name, person
+                  .name = link_to_if (person.published? && policy(person).show?), person.name, person
                   .titles = person.best_biola_title
                 .clearfix
-
-          .text-center
-            = link_to 'See All', search_url(q: @department.title, _type: 'person')
-
 
   .clearfix
 
