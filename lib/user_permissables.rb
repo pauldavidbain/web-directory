@@ -33,7 +33,7 @@ class UserPermissables
         all_phones
       elsif user.student_worker?
         all_phones
-      elsif user.student? 
+      elsif user.student?
         all_phones - [:full_biola_phone_number, :employee_phone]
       elsif user.alumnus?
         all_phones - [:full_biola_phone_number, :employee_phone]
@@ -41,7 +41,7 @@ class UserPermissables
         all_phones - [:full_biola_phone_number, :employee_phone]
       end
     else
-      all_phones - [:full_biola_phone_number, :employee_phone]
+      []
     end
   end
 end
