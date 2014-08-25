@@ -5,35 +5,42 @@
     .container
       = render 'shared/breadcrumbs'
 
-  .fw-banner
+  .fw-banner style="background-image: url(#{@department.banner.url});"
     .container
-      - if policy(@department).edit?
-        .pull-right
-          = profile_publisher_link @department, route: 'offices-services'
+      .row
+        .col-xs-12.col-sm-10.col-md-8
+          .box
+            .row
+              .col-sm-4.hidden-xs
+                = image_tag @department.logo.url, class: 'logo'
+              .col-xs-12.col-sm-8
+                - if policy(@department).edit?
+                  .pull-right
+                    = profile_publisher_link @department, route: 'offices-services'
 
-      .title = @department.title
+                .title = @department.title
 
-      table.table.hide-top-border
-        - if @department.email.present?
-          tr
-            th Email
-            td = mail_to @department.email
-        - if @department.full_biola_phone_number.present?
-          tr
-            th Phone
-            td = @department.full_biola_phone_number
-        - if @department.fax.present?
-          tr
-            th Fax
-            td = @department.fax
-        - if @department.website.present?
-          tr
-            th Web
-            td = website_link @department.website
-        - if @department.location.present?
-          tr
-            th Location
-            td= @department.location
+                table.table.hide-top-border
+                  - if @department.email.present?
+                    tr
+                      th Email
+                      td = mail_to @department.email
+                  - if @department.full_biola_phone_number.present?
+                    tr
+                      th Phone
+                      td = @department.full_biola_phone_number
+                  - if @department.fax.present?
+                    tr
+                      th Fax
+                      td = @department.fax
+                  - if @department.website.present?
+                    tr
+                      th Web
+                      td = website_link @department.website
+                  - if @department.location.present?
+                    tr
+                      th Location
+                      td= @department.location
 
   .fw-content
     .container

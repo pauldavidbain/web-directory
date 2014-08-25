@@ -12,7 +12,9 @@
   .fw-breadcrumbs {
     #breadcrumb { box-shadow: none; margin: 0; padding: 10px 0; }
   }
-  .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
+  .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0; background-size: cover; background-position: center;
+    .box { background-color: rgba(0,0,0,.7); color: white; padding: 20px; }
+    .logo { width: 100%; }
     .title { font-size: 25px; font-weight: bold; margin-bottom: 20px; }
     .subtitle { margin-top: -15px; margin-bottom: 20px; color: #666; }
     .table {
