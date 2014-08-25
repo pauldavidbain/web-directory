@@ -11,6 +11,5 @@ elasticsearch:
   index_name: 'directory'
 
 roz:
-  api_base_url: http://assets.staging.biola.edu
-  files_base_url:
+  files_base_url: http://assets.staging.biola.edu
   access_id: 240616938440200063
