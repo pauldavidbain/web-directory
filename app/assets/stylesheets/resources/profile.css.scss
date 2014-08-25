@@ -18,7 +18,8 @@
         @media (min-width: 500px) { width: 470px; }
         @media (min-width: 768px) { width: 70%; }
         @media (min-width: 992px) { width: 65%; }
-        table th { color: #999; }
+        .table th { color: #999; }
+        .table th, td { border-top-color: #3a3a3a; }
       }
     }
     .logo { width: 100%; max-width: 200px; display: block; margin: auto; }
