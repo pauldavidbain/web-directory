@@ -18,6 +18,7 @@
         @media (min-width: 500px) { width: 470px; }
         @media (min-width: 768px) { width: 70%; }
         @media (min-width: 992px) { width: 65%; }
+        table th { color: #999; }
       }
     }
     .logo { width: 100%; max-width: 200px; display: block; margin: auto; }
@@ -40,7 +41,12 @@
           .fa { padding-right: 5px; }
         }
       }
+      .gallery_photo { margin: 10px; display: inline-block; background-size: cover; background-position: center;
+        width: 165px; height: 115px;
+        @media (min-width: 992px) { width: 172px; height: 120px; }
+      }
     }
+    .photo-gallery .section-content { margin: 0 -10px; }
 
     .section-with-table {
       .section-title { border-bottom: none; padding-bottom: 0; }
