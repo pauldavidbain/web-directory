@@ -49,6 +49,7 @@ private
             "first_name",
             "last_name^2",
             "preferred_name^4",
+            "legal_name",
             "*_initial",
             "department",
             "department_aliases",
