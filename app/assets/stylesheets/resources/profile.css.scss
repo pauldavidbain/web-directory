@@ -13,16 +13,17 @@
     #breadcrumb { box-shadow: none; margin: 0; padding: 10px 0; }
   }
   .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
-    &.with_image { background-size: cover; background-position: center;
+    &.with_image { background-size: cover; background-position: center; min-height: 340px;
       .box { background-color: rgba(0,0,0,.8); color: white; padding: 20px;
         @media (min-width: 500px) { width: 470px; }
         @media (min-width: 768px) { width: 70%; }
         @media (min-width: 992px) { width: 65%; }
         .table th { color: #999; }
         .table th, td { border-top-color: #3a3a3a; }
+        .logo { border: 1px solid #666565; padding: 1px; background-color: rgb(27, 27, 27); }
       }
     }
-    .logo { width: 100%; max-width: 200px; display: block; margin: auto; }
+    .logo { width: 100%; max-width: 200px; display: block; margin: auto; border: 1px solid #ddd; padding: 1px; background-color: white;}
     .title { font-size: 25px; font-weight: bold; margin-bottom: 20px; }
     .subtitle { margin-top: -15px; margin-bottom: 20px; color: #666; }
     .table {
