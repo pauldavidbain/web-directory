@@ -45,6 +45,7 @@ private
           analyzer: 'standard',
           fields: [
             "title^4",
+            "title_edge^3",
             "aliases^5",
             "first_name",
             "last_name^2",
