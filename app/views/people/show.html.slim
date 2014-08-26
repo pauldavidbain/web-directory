@@ -42,8 +42,8 @@
       .biography
         = @bio_presenter.render :section, :degrees
         = @bio_presenter.render :section, :biography
+        = @bio_presenter.render :section, :professional_affiliations, title: 'Affiliations'
         = @bio_presenter.render :section, :awards
-        = @bio_presenter.render :section, :professional_affiliations
         = @bio_presenter.render :section, :publications
         = @bio_presenter.render :section, :presentations
         = @bio_presenter.render :section, :research_interests
