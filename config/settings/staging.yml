@@ -9,3 +9,7 @@ profile_publisher:
 elasticsearch:
   host: http://elastic1.staging.biola.edu:9200
   index_name: 'directory'
+
+roz:
+  files_base_url: http://assets.staging.biola.edu
+  access_id: 240616938440200063

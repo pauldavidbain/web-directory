@@ -5,53 +5,38 @@
     .container
       = render 'shared/breadcrumbs'
 
-  .fw-banner
+  .fw-banner*with_background_image(@department.banner)
     .container
-      - if policy(@department).edit?
-        .pull-right
-          = profile_publisher_link @department, route: 'offices-services'
+      .box
+        .row
+          - if @department.logo.present?
+            .col-sm-4.hidden-xs = image_tag @department.logo.url, class: 'logo'
+          .col-xs-12 class=("col-sm-8" if @department.logo.present?)
+            - if policy(@department).edit?
+              .pull-right
+                = profile_publisher_link @department, route: 'offices-services'
 
-      .title = @department.title
+            .title = @department.title
 
-      table.table.hide-top-border
-        - if @department.email.present?
-          tr
-            th Email
-            td = mail_to @department.email
-        - if @department.full_biola_phone_number.present?
-          tr
-            th Phone
-            td = @department.full_biola_phone_number
-        - if @department.fax.present?
-          tr
-            th Fax
-            td = @department.fax
-        - if @department.website.present?
-          tr
-            th Web
-            td = website_link @department.website
-        - if @department.location.present?
-          tr
-            th Location
-            td= @department.location
+            table.table.hide-top-border
+              = @department_presenter.render :row, :email, format: :email
+              = @department_presenter.render :row, :full_biola_phone_number, title: "Phone"
+              = @department_presenter.render :row, :fax
+              = @department_presenter.render :row, :website, format: :link
+              = @department_presenter.render :row, :location
 
   .fw-content
     .container
       .row
         .col-sm-6
-          h4.section-title What We Do
-          .section-content = @department.description.to_s.html_safe
+          = @department_presenter.render :section, :description, title: "What We Do"
         .col-sm-6
-          - if @department.open_hours.present?
-            h4.section-title Open Hours
-            .section-content = @department.open_hours.to_s.html_safe
+          = @department_presenter.render :section, :open_hours
+          = @department_presenter.render :section, :social_media
 
-          - if @department.social_media.present?
-            h4.section-title Follow Us
-            .section-content.social_media
-              - @department.social_media.each do |account|
-                .link = social_link(account)
+      = @department_presenter.render :section, :service_content, title: "Services We Offer"
 
+      .photo-gallery.hidden-xs = @department_presenter.render :section, :gallery_photos
 
       - if @department.department_contacts.present?
         .department-contacts.section-with-table

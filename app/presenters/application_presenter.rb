@@ -81,4 +81,10 @@ class ApplicationPresenter
       content
     end
   end
+
+  def social_list(media)
+    media.map do |account|
+      context.content_tag :div, context.social_link(account), class: 'link'
+    end.join
+  end
 end

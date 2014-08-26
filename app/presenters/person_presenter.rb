@@ -15,7 +15,7 @@ class PersonPresenter < ApplicationPresenter
   end
 
   def social_media(type)
-    send type, "Social Media", social_list
+    send type, "Social Media", social_list(object.social_media)
   end
 
   def major(type)
@@ -45,13 +45,5 @@ class PersonPresenter < ApplicationPresenter
     if (affiliations = (object.visible_affiliations & UserPermissables.new(context.current_user).affiliations)).present?
       send type, "Biola Affiliations", affiliations.map{|a| a.to_s.titleize }.join(', ')
     end
-  end
-
-  private
-
-  def social_list
-    object.social_media.map do |account|
-      context.content_tag :div, context.social_link(account), class: 'link'
-    end.join
   end
 end

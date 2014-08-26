@@ -13,6 +13,16 @@
     #breadcrumb { box-shadow: none; margin: 0; padding: 10px 0; }
   }
   .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
+    &.with_image { background-size: cover; background-position: center;
+      .box { background-color: rgba(0,0,0,.8); color: white; padding: 20px;
+        @media (min-width: 500px) { width: 470px; }
+        @media (min-width: 768px) { width: 70%; }
+        @media (min-width: 992px) { width: 65%; }
+        .table th { color: #999; }
+        .table th, td { border-top-color: #3a3a3a; }
+      }
+    }
+    .logo { width: 100%; max-width: 200px; display: block; margin: auto; }
     .title { font-size: 25px; font-weight: bold; margin-bottom: 20px; }
     .subtitle { margin-top: -15px; margin-bottom: 20px; color: #666; }
     .table {
@@ -32,7 +42,15 @@
           .fa { padding-right: 5px; }
         }
       }
+      .gallery_photo { margin: 10px; display: inline-block; background-size: cover; background-position: center;
+        width: 165px; height: 115px;
+        @media (min-width: 992px) { width: 172px; height: 120px; }
+      }
+      table { width: 100%;
+        td { vertical-align: top; }
+      }
     }
+    .photo-gallery .section-content { margin: 0 -10px; }
 
     .section-with-table {
       .section-title { border-bottom: none; padding-bottom: 0; }

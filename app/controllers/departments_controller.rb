@@ -3,6 +3,7 @@ class DepartmentsController < ApplicationController
   before_filter :pundit_authorize
 
   def show
+    @department_presenter = DepartmentPresenter.new(view_context, @department)
   end
 
 
