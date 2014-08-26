@@ -49,8 +49,8 @@
             - @group.memberships.where(published: true).each do |membership|
               - person = membership.person
               .member.col-md-4.col-sm-6
-                .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
+                .photo style="background-image: url(#{biola_person_image(person)})"
                 .details
                   .name = link_to_if (person.published? && policy(person).show?), person.name, person
-                  .membership_role = membership.role.titleize
+                  .membership_role = membership.role.join(', ')
                 .clearfix
