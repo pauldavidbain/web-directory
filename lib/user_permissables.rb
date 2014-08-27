@@ -17,10 +17,10 @@ class UserPermissables
       elsif user.alumnus?
         [:faculty, :employee, :trustee, :volunteer, :alumnus]
       else
-        [:faculty, :trustee]
+        [:faculty, :employee, :trustee]
       end
     else
-      [:faculty, :trustee]
+      [:faculty, :employee, :trustee]
     end
   end
 
