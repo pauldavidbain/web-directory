@@ -51,7 +51,9 @@
         td { vertical-align: top; }
       }
     }
-    .photo-gallery .section-content { margin: 0 -10px; }
+    .photo-gallery .section-content {
+      margin-left: -10px; margin-right: -10px; // to compensate for the margin around the images. I want the images to be flush with the grid.
+    }
 
     .section-with-table {
       .section-title { border-bottom: none; padding-bottom: 0; }
