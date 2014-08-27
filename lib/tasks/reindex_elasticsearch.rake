@@ -1,4 +1,5 @@
-# NOTE: When changing this file make sure to also change index_elasticsearch.rake as well
+# NOTE: When changing this file make sure to also change index_elasticsearch.rake 
+#  and reindex_elasticsearch.rake within profile publisher as well.
 
 # This reindex doesn't do anything gracefully. It completely destroys the index so there could be errors in between
 #   deleting and reindexing. I would recommend putting the app into maintenence mode if uptime matters.
