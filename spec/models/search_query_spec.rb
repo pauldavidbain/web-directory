@@ -1,5 +1,20 @@
 require 'spec_helper'
 
+def test_searchability(affiliation, searchable)
+  context affiliation.to_s do
+    let(:person_affiliations) { [affiliation.to_s] }
+    it "is #{searchable ? '' : 'not '}searchable" do
+      if searchable
+        # Desired result will have the person with the given affilation
+        expect(sq).to eql desired_result
+      else
+        # Expect the search reqult to be empty
+        expect(sq).to eql []
+      end
+    end
+  end
+end
+
 describe SearchQuery do
   let(:term) { '' }
   let(:options) { {} }
@@ -24,46 +39,30 @@ describe SearchQuery do
   describe 'if current_user is NOT set' do
     let(:current_user) { nil }
 
-    context 'it should not return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql []
-      end
-    end
+    test_searchability('student', false)
+    test_searchability('alumnus', false)
+    test_searchability('employee', false)
+    test_searchability('trustee', false)
+    test_searchability('volunteer', false)
+    test_searchability('faculty', false)
 
-    context 'should not return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql []
-      end
-    end
 
-    context 'should not return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql []
+    context 'and the person has a biography' do
+      before(:each) do
+        bio = person.bio_editions.create(biography: 'this is the text of my bio')
+        bio.publish
+        bio.save
+        person.add_to_index  # todo, I feel like this should probably happen automatically when the bio is saved
+        expect(person.is_public?).to be true
+        Person.__elasticsearch__.refresh_index!
       end
-    end
 
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should not return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql []
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
+      test_searchability('student', false)
+      test_searchability('alumnus', false)
+      test_searchability('employee', true)
+      test_searchability('trustee', true)
+      test_searchability('volunteer', false)
+      test_searchability('faculty', true)
     end
   end
 
@@ -71,281 +70,71 @@ describe SearchQuery do
     let(:affiliations) { ['employee'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', true)
+    test_searchability('alumnus', true)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 
   describe 'if current_user is faculty' do
     let(:affiliations) { ['faculty'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', true)
+    test_searchability('alumnus', true)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 
   describe 'if current_user is a trustee' do
     let(:affiliations) { ['trustee'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should not return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql []
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', false)
+    test_searchability('alumnus', true)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 
 describe 'if current_user is a volunteer' do
     let(:affiliations) { ['volunteer'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should not return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql []
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', false)
+    test_searchability('alumnus', true)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 
   describe 'if current_user is a student' do
     let(:affiliations) { ['student'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should not return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql []
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', true)
+    test_searchability('alumnus', false)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 
 describe 'if current_user is a alumnus' do
     let(:affiliations) { ['alumnus'] }
     let(:current_user) { create :user, affiliations: affiliations }
 
-    context 'it should not return' do
-      let(:person_affiliations) { ['student'] }
-      it 'students' do
-        expect(sq).to eql []
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['alumnus'] }
-      it 'alumnus' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['employee'] }
-      it 'employees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['trustee'] }
-      it 'trustees' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['volunteer'] }
-      it 'volunteers' do
-        expect(sq).to eql desired_result
-      end
-    end
-
-    context 'should return' do
-      let(:person_affiliations) { ['faculty'] }
-      it 'faculty' do
-        expect(sq).to eql desired_result
-      end
-    end
+    test_searchability('student', false)
+    test_searchability('alumnus', true)
+    test_searchability('employee', true)
+    test_searchability('trustee', true)
+    test_searchability('volunteer', true)
+    test_searchability('faculty', true)
   end
 end
