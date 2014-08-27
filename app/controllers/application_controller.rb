@@ -57,8 +57,12 @@ class ApplicationController < ActionController::Base
 
   def get_object(klass)
     object = params[:id] ? klass.any_of({id: params[:id]}, {slug: params[:id]}).first : nil
-    render_error_page(404) if object.blank? || object.dont_index?
-    object
+    if object.blank? || object.dont_index?
+      render_error_page(404)
+      nil
+    else
+      object
+    end
   end
 
   def set_object
