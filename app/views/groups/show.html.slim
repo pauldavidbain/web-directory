@@ -46,7 +46,7 @@
           h4.section-title Group Members
 
           .row
-            - @group.memberships.where(published: true).each do |membership|
+            - @group.memberships.where(published: true).order(order: :asc).each do |membership|
               - person = membership.person
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"

@@ -59,7 +59,7 @@
         .staff-members
           h4.section-title Staff Members
           .row
-            - @department.memberships.where(published: true).each do |membership|
+            - @department.memberships.where(published: true).order(order: :asc).each do |membership|
               - person = membership.person
               .member.col-md-4.col-sm-6
                 .photo style="background-image: url(#{biola_person_image(person.biola_id)})"
