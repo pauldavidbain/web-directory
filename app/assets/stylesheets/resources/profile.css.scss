@@ -72,6 +72,11 @@
         .membership_role { margin-top: -5px; margin-bottom: 5px; }
         .titles { font-size: 12px; }
       }
+      // for mixItUp javascript
+      #memberships_filters { margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid #ddd;
+        .filter { margin-right: 10px; margin-bottom: 10px; cursor: pointer; }
+      }
+      .mix { display: none; }
     }
   }
 }

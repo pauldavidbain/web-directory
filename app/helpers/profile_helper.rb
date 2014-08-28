@@ -9,4 +9,9 @@ module ProfileHelper
     end
     html_options
   end
+
+  def membership_class(membership, html_options={})
+    html_options[:class] = membership.team.map(&:parameterize).join(' ')
+    html_options
+  end
 end

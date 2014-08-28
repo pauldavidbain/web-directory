@@ -4,6 +4,8 @@ class DepartmentsController < ApplicationController
 
   def show
     @department_presenter = DepartmentPresenter.new(view_context, @department)
+    @memberships = @department.memberships.where(published: true).order(order: :asc)
+    @teams = @memberships.map(&:team).flatten.uniq.sort
   end
 
 
