@@ -62,13 +62,13 @@
             - if @teams.length > 1
               .col-xs-12
                 #memberships_filters
-                  span.btn.btn-default.filter data-filter="all" All
+                  span.filter data-filter="all" All
                   - @teams.each do |team|
-                    span.btn.btn-default.filter data-filter=".#{team.parameterize}" = team
+                    span.filter data-filter=".#{team.parameterize}" = team
             #memberships_container
               - @memberships.each do |membership|
                 - person = membership.person
-                .member.col-md-4.col-sm-6.mix*membership_class(membership) data-my-order=membership.order
+                .member.col-md-4.col-sm-6.col-xs-12.mix*membership_class(membership) data-my-order=membership.order
                   .photo style="background-image: url(#{biola_person_image(person)})"
                   .details
                     .name = link_to_if (person.published? && policy(person).show?), person.name, person

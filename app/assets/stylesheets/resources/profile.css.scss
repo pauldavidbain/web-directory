@@ -73,8 +73,11 @@
         .titles { font-size: 12px; }
       }
       // for mixItUp javascript
-      #memberships_filters { margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid #ddd;
-        .filter { margin-right: 10px; margin-bottom: 10px; cursor: pointer; }
+      #memberships_filters { margin-bottom: 30px;
+        .filter { display: inline-block; cursor: pointer; color: #428bca; padding: 7px 15px; border-radius: 3px; margin: 0 5px 5px 0;
+          &:hover { background-color: whitesmoke; }
+          &.active { color: white; text-decoration: none; background: #428bca; }
+        }
       }
       .mix { display: none; }
     }
