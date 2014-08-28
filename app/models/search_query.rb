@@ -45,6 +45,7 @@ private
           analyzer: 'standard',
           fields: [
             "title^4",
+            "title_edge^3",
             "aliases^5",
             "first_name",
             "last_name^2",
@@ -104,6 +105,14 @@ private
     { :or => [non_person_filter] + affiliations_user_can_see(current_user) }
   end
 
+  def public_filter
+    if current_user
+      {}
+    else  # Limit to only public items for unauthenticated users.
+      { term: { is_public: true }}
+    end
+  end
+
   def facets
     _facets = {}
     (options[:facets] || []).each do |field|
@@ -114,7 +123,7 @@ private
 
   def all_filters
     {
-      :and => [facet_filter, can_access_filter].compact
+      :and => [facet_filter, can_access_filter, public_filter].compact
     }
   end
 
