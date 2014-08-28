@@ -42,31 +42,39 @@
         .department-contacts.section-with-table
           h4.section-title Department Contacts
           .section-content
-            table.table
-              tr
-                th Name
-                th Purpose
-                th Phone
-                th Email
-              - @department.department_contacts.each do |contact|
+            .table-responsive
+              table.table
                 tr
-                  td = contact.name
-                  td = contact.purpose
-                  td = contact.full_biola_phone_number
-                  td = mail_to(contact.email) if contact.email.present?
+                  th Name
+                  th Purpose
+                  th Phone
+                  th Email
+                - @department.department_contacts.each do |contact|
+                  tr
+                    td = contact.name
+                    td = contact.purpose
+                    td = contact.full_biola_phone_number
+                    td = mail_to(contact.email) if contact.email.present?
 
       - if @department.people.present?
         .staff-members
           h4.section-title Staff Members
           .row
-            - @department.memberships.where(published: true).each do |membership|
-              - person = membership.person
-              .member.col-md-4.col-sm-6
-                .photo style="background-image: url(#{biola_person_image(person)})"
-                .details
-                  .name = link_to_if (person.published? && policy(person).show?), person.name, person
-                  .titles = person.best_biola_title
-                .clearfix
+            - if @teams.length > 1
+              .col-xs-12
+                #memberships_filters
+                  span.filter data-filter="all" All
+                  - @teams.each do |team|
+                    span.filter data-filter=".#{team.parameterize}" = team
+            #memberships_container
+              - @memberships.each do |membership|
+                - person = membership.person
+                .member.col-md-4.col-sm-6.col-xs-12.mix*membership_class(membership) data-my-order=membership.order
+                  .photo style="background-image: url(#{biola_person_image(person)})"
+                  .details
+                    .name = link_to_if (person.published? && policy(person).show?), person.name, person
+                    .titles = person.best_biola_title
+                  .clearfix
 
   .clearfix
 
