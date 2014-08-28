@@ -11,7 +11,7 @@ class DepartmentPresenter < ApplicationPresenter
 
   def gallery_photo_list(photos)
     photos.map do |photo|
-      context.content_tag :div, '', class: 'gallery_photo', style: "background-image: url(#{photo.photo.url(:small)})"
+      context.content_tag :div, '', class: 'gallery_photo', style: "background-image: url(#{photo.photo.url(:small)})", 'data-full-url' => photo.photo.url(:medium)
     end.join
   end
 end
