@@ -95,7 +95,6 @@ private
     #  So this is meant to be a catch all for those types of search results.
     { :or => [
       { term: { _type: "department" }},
-      { term: { _type: "service" }},
       { term: { _type: "group" }}
     ]}
   end
