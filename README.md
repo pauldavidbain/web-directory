@@ -30,3 +30,9 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+For recreating photo versions
+
+    Department.each {|d| d.gallery_photos.each {|m| m.photo.recreate_versions!}}
+    ProfilePhoto.each {|m| m.photo.recreate_versions!}
