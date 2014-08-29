@@ -6,7 +6,7 @@ class PersonPolicy < ApplicationPolicy
   end
 
   def show?
-    permitted_to_see_affiliations? || user.try(:admin?) || user.try(:developer?)
+    permitted_to_see_affiliations? || record.is_public? || user.try(:admin?) || user.try(:developer?)
   end
 
   def edit?

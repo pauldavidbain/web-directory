@@ -10,6 +10,12 @@ class SearchResult
   end
 
   def linkable?
-    type == 'person' ? (affiliations & ['faculty','employee']).any? : true
+    type == 'person' ? linkable_person? : true
+  end
+
+  private
+
+  def linkable_person?
+    (affiliations & ['faculty','employee']).any? || raw_data['is_public']
   end
 end
