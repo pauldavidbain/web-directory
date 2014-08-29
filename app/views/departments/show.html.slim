@@ -56,11 +56,11 @@
                     td = contact.full_biola_phone_number
                     td = mail_to(contact.email) if contact.email.present?
 
-      - if @department.people.present?
+      - if @memberships.present?
         .staff-members
           h4.section-title Staff Members
           .row
-            - if @teams.length > 1
+            - if mixon = @teams.length > 1
               .col-xs-12
                 #memberships_filters
                   span.filter data-filter="all" All
@@ -69,7 +69,7 @@
             #memberships_container
               - @memberships.each do |membership|
                 - person = membership.person
-                .member.col-md-4.col-sm-6.col-xs-12.mix*membership_class(membership) data-my-order=membership.order
+                .member.col-md-4.col-sm-6.col-xs-12*membership_class(membership, mixon) data-my-order=membership.order
                   .photo style="background-image: url(#{biola_person_image(person)})"
                   .details
                     .name = link_to_if (person.published? && policy(person).show?), person.name, person
