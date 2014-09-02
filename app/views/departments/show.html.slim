@@ -56,7 +56,7 @@
                     td = contact.full_biola_phone_number
                     td = mail_to(contact.email) if contact.email.present?
 
-      - if @department.people.present?
+      - if @memberships.present?
         .staff-members
           h4.section-title Staff Members
           .row
