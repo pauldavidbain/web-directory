@@ -17,6 +17,8 @@
                 = profile_publisher_link @department, route: 'offices-services'
 
             .title = @department.title
+            - if @department.parent_department.present?
+              .subtitle = link_to(@department.parent_department.title, @department.parent_department)
 
             table.table.hide-top-border
               = @department_presenter.render :row, :email, format: :email
@@ -56,10 +58,12 @@
                     td = contact.full_biola_phone_number
                     td = mail_to(contact.email) if contact.email.present?
 
+      = @department_presenter.render :section, :child_departments, title: "Offices & Services", format: :link
+
       - if @memberships.present?
         .staff-members
-          h4.section-title Staff Members
-          .row
+          h4.section-title Department Members
+          .section-content.row
             - if @teams.length > 1
               .col-xs-12
                 #memberships_filters

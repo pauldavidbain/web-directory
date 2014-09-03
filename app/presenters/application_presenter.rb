@@ -71,6 +71,14 @@ class ApplicationPresenter
   end
 
   def format_content(content, format)
+    if content.is_a? Array
+      content.map{|c| format_individual_content(c, format) }
+    else
+      format_individual_content(content, format)
+    end
+  end
+
+  def format_individual_content(content, format)
     return nil if content.blank?
     case format
     when :email
