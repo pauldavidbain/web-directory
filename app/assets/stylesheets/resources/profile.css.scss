@@ -80,5 +80,11 @@
         }
       }
     }
+
+    // books
+    .book { margin-bottom: 10px;
+      img { height: 40px; margin-right: 10px; float: left; }
+      :after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }  // clear the float
+    }
   }
 }
