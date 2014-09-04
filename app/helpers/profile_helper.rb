@@ -11,7 +11,8 @@ module ProfileHelper
   end
 
   def membership_class(membership, html_options={})
-    html_options[:class] = membership.team.map(&:parameterize).join(' ')
+    # These team classes are needed for the mixItUp plugin to work.
+    html_options[:class] = membership.team.to_a.compact.map(&:parameterize).join(' ')
     html_options
   end
 end
