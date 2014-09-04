@@ -15,6 +15,6 @@
 
 ul.pager
   - if previous_page.present?
-    li.previous = link_to 'Previous', params.merge(page: previous_page), remote: true
+    li.previous = link_to 'Previous', params.merge(page: previous_page)
   - if next_page(@pages_count).present?
-    li.next = link_to 'Next', params.merge(page: next_page(@pages_count)), remote: true
+    li.next = link_to 'Next', params.merge(page: next_page(@pages_count))
