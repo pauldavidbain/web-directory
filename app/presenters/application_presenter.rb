@@ -15,11 +15,14 @@ class ApplicationPresenter
     # This is if you have custom logic. true means the item won't get shown.
     return nil if options[:hidden]
 
+    # Merge classes
+    options[:class] = options[:class].to_s + " #{method.to_s}"
+
     # To add custom content logic, just create a method with the corresponding method name
     if self.respond_to? method
       send method, type
     else
-      send type, (options[:title] || method.to_s.titleize), (options[:content] || format_content(@object.send(method), options[:format]))
+      send type, (options[:title] || method.to_s.titleize), (options[:content] || format_content(@object.send(method), options[:format])), options
     end
   end
 
@@ -32,18 +35,18 @@ class ApplicationPresenter
   # Each of the following methods correspond to the `type` field in the `render` method above
   #
 
-  def section(title, content)
+  def section(title, content, options={})
     if content.present?
-      context.content_tag(:h4, title, class: 'section-title') +
-      context.content_tag(:div, safe_html(content), class: 'section-content')
+      context.content_tag(:h4, title, class: "section-title") +
+      context.content_tag(:div, safe_html(content), class: "section-content #{options[:class]}")
     end
   end
 
-  def row(title, content)
+  def row(title, content, options={})
     if content.present?
       context.content_tag(:tr) do
-        context.content_tag(:th, title, class: 'section-content') +
-        context.content_tag(:td, safe_html(content), class: 'section-content')
+        context.content_tag(:th, title, class: "section-content") +
+        context.content_tag(:td, safe_html(content), class: "section-content #{options[:class]}")
       end
     end
   end
