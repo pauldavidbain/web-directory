@@ -1,17 +1,25 @@
 class PersonPresenter < ApplicationPresenter
 
   def assistants(type)
-    content = object.assistants.map {|a| context.link_to(a.name, a) }.join("<br/>")
+    content = format_content(object.assistants, :link).join("<br/>")
     send type, "Admin Assistant".pluralize(object.assistants.count), content
   end
 
-  def department(type)
-    content = if object.departments.first
-      context.link_to object.departments.first.title, object.departments.first
+  def departments(type)
+    if object.departments.present?
+      content = format_content(object.departments, :link).join("<br/>")
+      count = object.departments.length
     else
-      object.department
+      content =  object.department
+      count = 1
     end
-    send type, "Department", content
+    send type, "Department".pluralize(count), content
+  end
+
+  def memberships(type)
+    content = []
+    content += object.group_memberships.to_a.map{|m| context.link_to(m.unitable, m.unitable) + ' ' + membership_tags(m)  }
+    send type, "Member of", content, class: 'person_memberships'
   end
 
   def social_media(type)
@@ -45,5 +53,14 @@ class PersonPresenter < ApplicationPresenter
     if (affiliations = (object.visible_affiliations & UserPermissables.new(context.current_user).affiliations)).present?
       send type, "Biola Affiliations", affiliations.map{|a| a.to_s.titleize }.join(', ')
     end
+  end
+
+
+  private
+
+  def membership_tags(membership)
+    (membership.team.to_a + membership.role.to_a).map do |tag|
+      context.content_tag :span, tag, class: 'label label-light'
+    end.join(' ').html_safe
   end
 end
