@@ -2,7 +2,6 @@ Directory::Application.routes.draw do
 
   resources :people, only: [:show]
   resources :departments, path: 'offices-services', only: [:show]
-  resources :services, only: [:show]
   resources :groups, only: [:show]
 
   get "/search", to: "searches#search"
@@ -10,7 +9,6 @@ Directory::Application.routes.draw do
   get "/departments" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'department'}).to_query}" }
   get "/offices-services" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'department'}).to_query}" }
   get "/groups" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'group'}).to_query}" }
-  get "/services" => redirect { |params, request| "#{ Rails.application.config.action_controller.relative_url_root }/search?#{request.params.merge({_type: 'service'}).to_query}" }
 
 
   root to: 'searches#landing'

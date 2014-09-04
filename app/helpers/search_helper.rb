@@ -64,6 +64,18 @@ module SearchHelper
     end
   end
 
+  def search_title
+    title = ""
+    title += "\"#{params[:q]}\" | Search " if params[:q].present?
+    title += if !params[:_type] || params[:_type] == 'all'
+      'All'
+    elsif params[:_type] == 'department'
+      'Offices & Services'
+    else
+      params[:_type].pluralize.titleize
+    end
+    title + " | Directory, Biola University"
+  end
 
 private
 

@@ -1,4 +1,4 @@
 / Note, this is also updated in javascript when loading by ajax.
-- content_for :title, "Directory > #{(params[:_type] || 'all').pluralize.titleize} > \"#{params[:q]}\""
+- content_for :title, search_title
 
 #search_results_container = render 'search_page'
