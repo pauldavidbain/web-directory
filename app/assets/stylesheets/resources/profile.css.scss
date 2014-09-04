@@ -50,6 +50,10 @@
       table { width: 100%;
         td { vertical-align: top; }
       }
+
+      &.person_memberships {
+        a { margin-right: 10px; }
+      }
     }
     .photo-gallery .section-content {
       margin-left: -10px; margin-right: -10px; // to compensate for the margin around the images. I want the images to be flush with the grid.

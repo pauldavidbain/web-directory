@@ -21,7 +21,7 @@
 
           table.table.hide-top-border
             / Some of these attributes have custom implementations in person_presenter.rb
-            = @person_presenter.render :row, :department
+            = @person_presenter.render :row, :departments
             = @person_presenter.render :row, :visible_affiliations
             = @person_presenter.render :row, :emails
             = @person_presenter.render :row, :phones
@@ -34,7 +34,7 @@
     .container
       = @person_presenter.render :section, :job_description, title: 'What I Do'
       = @bio_presenter.render :section, :degrees
-      = @person_presenter.render :section, :departments, title: 'Member of', format: :link
+      = @person_presenter.render :section, :memberships
       = @bio_presenter.render :section, :biography
       = @bio_presenter.render :section, :professional_affiliations, title: 'Affiliations'
       = @bio_presenter.render :section, :awards
