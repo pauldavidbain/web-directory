@@ -55,8 +55,8 @@ class ApplicationPresenter
   #######################
 
   def safe_html(content)
-    if content.is_a? Array
-      array_to_list(content)
+    if content.is_a?(Array) || content.is_a?(Mongoid::Criteria)
+      array_to_list(content.to_a)
     elsif content.respond_to? :html_safe
       content.html_safe
     else
@@ -71,8 +71,8 @@ class ApplicationPresenter
   end
 
   def format_content(content, format)
-    if content.is_a? Array
-      content.map{|c| format_individual_content(c, format) }
+    if content.is_a?(Array) || content.is_a?(Mongoid::Criteria)
+      content.to_a.map{|c| format_individual_content(c, format) }
     else
       format_individual_content(content, format)
     end
