@@ -15,4 +15,11 @@ module ProfileHelper
     html_options[:class] = membership.team.to_a.compact.map(&:parameterize).join(' ')
     html_options
   end
+
+  def format_book(book)
+    content_tag :div, class: 'book' do
+      image_tag(book.image_url) +
+      link_to(book.title, book.purchase_url, target: "_blank")
+    end.html_safe
+  end
 end
