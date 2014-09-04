@@ -10,8 +10,7 @@ release:
 feedback:
   form_url: https://forms.biola.edu/information-technology/web-directory-feedback
 
-# Override this in settings.local.yml
-secret_token: '454a795d8dd7f7a58ae0232c8a5a5b68f8cfc567f9975472cf2df4957d59a5911751f7c5e71b61b845750e2dd393aebb1b6b72252ff1948a8ef48477520dc380'
+secret_token: # Override this in settings.local.yml
 
 api_base: api.biola.edu/directory/v1
 

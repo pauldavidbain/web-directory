@@ -1,4 +1,4 @@
-- content_for :title, "Directory > #{@person.name}"
+- content_for :title, "#{@person.name} | People, Biola University"
 
 #profile.full-width-page
   .fw-breadcrumbs
@@ -21,7 +21,7 @@
 
           table.table.hide-top-border
             / Some of these attributes have custom implementations in person_presenter.rb
-            = @person_presenter.render :row, :department
+            = @person_presenter.render :row, :departments
             = @person_presenter.render :row, :visible_affiliations
             = @person_presenter.render :row, :emails
             = @person_presenter.render :row, :phones
@@ -30,22 +30,16 @@
             = @person_presenter.render :row, :office_location
             = @person_presenter.render :row, :social_media
 
-
-
-
   .fw-content
     .container
-      .job_description
-        = @person_presenter.render :section, :job_description, title: 'What I Do'
-
-
-      .biography
-        = @bio_presenter.render :section, :degrees
-        = @bio_presenter.render :section, :biography
-        = @bio_presenter.render :section, :professional_affiliations, title: 'Affiliations'
-        = @bio_presenter.render :section, :awards
-        = @bio_presenter.render :section, :publications
-        = @bio_presenter.render :section, :presentations
-        = @bio_presenter.render :section, :research_interests
-        = @bio_presenter.render :section, :courses
-        = @bio_presenter.render :section, :books
+      = @person_presenter.render :section, :job_description, title: 'What I Do'
+      = @bio_presenter.render :section, :degrees
+      = @person_presenter.render :section, :memberships
+      = @bio_presenter.render :section, :biography
+      = @bio_presenter.render :section, :professional_affiliations, title: 'Affiliations'
+      = @bio_presenter.render :section, :awards
+      = @bio_presenter.render :section, :publications
+      = @bio_presenter.render :section, :presentations
+      = @bio_presenter.render :section, :research_interests
+      = @bio_presenter.render :section, :courses
+      = @bio_presenter.render :section, :books

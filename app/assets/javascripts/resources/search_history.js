@@ -83,7 +83,9 @@ $(function() {
     //   If you must differentiate between the requests, use the parameters passed to the handler.
     $(document).ajaxComplete(function(event, xhr, settings) {
       $('body').attr('data-state-href', location.href);
-      document.title = "Directory > " + $(".search_filters .active a").html() + " > \"" + $('#q').val() + "\"";
+      var title = "";
+      if ($('#q').val()) { title += "\"" + $('#q').val() + "\" | Search "; }
+      document.title = title + $(".search_filters .active a").text() + " | Directory, Biola Universtiy";
       replacePageState(getState(this), document.title, location.href);
       window.scrollTo(0, 0);
     });

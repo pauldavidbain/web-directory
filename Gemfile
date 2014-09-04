@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.0.9'
 
 gem 'biola_deploy'
 gem 'blazing'

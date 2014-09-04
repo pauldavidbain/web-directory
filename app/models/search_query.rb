@@ -91,7 +91,7 @@ private
   end
 
   def non_person_filter
-    # We only need to restrict access to people, not departments, groups, or services.
+    # We only need to restrict access to people, not departments, or groups.
     #  So this is meant to be a catch all for those types of search results.
     { :or => [
       { term: { _type: "department" }},

@@ -2,7 +2,7 @@ doctype html
 html lang="en-us"
   head
     / handles default html head tags and csrf_meta_tags
-    = render 'frontend_toolkit/head', title: 'Directory'
+    = render 'frontend_toolkit/head', title: 'Directory, Biola University'
     = stylesheet_link_tag    "application", media: "all"
 
   body class="#{controller_name} #{action_name}"
@@ -14,7 +14,7 @@ html lang="en-us"
     #colorbar
     #directory_header
       .container
-        h1#directory_title = link_to 'Web Directory', root_url
+        h1#directory_title = link_to 'Directory', root_url
 
         #profile_link.dropdown.custom-dropdown
           a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"

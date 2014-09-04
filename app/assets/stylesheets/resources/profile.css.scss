@@ -34,7 +34,7 @@
       img { max-width: 100%; border: 1px solid #ddd; padding: 1px; background-color: white; }
     }
   }
-  .fw-content { margin: 20px 0;
+  .fw-content { margin: 20px 0; min-height: 20px;
     .section-title { border-bottom: 1px solid #ddd; padding-bottom: 10px; margin-bottom: 15px; }
     .section-content { margin-bottom: 60px;
       &.small_bottom { margin-bottom: 20px; }
@@ -49,6 +49,10 @@
       }
       table { width: 100%;
         td { vertical-align: top; }
+      }
+
+      &.person_memberships {
+        a { margin-right: 10px; }
       }
     }
     .photo-gallery .section-content {
@@ -79,6 +83,12 @@
           &.active { color: white; text-decoration: none; background: #428bca; }
         }
       }
+    }
+
+    // books
+    .book { margin-bottom: 10px;
+      img { height: 40px; margin-right: 10px; float: left; }
+      :after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }  // clear the float
     }
   }
 }
