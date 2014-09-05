@@ -16,4 +16,6 @@ Directory::Application.routes.draw do
   # this is just a convenience to create a named route to rack-cas' logout
   get '/logout' => -> env { [200, { 'Content-Type' => 'text/html' }, ['Rack::CAS should have caught this']] }, as: :logout
 
+  # catch all so we can handle routing errors our own way.
+  get "*path", to: "application#routing_error", via: :all
 end

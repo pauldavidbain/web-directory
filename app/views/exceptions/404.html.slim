@@ -1,0 +1,9 @@
+#search_results_container
+  = render 'shared/search_form'
+
+  .container
+    #search_results
+      .alert.alert-danger
+        = fa_icon 'exclamation-triangle'
+        strong<> 404
+        | This page does not exist. Please try a new search.
