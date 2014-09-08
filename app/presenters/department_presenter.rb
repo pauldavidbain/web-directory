@@ -11,6 +11,10 @@ class DepartmentPresenter < ApplicationPresenter
     send type, "Offices & Services", format_content(object.child_departments.where(published: true).order('title asc'), :link)
   end
 
+  def fax(type)
+    send type, "Fax", object.full_biola_phone_number(:fax)
+  end
+
   private
 
   def gallery_photo_list(photos)
