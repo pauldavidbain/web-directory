@@ -7,8 +7,8 @@ class DepartmentPresenter < ApplicationPresenter
     send type, "Photos", gallery_photo_list(object.gallery_photos)
   end
 
-  def child_departments(type, options={})
-    send type, "Offices & Services", format_content(object.child_departments.order('title asc'), :link)
+  def child_departments(type)
+    send type, "Offices & Services", format_content(object.child_departments.where(published: true).order('title asc'), :link)
   end
 
   private
