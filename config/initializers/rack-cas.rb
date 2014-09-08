@@ -7,11 +7,11 @@ if Rails.env.test?
   Directory::Application.config.middleware.swap Rack::FakeCAS, Rack::FakeCAS
 else
   require 'rack/cas'
-  # require 'rack-cas/session_store/mongoid'
+  require 'rack-cas/session_store/mongoid'
 
   extra_attributes = [:cn, :eduPersonNickname, :sn, :title, :department, :mail, :url, :eduPersonAffiliation, :eduPersonEntitlement, :employeeId]
   Directory::Application.config.middleware.use Rack::CAS,
     server_url: Settings.cas.url,
-    # session_store: RackCAS::MongoidStore, #TODO: Having problems with Mongoid session store
+    session_store: RackCAS::MongoidStore,
     extra_attributes_filter: extra_attributes
 end
