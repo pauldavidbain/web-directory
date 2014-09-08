@@ -58,7 +58,7 @@
                     td = contact.full_biola_phone_number
                     td = mail_to(contact.email) if contact.email.present?
 
-      = @department_presenter.render :section, :child_departments, title: "Offices & Services", format: :link
+      = @department_presenter.render :section, :child_departments
 
       - if @memberships.present?
         .staff-members
