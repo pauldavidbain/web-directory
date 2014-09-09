@@ -27,7 +27,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
-    api-auth (1.2.4)
+    api-auth (1.2.5)
     arel (4.0.2)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -46,7 +46,7 @@ GEM
       sass (~> 3.2)
     bson (2.3.0)
     builder (3.1.4)
-    buweb_content_models (0.31.0)
+    buweb_content_models (0.36.0)
       aasm (~> 3.3)
       carrierwave-mongoid (~> 0.7)
       carrierwave-roz (~> 0.2)
@@ -288,7 +288,7 @@ DEPENDENCIES
   biola_frontend_toolkit (~> 0.2)
   blazing
   bootstrap-sass
-  buweb_content_models (~> 0.31)
+  buweb_content_models (~> 0.36)
   coffee-rails
   compass-rails
   elasticsearch
