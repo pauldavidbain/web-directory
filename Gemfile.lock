@@ -35,7 +35,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     biola_deploy (0.7.1)
-    biola_frontend_toolkit (0.2.0)
+    biola_frontend_toolkit (0.3.0)
     blazing (0.4.1)
       activesupport
       grit
@@ -285,7 +285,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biola_deploy
-  biola_frontend_toolkit (~> 0.2)
+  biola_frontend_toolkit (~> 0.3)
   blazing
   bootstrap-sass
   buweb_content_models (~> 0.36)

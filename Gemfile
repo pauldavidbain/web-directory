@@ -4,7 +4,7 @@ gem 'rails', '4.0.9'
 
 gem 'biola_deploy'
 gem 'blazing'
-gem 'biola_frontend_toolkit', '~> 0.2'
+gem 'biola_frontend_toolkit', '~> 0.3'
 gem 'bootstrap-sass'
 gem 'buweb_content_models', '~> 0.36'
 gem 'coffee-rails'
