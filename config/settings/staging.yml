@@ -1,3 +1,9 @@
+app:
+  name: Directory
+  scheme: https
+  host: www.staging.biola.edu
+  relative_url_root: /directory
+
 biola_web_api:
   scheme: https
   host: api.staging.biola.edu

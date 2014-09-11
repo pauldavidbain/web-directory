@@ -9,6 +9,7 @@
 
 #colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
 #directory_header, #body { position: relative; /* this is so they display above colorbar */ }
+#betaBanner { background-color: #FDFFC5; }
 
 #directory_header { margin: 15px 0; color: white;
   .container { position: relative; }
@@ -23,6 +24,9 @@
       }
     }
     #profile-img { height: 50px; width: 50px; background-size: contain; border-radius: 100px; border: 1px solid #ddd; background-color: white; background-position: center center; }
+  }
+  #login_link { position: absolute; right: 20px; top: 17px;
+    a { color: white; font-weight: bold; text-decoration: underline; }
   }
 }
 
