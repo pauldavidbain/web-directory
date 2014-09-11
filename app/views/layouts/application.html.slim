@@ -16,15 +16,26 @@ html lang="en-us"
       .container
         h1#directory_title = link_to 'Directory', root_url
 
-        #profile_link.dropdown.custom-dropdown
-          a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
-            - if current_user.try(:photo_url).present?
-              #profile-img style="background-image: url('#{current_user.photo_url}')"
-            - else
-              span.fa-stack.fa-lg
-                i.fa.fa-circle.fa-stack-2x
-                i.fa.fa-user.fa-stack-1x.fa-inverse
-          = render 'frontend_toolkit/shared/profile_dropdown'
+        - if current_user
+          #profile_link.dropdown.custom-dropdown
+            a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
+              - if current_user.try(:photo_url).present?
+                #profile-img style="background-image: url('#{current_user.photo_url}')"
+              - else
+                span.fa-stack.fa-lg
+                  i.fa.fa-circle.fa-stack-2x
+                  i.fa.fa-user.fa-stack-1x.fa-inverse
+            ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
+              li = link_to fa_icon("user", text: "My Profile"), current_user.person
+              li
+                = link_to logout_path do
+                  i.fa.fa-power-off>
+                  | Logout
+        - else
+          #login_link
+            = link_to 'Login', params.merge(login: 'true')
+            span.hidden-xs< for more results.
+
 
 
     #body

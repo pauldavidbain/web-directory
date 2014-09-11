@@ -25,6 +25,9 @@
     }
     #profile-img { height: 50px; width: 50px; background-size: contain; border-radius: 100px; border: 1px solid #ddd; background-color: white; background-position: center center; }
   }
+  #login_link { position: absolute; right: 20px; top: 17px;
+    a { color: white; font-weight: bold; text-decoration: underline; }
+  }
 }
 
 #footer { margin-top: 200px; background-color: #333; border-top: 1px solid #ddd; text-align: center; color: white; min-height: 100px;
