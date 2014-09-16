@@ -1,23 +1,24 @@
 module SearchHelper
 
-  def li_filter(title, type)
+  def li_filter(title, type=nil)
+    params_type = params['_type'].presence || 'all'
     active_class = ''
-    if (params['_type'] == type) || (params['_type'].blank? && type == 'all')
+    if params_type == type
       active_class = 'active'
     end
     title = title.pluralize unless title == 'All'
+
+    search_params = {'_type' => type}
+    search_params[:q] = params[:q]
+    if type == 'all' || type == 'person'
+      search_params[:sort] = params[:sort]
+      search_params[:affiliation] = params[:affiliation]
+    end
+
     content_tag :li, class: "filter #{active_class}", 'data-type' => type do
-      link_to title, search_path(q: params[:q], '_type' => type), remote: true
+      link_to title, search_path(search_params), remote: true
     end
   end
-
-
-  # def facet_link(group, facet)
-  #   link_to facet_url_params(group, facet), class: (facet_is_active?(group, facet) ? 'active' : '') do
-  #     content_tag(:div, facet['count'], class: 'tag') +
-  #     content_tag(:span, facet['term'].titleize)
-  #   end
-  # end
 
   def facet_url_params(group, facet)
     merged_facets = if facet_is_active?(group, facet)
@@ -75,6 +76,21 @@ module SearchHelper
       params[:_type].pluralize.titleize
     end
     title + " | Directory, Biola University"
+  end
+
+  def selected_sort(type)
+    type = 'all' if type.blank?
+    sort_options(type).select{|opt| opt[:param] == params[:sort]}.first.try(:[], :title) || sort_options(type).first.try(:[], :title)
+  end
+
+  def sort_options(type)
+    type = 'all' if type.blank?
+    options = []
+    if type == 'all' || type == 'person'
+      options << {title: 'Last Name', param: 'last_name'}
+      options << {title: 'First Name', param: 'title'}
+    end
+    options
   end
 
 private

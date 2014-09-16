@@ -112,6 +112,15 @@ private
     end
   end
 
+  def affiliation_filter
+    # Make sure the current user is able to see the affiliation if there is one.
+    if search_params[:affiliation].present? && UserPermissables.new(current_user).affiliations.map(&:to_s).include?(search_params[:affiliation])
+      { term: { affiliations: search_params[:affiliation] }}
+    else
+      {}
+    end
+  end
+
   def facets
     _facets = {}
     (options[:facets] || []).each do |field|
@@ -122,19 +131,33 @@ private
 
   def all_filters
     {
-      :and => [facet_filter, can_access_filter, public_filter].compact
+      :and => [facet_filter, can_access_filter, public_filter, affiliation_filter].compact
     }
   end
 
   def sort_by
-    if term.blank?  # only sort alphabetically if there is no search term, otherwise use the default sorting.
+    if order = search_params[:sort]
+      if order == 'title'
+        [
+          { "_type" => { order: :asc }},
+          { "normalized_data.title" => { order: :asc }},
+          # { "preferred_name" => { order: :asc }},
+        ]
+      elsif order == 'last_name'
+        [
+          { "_type" => { order: :asc }},
+          { "last_name" => { order: :asc }},
+          { "normalized_data.title" => { order: :asc }},
+        ]
+      else  # this includes 'relevance'
+        []
+      end
+    else
       [
         { "_type" => { order: :asc }},
+        { "last_name" => { order: :asc }},
         { "normalized_data.title" => { order: :asc }},
-        "_score"
       ]
-    else
-      []
     end
   end
 
