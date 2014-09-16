@@ -86,9 +86,10 @@ module SearchHelper
   def sort_options(type)
     type = 'all' if type.blank?
     options = []
-    options << {title: 'Name', param: 'title'} if type == 'all'
-    options << {title: 'First Name', param: 'title'} if type == 'person'
-    options << {title: 'Last Name', param: 'last_name'} if type == 'all' || type == 'person'
+    if type == 'all' || type == 'person'
+      options << {title: 'Last Name', param: 'last_name'}
+      options << {title: 'First Name', param: 'title'}
+    end
     options
   end
 

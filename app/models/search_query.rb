@@ -155,6 +155,7 @@ private
     else
       [
         { "_type" => { order: :asc }},
+        { "last_name" => { order: :asc }},
         { "normalized_data.title" => { order: :asc }},
       ]
     end
