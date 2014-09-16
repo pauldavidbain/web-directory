@@ -14,7 +14,7 @@
       = link_to("#{selected_sort(params[:_type])} #{fa_icon('caret-down')}".html_safe, "#", "data-toggle"=>"dropdown")
       ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
         - sort_options(params[:_type]).each do |option|
-          li role="presentation" = link_to option[:title], params.merge(sort: option[:param])
+          li role="presentation" = link_to option[:title], params.merge(sort: option[:param], page: nil)
 
 / Don't show filter options on the department and group pages.
 - unless params[:_type] == 'department' || params[:_type] == 'group'
@@ -26,7 +26,7 @@
           li role="presentation" = link_to "All", params.merge(affiliation: nil)
         - UserPermissables.new(current_user).affiliations.map(&:to_s).sort.each do |affl|
           - unless affl == params[:affiliation]
-            li role="presentation" = link_to affl.titleize, params.merge(affiliation: affl)
+            li role="presentation" = link_to affl.titleize, params.merge(affiliation: affl, page: nil)
 
 - if @results_count > 0
   p.results_count Showing #{currently_showing(@results_count)} #{@results_count} #{'result'.pluralize(@results_count)}
