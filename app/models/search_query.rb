@@ -137,28 +137,26 @@ private
 
   def sort_by
     if order = search_params[:sort]
-      if order == 'name_or_title'
+      if order == 'title'
         [
+          { "_type" => { order: :asc }},
           { "normalized_data.title" => { order: :asc }},
-          "_score"
+          # { "preferred_name" => { order: :asc }},
         ]
       elsif order == 'last_name'
         [
+          { "_type" => { order: :asc }},
           { "last_name" => { order: :asc }},
           { "normalized_data.title" => { order: :asc }},
-          "_score"
         ]
       else  # this includes 'relevance'
         []
       end
-    elsif term.blank?  # only sort alphabetically if there is no search term, otherwise use the default sorting.
+    else
       [
         { "_type" => { order: :asc }},
         { "normalized_data.title" => { order: :asc }},
-        "_score"
       ]
-    else
-      []
     end
   end
 

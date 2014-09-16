@@ -6,15 +6,15 @@
     span< to see more results.
 
 
-.sort_options.pull-right
-  = ' Sort by '
-  span.dropdown
-    = link_to("#{params[:sort].try(:titleize).presence || 'Relevance'} #{fa_icon('caret-down')}".html_safe, "#", "data-toggle"=>"dropdown")
-    ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
-      li role="presentation" = link_to 'Relevance', params.merge(sort: 'relevance')
-      li role="presentation" = link_to 'Name or Title', params.merge(sort: 'name_or_title')
-      - unless params[:_type] == 'department' || params[:_type] == 'group'
-        li role="presentation" = link_to 'Last Name', params.merge(sort: 'last_name')
+/ Don't show sort options on the department and group pages.
+- unless params[:_type] == 'department' || params[:_type] == 'group'
+  .sort_options.pull-right
+    = ' Sort by '
+    span.dropdown
+      = link_to("#{selected_sort(params[:_type])} #{fa_icon('caret-down')}".html_safe, "#", "data-toggle"=>"dropdown")
+      ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
+        - sort_options(params[:_type]).each do |option|
+          li role="presentation" = link_to option[:title], params.merge(sort: option[:param])
 
 / Don't show filter options on the department and group pages.
 - unless params[:_type] == 'department' || params[:_type] == 'group'
