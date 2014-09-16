@@ -26,7 +26,8 @@ html lang="en-us"
                   i.fa.fa-circle.fa-stack-2x
                   i.fa.fa-user.fa-stack-1x.fa-inverse
             ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
-              li = link_to fa_icon("user", text: "My Profile"), current_user.person
+              - if my_profile = current_user.find_person
+                li = link_to fa_icon("user", text: "My Profile"), my_profile
               li
                 = link_to logout_path do
                   i.fa.fa-power-off>

@@ -4,4 +4,9 @@ User.class_eval do
       has_role? affl
     end
   end
+
+  # This actually looks up the person by their biola_id number
+  def find_person
+    @user_person ||= Person.where(biola_id: biola_id).first
+  end
 end
