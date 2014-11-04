@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.10'
+gem 'rails', '4.0.11'
 
 gem 'biola_deploy'
 gem 'blazing'
@@ -8,7 +8,6 @@ gem 'biola_frontend_toolkit', '~> 0.3'
 gem 'bootstrap-sass'
 gem 'buweb_content_models', '~> 0.36'
 gem 'coffee-rails'
-gem 'compass-rails'
 gem 'elasticsearch'
 gem 'elasticsearch-model'
 gem 'font-awesome-rails'
