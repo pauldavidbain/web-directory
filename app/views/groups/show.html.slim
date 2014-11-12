@@ -55,10 +55,11 @@
                   .membership_role = membership.role.join(', ')
                 .clearfix
 
-      - if @group.attachments.present?
-        - @group.attachments.map(&:type).uniq.sort.each do |type|
-          h4.section-title = type.titleize
-          div.attachment_columns
-            ul
-              - @group.attachments.where(type: type).sort_by{|m| m.order }.each do |att|
-                li = link_to att, att.attachment.url
+      div style="margin-bottom:20px;"
+        - if @group.attachments.present?
+          - @group.attachments.map(&:type).uniq.sort.each do |type|
+            h4.section-title = type.titleize
+            div.attachment_columns
+              ul
+                - @group.attachments.where(type: type).sort_by{|m| m.order }.each do |att|
+                  li = link_to att, att.attachment.url
