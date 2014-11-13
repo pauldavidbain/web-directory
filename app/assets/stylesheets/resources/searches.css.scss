@@ -15,9 +15,9 @@
     ul { list-style: none; margin: 0; padding: 0;
       li.filter { float: left; font-size: 20px; cursor: pointer; border-bottom: 3px solid white;
         a { display: inline-block; padding: 15px 20px; color: black; text-decoration: none; }
-        &:hover a { color: $biola-red; }
-        &.active { border-bottom: 3px solid $biola-red;
-          a { color: $biola-red; }
+        &:hover a { color: $color-biola-red; }
+        &.active { border-bottom: 3px solid $color-biola-red;
+          a { color: $color-biola-red; }
         }
       }
     }

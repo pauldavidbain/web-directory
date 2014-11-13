@@ -1,0 +1,24 @@
+- parent ||= nil
+- subtitles ||= []
+- image_url ||= nil
+
+- content_for :site_header do
+
+  - if image_url
+    .site_title_image = image_tag image_url
+
+  ol.nav-breadcrumb
+    li = link_to 'Directory', root_url
+
+    - if controller_name == 'departments'
+      li = link_to "Offices & Services", search_path(_type: controller_name.singularize)
+    - else
+      li = link_to controller_name.titleize, search_path(_type: controller_name.singularize)
+
+    - if parent
+      li = link_to parent, parent
+
+  h2.dept-name = title
+  - if subtitles.present?
+    p.dept-subname = subtitles.to_a.join("<br/>").html_safe
+

@@ -57,37 +57,13 @@ html lang="en-us"
 
     .site-head.dept-header
       .container
-        form.search-form action=("http://www.biola.edu/find/") method="get"
-          .search-field
-            input name="cx" type="hidden" value="011176940750879731841:biwmz6leq4o" /
-            input name="cof" type="hidden" value="FORID:11" /
-            input name="q" placeholder="Search" type="text" /
-            button type="submit"
-              i.icon-search
-
-        / ul.nav-list.nav-icons
-        /   li.search-link
-        /     = fa_icon 'remove'
-        /     = fa_icon 'search'
-        /   li.nav-mobile-link
-        /     = fa_icon 'reorder'
-
-        ol.nav-breadcrumb
-          li = link_to 'Academics', root_url
-          / - @academic_subject.parents.each do |top|
-          /   li = link_to top, top
-
-        h2.dept-name Department
-        / = link_to @academic_subject.title, @academic_subject
+        - if content_for? :site_header
+          = yield :site_header
+        - else
+          h2.dept-name Directory
 
 
     #colorbar
-    #directory_header
-      .container
-        h1#directory_title = link_to 'Directory', root_url
-
-
-
 
     #body
       = yield

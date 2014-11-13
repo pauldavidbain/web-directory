@@ -1,17 +1,13 @@
 - content_for :title, "#{@group.title} | Groups, Biola University"
 
 #profile.full-width-page
-  .fw-breadcrumbs
-    .container
-      = render 'shared/breadcrumbs'
+  = render 'shared/site_header', title: @group.title
 
   .fw-banner
     .container
       - if @group.actors.include? current_user
         .edit-profile-link.pull-right
           = profile_publisher_link @group
-
-      .title = @group.title
 
       table.table.hide-top-border
         - if @group.email.present?

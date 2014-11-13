@@ -7,7 +7,9 @@
 
 @import "settings";
 
-#colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
+body { background-color: white; }
+
+#colorbar { position: absolute; background-color: $color-biola-red; height: 70px; width: 100%; }
 #directory_header, #body { position: relative; /* this is so they display above colorbar */ }
 #betaBanner { background-color: #FDFFC5; }
 

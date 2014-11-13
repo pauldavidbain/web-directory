@@ -18,8 +18,10 @@
         @media (min-width: 500px) { width: 470px; }
         @media (min-width: 768px) { width: 70%; }
         @media (min-width: 992px) { width: 65%; }
-        .table th { color: #999; }
-        .table th, td { border-top-color: #3a3a3a; }
+        .table th { color: #fff; }
+        .table th, td { border-top-color: #3a3a3a;
+          a { color: #8AADCB; }
+        }
         .logo { border: 1px solid #666565; padding: 1px; background-color: rgb(27, 27, 27); }
       }
     }

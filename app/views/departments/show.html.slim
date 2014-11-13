@@ -1,9 +1,7 @@
 - content_for :title, "#{@department.title} | Offices & Services, Biola University"
 
 #profile.full-width-page
-  .fw-breadcrumbs
-    .container
-      = render 'shared/breadcrumbs'
+  = render 'shared/site_header', title: @department.title, parent: @department.parent_department
 
   .fw-banner*with_background_image(@department.banner)
     .container
@@ -15,10 +13,6 @@
             - if policy(@department).edit?
               .pull-right
                 = profile_publisher_link @department, route: 'offices-services'
-
-            .title = @department.title
-            - if @department.parent_department.present?
-              .subtitle = link_to(@department.parent_department.title, @department.parent_department)
 
             table.table.hide-top-border
               = @department_presenter.render :row, :email, format: :email

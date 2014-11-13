@@ -284,6 +284,7 @@ DEPENDENCIES
   bootstrap-sass
   bourbon (~> 3.2)
   buweb_content_models (~> 0.64.0)
+  carrierwave-roz (~> 0.3.6)
   coffee-rails
   elasticsearch
   elasticsearch-model
