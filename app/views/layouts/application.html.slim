@@ -13,73 +13,17 @@ html lang="en-us"
 
   body class="#{controller_name} #{action_name}"
 
-    #wrapperBiolaHeader
-      #biolaHeader
-        - if current_user
-          #profile_link.dropdown.custom-dropdown
-            a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
-              - if current_user.try(:photo_url).present?
-                #profile-img style="background-image: url('#{current_user.photo_url}')"
-              - else
-                span.fa-stack.fa-lg
-                  i.fa.fa-circle.fa-stack-2x
-                  i.fa.fa-user.fa-stack-1x.fa-inverse
-            ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
-              - if my_profile = current_user.find_person
-                li = link_to fa_icon("user", text: "My Profile"), my_profile
-              li
-                = link_to logout_path do
-                  i.fa.fa-power-off>
-                  | Logout
+    / account_list must be before biola_header otherwise the list won't be defined in time.
+    = render 'layouts/account_list'
+    = render 'frontend_toolkit/biola_header', enable_auth: true
 
-
-        .overflow-container
-          h2.biola-header-branding
-            a.biola-header-logo href="http://www.biola.edu"
-              = image_tag 'logo-biola-mark-white.png'
-              | Biola University
-          p.biola-header-more aria-hidden="true"
-            button +
-          ul.biola-header-nav
-            li = link_to "About", "http://www.biola.edu/about"
-            li = link_to "Academics", "http://www.biola.edu/academics"
-            li = link_to "Admissions", "http://www.biola.edu/admissions"
-            li = link_to "Athletics", "http://www.biola.edu/athletics"
-            li = link_to "News & Events", "http://now.biola.edu/"
-            li = link_to "Resources", "http://www.biola.edu/resources"
-            li = link_to "Offices", "http://www.biola.edu/offices"
-
-          - unless current_user
-            .login-link
-              = link_to 'Login', params.merge(login: 'true')
-              span.hidden-xs< for more results
-
-
-    .site-head.dept-header
-      .container
-        - if content_for? :site_header
-          = yield :site_header
-        - else
-          h2.dept-name Directory
-
-
+    = render 'layouts/site_header'
     #colorbar
-
     #body
       = yield
 
 
-    #global_search_form
-      .search_form
-        .search_input
-          = fa_icon 'search'
-          = form_tag search_path, method: :get do |f|
-            = hidden_field_tag '_type', params['_type']
-            = text_field_tag 'q', params[:q], placeholder: 'Search the directory...', tabindex: '1'
-
-
-
+    = render 'layouts/global_search_form'
     = render 'frontend_toolkit/global_marketing_footer'
-
 
     = javascript_include_tag "application"

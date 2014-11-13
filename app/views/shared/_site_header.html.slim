@@ -18,7 +18,7 @@
     - if parent
       li = link_to parent, parent
 
-  h2.dept-name = title
+  h2.page-title = title
   - if subtitles.present?
-    p.dept-subname = subtitles.to_a.join("<br/>").html_safe
+    p.page-subtitle = subtitles.to_a.join("<br/>").html_safe
 
