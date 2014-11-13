@@ -5,17 +5,16 @@ html lang="en-us"
     = render 'frontend_toolkit/head', title: 'Directory, Biola University'
     = stylesheet_link_tag    "application", media: "all"
 
+    / Load Proxima Nova and Minion Pro
+    = javascript_include_tag '//use.typekit.net/zvt1wex.js'
+    javascript:
+      try{Typekit.load();}catch(e){}
+
+
   body class="#{controller_name} #{action_name}"
 
-    = render 'frontend_toolkit/global_marketing_header'
-    / = render 'frontend_toolkit/global_app_header'
-    = render 'frontend_toolkit/prerelease_banner', feedback_form_url: Settings.feedback.form_url
-
-    #colorbar
-    #directory_header
-      .container
-        h1#directory_title = link_to 'Directory', root_url
-
+    #wrapperBiolaHeader
+      #biolaHeader
         - if current_user
           #profile_link.dropdown.custom-dropdown
             a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
@@ -32,10 +31,61 @@ html lang="en-us"
                 = link_to logout_path do
                   i.fa.fa-power-off>
                   | Logout
-        - else
-          #login_link
-            = link_to 'Login', params.merge(login: 'true')
-            span.hidden-xs< for more results.
+
+
+        .overflow-container
+          h2.biola-header-branding
+            a.biola-header-logo href="http://www.biola.edu"
+              = image_tag 'logo-biola-mark-white.png'
+              | Biola University
+          p.biola-header-more aria-hidden="true"
+            button +
+          ul.biola-header-nav
+            li = link_to "About", "http://www.biola.edu/about"
+            li = link_to "Academics", "http://www.biola.edu/academics"
+            li = link_to "Admissions", "http://www.biola.edu/admissions"
+            li = link_to "Athletics", "http://www.biola.edu/athletics"
+            li = link_to "News & Events", "http://now.biola.edu/"
+            li = link_to "Resources", "http://www.biola.edu/resources"
+            li = link_to "Offices", "http://www.biola.edu/offices"
+
+          - unless current_user
+            .login-link
+              = link_to 'Login', params.merge(login: 'true')
+              span.hidden-xs< for more results
+
+
+    .site-head.dept-header
+      .container
+        form.search-form action=("http://www.biola.edu/find/") method="get"
+          .search-field
+            input name="cx" type="hidden" value="011176940750879731841:biwmz6leq4o" /
+            input name="cof" type="hidden" value="FORID:11" /
+            input name="q" placeholder="Search" type="text" /
+            button type="submit"
+              i.icon-search
+
+        / ul.nav-list.nav-icons
+        /   li.search-link
+        /     = fa_icon 'remove'
+        /     = fa_icon 'search'
+        /   li.nav-mobile-link
+        /     = fa_icon 'reorder'
+
+        ol.nav-breadcrumb
+          li = link_to 'Academics', root_url
+          / - @academic_subject.parents.each do |top|
+          /   li = link_to top, top
+
+        h2.dept-name Department
+        / = link_to @academic_subject.title, @academic_subject
+
+
+    #colorbar
+    #directory_header
+      .container
+        h1#directory_title = link_to 'Directory', root_url
+
 
 
 
