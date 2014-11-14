@@ -14,9 +14,9 @@
 
       table.table.hide-top-border
         / Some of these attributes have custom implementations in person_presenter.rb
-        = @person_presenter.render :row, :biola_id, title: 'Biola ID', policy: :can_see_biola_id?
         = @person_presenter.render :row, :departments
         = @person_presenter.render :row, :visible_affiliations
+        = @person_presenter.render :row, :biola_id, title: 'Biola ID', policy: :can_see_biola_id?
         = @person_presenter.render :row, :emails
         = @person_presenter.render :row, :phones
         = @person_presenter.render :row, :assistants, policy: :can_see_assistants?
