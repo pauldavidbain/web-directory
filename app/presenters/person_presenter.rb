@@ -37,8 +37,10 @@ class PersonPresenter < ApplicationPresenter
 
   def emails(type)
     content = []
-    content << object.work_email if object.work_email.present? && object.use_work_email?
-    content << object.biola_email if object.biola_email.present? && context.policy(object).can_see_biola_email?
+    if context.policy(object).can_see_biola_email?
+      content << object.work_email if object.work_email.present?
+      content << object.biola_email if object.biola_email.present?
+    end
     send type, "Email".pluralize(content.length), content.map{|e| format_content(e, :email)}.join('<br/>')
   end
 
