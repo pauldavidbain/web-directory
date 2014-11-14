@@ -4,7 +4,7 @@ gem 'rails', '4.0.11'
 
 gem 'biola_deploy'
 gem 'blazing'
-gem 'biola_frontend_toolkit', github: 'biola/biola-frontend-toolkit', branch: 'general_updates'
+gem 'biola_frontend_toolkit', '~> 0.4.0'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'bourbon', '~> 3.2'
 gem 'buweb_content_models', '~> 0.64.0'
