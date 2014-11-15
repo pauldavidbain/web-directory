@@ -9,9 +9,6 @@
         .edit_profile_link.pull-right
           = profile_publisher_link @person, name: 'Edit Profile'
 
-      / .title = @person.name
-      / .subtitle = @person.titles.join("<br/>").html_safe
-
       table.table.hide-top-border
         / Some of these attributes have custom implementations in person_presenter.rb
         = @person_presenter.render :row, :departments
