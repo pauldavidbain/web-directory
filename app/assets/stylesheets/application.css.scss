@@ -1,13 +1,32 @@
-/*
- *= require biola-frontend-toolkit
- *= require bootstrap_customizations
- *= require_self
- *= require_tree ./resources
- */
+@import "bourbon";
+@import "biola-frontend-toolkit";
+@import "./settings";
+@import "./mixins";
+@import "./extensions";
+@import "./bootstrap-customizations";
+@import "./resources/*";
 
-@import 'settings';
 
-#colorbar { position: absolute; background-color: $biola-red; height: 150px; width: 100%; }
+//====================================
+// Base Type
+//====================================
+h1, h2, h3, h4, h5, h6 { font-family:'proxima-nova',Helvetica,Arial,sans-serif; font-weight:bold; }
+h1, h2, h3, h4 { margin:0 0 0.75em; }
+h5, h6 { margin:0 0 1.1em; }
+h1 { font-size:2.57em; }
+h2 { font-size:2.14em; }
+h3 { font-size:1.71em; }
+h4 { font-size:1.28em; }
+h5 { font-size:1.00em; }
+h6 { font-size:1.00em; }
+
+p, ul, ol, dl, .lead { margin-bottom:1.2em; }
+
+img { max-width:100%; height:auto; }
+
+body { background-color: white; }
+
+#colorbar { position: absolute; background-color: $color-biola-red; height: 70px; width: 100%; }
 #directory_header, #body { position: relative; /* this is so they display above colorbar */ }
 #betaBanner { background-color: #FDFFC5; }
 
@@ -16,28 +35,11 @@
   h1 { font-weight: 400; font-size: 24px; margin: 15px;
     a { color: white; text-decoration: none; }
   }
-  #profile_link { position: absolute; right: 20px; top: 3px;
-    a.dropdown-toggle { text-decoration: none;
-      .fa-stack { width: 50px; height: 50px; line-height: 50px;
-        i.fa-stack-2x { color: #eee; font-size: 50px; }
-        i.fa-stack-1x { color: #777; font-size: 1em; }
-      }
-    }
-    #profile-img { height: 50px; width: 50px; background-size: contain; border-radius: 100px; border: 1px solid #ddd; background-color: white; background-position: center center; }
-  }
-  #login_link { position: absolute; right: 20px; top: 17px;
-    a { color: white; font-weight: bold; text-decoration: underline; }
-  }
 }
 
 #footer { margin-top: 200px; background-color: #333; border-top: 1px solid #ddd; text-align: center; color: white; min-height: 100px;
   .footer { padding: 20px 0; }
 }
-
-@media (min-width: 1200px) {
-  .container { width: 970px; }  // Disabling the largest breakpoint. It is too wide for this project.
-}
-
 
 ///////  Misc Css Objects  ////////////
 .divider { position: relative; height: 32px; overflow: auto; margin: 10px 0;

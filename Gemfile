@@ -4,10 +4,11 @@ gem 'rails', '4.0.11.1'
 
 gem 'biola_deploy'
 gem 'blazing'
-gem 'biola_frontend_toolkit', '~> 0.3'
-gem 'bootstrap-sass'
-gem 'buweb_content_models', '0.66.0'
-gem 'rack-mini-profiler'
+gem 'biola_frontend_toolkit', '~> 0.4.0'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'bourbon', '~> 3.2'
+gem 'buweb_content_models', '~> 0.66.0'
+gem 'carrierwave-roz', '~> 0.3.6'
 gem 'coffee-rails'
 gem 'elasticsearch'
 gem 'elasticsearch-model'
@@ -27,6 +28,7 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rack-mini-profiler'
   gem 'terminal-notifier-guard' # sends guard notifications to the OS X Notification Center.
 end
 

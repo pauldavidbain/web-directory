@@ -5,55 +5,25 @@ html lang="en-us"
     = render 'frontend_toolkit/head', title: 'Directory, Biola University'
     = stylesheet_link_tag    "application", media: "all"
 
+    / Load Proxima Nova and Minion Pro
+    = javascript_include_tag '//use.typekit.net/zvt1wex.js'
+    javascript:
+      try{Typekit.load();}catch(e){}
+
+
   body class="#{controller_name} #{action_name}"
 
-    = render 'frontend_toolkit/global_marketing_header'
-    / = render 'frontend_toolkit/global_app_header'
-    = render 'frontend_toolkit/prerelease_banner', feedback_form_url: Settings.feedback.form_url
+    / account_list must be before biola_header otherwise the list won't be defined in time.
+    = render 'layouts/account_list'
+    = render 'frontend_toolkit/biola_header', enable_auth: true
 
+    = render 'layouts/site_header'
     #colorbar
-    #directory_header
-      .container
-        h1#directory_title = link_to 'Directory', root_url
-
-        - if current_user
-          #profile_link.dropdown.custom-dropdown
-            a.dropdown-toggle href="#" aria-hidden="true" data-toggle="dropdown"
-              - if current_user.try(:photo_url).present?
-                #profile-img style="background-image: url('#{current_user.photo_url}')"
-              - else
-                span.fa-stack.fa-lg
-                  i.fa.fa-circle.fa-stack-2x
-                  i.fa.fa-user.fa-stack-1x.fa-inverse
-            ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
-              - if my_profile = current_user.find_person
-                li = link_to fa_icon("user", text: "My Profile"), my_profile
-              li
-                = link_to logout_path do
-                  i.fa.fa-power-off>
-                  | Logout
-        - else
-          #login_link
-            = link_to 'Login', params.merge(login: 'true')
-            span.hidden-xs< for more results.
-
-
-
     #body
       = yield
 
 
-    #global_search_form
-      .search_form
-        .search_input
-          = fa_icon 'search'
-          = form_tag search_path, method: :get do |f|
-            = hidden_field_tag '_type', params['_type']
-            = text_field_tag 'q', params[:q], placeholder: 'Search the directory...', tabindex: '1'
-
-
-
+    = render 'layouts/global_search_form'
     = render 'frontend_toolkit/global_marketing_footer'
-
 
     = javascript_include_tag "application"

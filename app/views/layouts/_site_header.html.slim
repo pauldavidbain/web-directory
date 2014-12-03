@@ -1,0 +1,6 @@
+.site-header
+  .container
+    - if content_for? :site_header
+      = yield :site_header
+    - else
+      h2.page-title = link_to 'Directory', root_url

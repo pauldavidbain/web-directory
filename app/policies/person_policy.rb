@@ -33,6 +33,10 @@ class PersonPolicy < ApplicationPolicy
     UserPermissables.new(user).phones.include?(:alternate_employee_phone)
   end
 
+  def can_see_biola_id?
+    user && user.employee? && record.employee?
+  end
+
   private
 
   def permitted_to_see_affiliations?

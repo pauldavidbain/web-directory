@@ -1,34 +1,25 @@
 - content_for :title, "#{@person.name} | People, Biola University"
 
 #profile.full-width-page
-  .fw-breadcrumbs
-    .container
-      = render 'shared/breadcrumbs'
+  = render 'shared/site_header', title: @person.name, subtitles: @person.titles, image_url: @profile_img
 
   .fw-banner
     .container
-      .row
-        - if @profile_img
-          .col-sm-3.profile-image.hidden-xs = image_tag @profile_img
+      - if policy(@person).edit?
+        .edit_profile_link.pull-right
+          = profile_publisher_link @person, name: 'Edit Profile'
 
-        .col-sm-9
-          - if policy(@person).edit?
-            .edit_profile_link.pull-right
-              = profile_publisher_link @person, name: 'Edit Profile'
-
-          .title = @person.name
-          .subtitle = @person.titles.join("<br/>").html_safe
-
-          table.table.hide-top-border
-            / Some of these attributes have custom implementations in person_presenter.rb
-            = @person_presenter.render :row, :departments
-            = @person_presenter.render :row, :visible_affiliations
-            = @person_presenter.render :row, :emails
-            = @person_presenter.render :row, :phones
-            = @person_presenter.render :row, :assistants, policy: :can_see_assistants?
-            = @person_presenter.render :row, :assistant_to, format: :link
-            = @person_presenter.render :row, :office_location
-            = @person_presenter.render :row, :social_media
+      table.table.hide-top-border
+        / Some of these attributes have custom implementations in person_presenter.rb
+        = @person_presenter.render :row, :departments
+        = @person_presenter.render :row, :visible_affiliations
+        = @person_presenter.render :row, :biola_id, title: 'Biola ID', policy: :can_see_biola_id?
+        = @person_presenter.render :row, :emails
+        = @person_presenter.render :row, :phones
+        = @person_presenter.render :row, :assistants, policy: :can_see_assistants?
+        = @person_presenter.render :row, :assistant_to, format: :link
+        = @person_presenter.render :row, :office_location
+        = @person_presenter.render :row, :social_media
 
   .fw-content
     .container
