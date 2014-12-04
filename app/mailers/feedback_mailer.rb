@@ -1,5 +1,5 @@
 class FeedbackMailer < ActionMailer::Base
-  default from: 'no-reply@biola.edu'
+  default from: Settings.email.from
 
   def new_feedback(options)
     @feedback = options[:feedback]
@@ -8,7 +8,8 @@ class FeedbackMailer < ActionMailer::Base
     @url = options[:request_url]
 
     if @feedback.present?
-      mail(to: Settings.feedback.mail_to, reply_to: @email.presence, subject: "Directory Feedback ##{random_id}")
+      from_string = @name.present? ? "from #{@name} " : ""
+      mail(to: Settings.feedback.mail_to, reply_to: @email.presence, subject: "Directory Feedback #{from_string}##{random_id}")
     end
   end
 
