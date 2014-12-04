@@ -28,6 +28,7 @@ gem 'uglifier'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener', '~> 1.2.0'
   gem 'rack-mini-profiler'
   gem 'terminal-notifier-guard' # sends guard notifications to the OS X Notification Center.
 end
