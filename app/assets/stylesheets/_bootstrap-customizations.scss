@@ -5,3 +5,15 @@
 }
 
 .label.label-light { background-color: #EFEFEF; color: #333; font-weight: 400; }
+
+textarea { resize: vertical; }
+
+.modal {
+  .modal-header {
+    h1, h2, h3, h4 { margin: 0; }
+  }
+}
+
+form {
+  label.required:after { color: red; content:"*"; padding-left: 4px; }
+}

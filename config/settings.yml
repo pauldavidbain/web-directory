@@ -32,6 +32,9 @@ exceptions:
   mail_to:
   - appdev@biola.edu
 
+feedback:
+  mail_to: appdev@biola.edu
+
 biola_web_api:
   scheme: http
   host: localhost:3000

@@ -1,0 +1,19 @@
+doctype html
+html lang="en-us"
+  head
+    meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
+
+  body
+    h2 Web directory feedback
+
+    p
+      strong> Name:
+      span = @name.presence || 'None Provided'
+      br
+      strong> Email:
+      span = @email.present? ? mail_to(@email) : 'None provided'
+      br
+      strong> URL:
+      a href=@url = @url
+
+    p.feedback style="padding: 15px; border: 1px solid #aaa;" = @feedback

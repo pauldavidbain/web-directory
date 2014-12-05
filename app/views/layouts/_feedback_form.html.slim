@@ -1,0 +1,35 @@
+#report_problem
+  a href="#" data-toggle="modal" data-target="#feedbackModal" Report a problem on this page
+
+.modal.fade#feedbackModal
+  .modal-dialog
+    = form_tag :feedbacks, class: "modal-content" do
+      .modal-header
+        button type="button" class="close" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span class="sr-only" Close
+        h4 Directory Feedback
+      .modal-body
+        .form-group
+          label.required Problem or Feedback?
+          = text_area_tag 'feedback', nil, class: 'form-control', required: true
+
+        - if current_user
+          = hidden_field_tag 'name', current_user.try(:name)
+          = hidden_field_tag 'email', current_user.try(:email)
+
+        - else
+          .row
+            .col-sm-6
+              .form-group
+                label Your Name
+                = text_field_tag 'name', current_user.try(:name), class: 'form-control'
+                p.help-block We may not respond to all feedback.
+            .col-sm-6
+              .form-group
+                label Your Email
+                = text_field_tag 'email', current_user.try(:email), class: 'form-control'
+
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal" Cancel
+        button type="submit" class="btn btn-primary" Send
