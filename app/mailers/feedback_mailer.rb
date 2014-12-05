@@ -17,6 +17,8 @@ class FeedbackMailer < ActionMailer::Base
 
   # Add to subject line to prevent different emails from getting grouped together into the same thread.
   def random_id
-    Time.now.to_i.to_s(36) + rand(100000000).to_s(36)
+    # Since it is just to generate a unique ID, the actual date doesn't matter (which is why I subtract a time in the past)
+    # 1295 == 36^2 - 1. Keeps it to 2 digits.
+    (Time.now.to_i - 1417740000).to_s(36) + rand(1295).to_s(36)
   end
 end

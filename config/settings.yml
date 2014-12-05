@@ -33,7 +33,7 @@ exceptions:
   - appdev@biola.edu
 
 feedback:
-  mail_to: appdev@biola.edu
+  mail_to: appsupport@biola.edu
 
 biola_web_api:
   scheme: http
