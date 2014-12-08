@@ -1,0 +1,13 @@
+#search_results_container
+  = render 'shared/search_form'
+
+  .container
+    #search_results
+      .text-center
+        br
+        br
+        h3 Feedback not processed
+        p Don't forget to check the "I'm not a robot" box. Or you can log in to avoid this step.
+        p = link_to "Back", :back
+        p = image_tag 'robot-warning.jpg'
+        br

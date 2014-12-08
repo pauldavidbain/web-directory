@@ -60,3 +60,7 @@ pagination_limit: 30
 roz:
   access_id: # set in settings.local.yml
   secret_key: # set in settings.local.yml
+
+recaptcha:
+  sitekey: # set in settings.local.yml
+  secret: # set in settings.local.yml
