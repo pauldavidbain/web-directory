@@ -8,7 +8,7 @@ class FeedbacksController < ApplicationController
 
     # Verify CAPTCHA if the user is not logged in and captcha is configured.
     unless current_user || Settings.recaptcha.try(:secret).blank?
-      uri = URI.parse("https://www.google.com/recaptcha/api/siteverify")
+      uri = URI.parse(Settings.recaptcha.base_url)
       gparams = {
         secret: Settings.recaptcha.secret,
         response: params['g-recaptcha-response']
