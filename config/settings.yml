@@ -60,3 +60,8 @@ pagination_limit: 30
 roz:
   access_id: # set in settings.local.yml
   secret_key: # set in settings.local.yml
+
+recaptcha:
+  base_url: https://www.google.com/recaptcha/api/siteverify
+  sitekey: # set in settings.local.yml
+  secret: # set in settings.local.yml

@@ -22,13 +22,16 @@
           .row
             .col-sm-6
               .form-group
-                label Your Name
-                = text_field_tag 'name', current_user.try(:name), class: 'form-control'
-                p.help-block We may not respond to all feedback.
+                label.required Your Name
+                = text_field_tag 'name', current_user.try(:name), class: 'form-control', required: true
             .col-sm-6
               .form-group
-                label Your Email
-                = text_field_tag 'email', current_user.try(:email), class: 'form-control'
+                label.required Your Email
+                = text_field_tag 'email', current_user.try(:email), class: 'form-control', required: true
+
+          hr
+          / Google recaptcha for unauthenticated users
+          .g-recaptcha data-sitekey=Settings.recaptcha.sitekey
 
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal" Cancel
