@@ -19,7 +19,8 @@ class FacultyController < ApplicationController
             ]}
           }
         }
-      }
+      },
+      size: 1000
     })
 
     @grouped_results = {}
