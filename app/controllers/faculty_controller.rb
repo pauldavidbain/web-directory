@@ -7,13 +7,14 @@ class FacultyController < ApplicationController
       index: Settings.elasticsearch.index_name,
       body: {
         sort: [
-          { "last_name" => { order: :asc }},
+          { "last_name_raw" => { order: :asc }},
           { "normalized_data.title" => { order: :asc }},
         ],
         query: {
           filtered: {
             query: { match_all: {} },
             filter: { :and => [
+              { term: { faculty_status: "full_time" }},
               { term: { affiliations: "faculty" }},
               { term: { is_public: true }}
             ]}

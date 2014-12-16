@@ -54,7 +54,7 @@ GEM
       thor
     bson (2.3.0)
     builder (3.1.4)
-    buweb_content_models (0.66.0)
+    buweb_content_models (0.70.0)
       aasm (~> 3.3)
       carrierwave-mongoid (~> 0.7)
       carrierwave-roz (~> 0.3)
@@ -104,7 +104,7 @@ GEM
     elasticsearch-transport (1.0.2)
       faraday
       multi_json
-    email_validator (1.4.0)
+    email_validator (1.5.0)
       activemodel
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -294,7 +294,7 @@ DEPENDENCIES
   blazing
   bootstrap-sass (~> 3.3.1)
   bourbon (~> 3.2)
-  buweb_content_models (~> 0.66.0)
+  buweb_content_models (~> 0.70.0)
   carrierwave-roz (~> 0.3.6)
   coffee-rails
   elasticsearch
