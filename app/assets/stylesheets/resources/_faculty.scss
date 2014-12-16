@@ -1,0 +1,25 @@
+#faculty { background-color: white; padding-top: 20px;
+
+  .faculty-group-wrapper {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  .faculty_listing {
+    float: left;
+    padding: 10px;
+    width: 140px;
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+
+  }
+  .faculty_image img {
+    padding: 2px;
+    border: 1px solid #ccc;
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .faculty_name {
+    padding-top: 5px;
+  }
+}

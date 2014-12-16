@@ -1,0 +1,6 @@
+.faculty_group
+  h2 = title
+  - group.each do |fac|
+    a.faculty_listing href=url_for(fac)
+      .faculty_image = image_tag fac.profile_photo_url(:thumb)
+      .faculty_name = fac.name

@@ -1,0 +1,27 @@
+- content_for :site_header do
+  ol.nav-breadcrumb
+    li = link_to 'Directory', root_url
+    li = link_to 'People', search_path(_type: "person")
+
+  h2.page-title Faculty
+
+#faculty
+  .container
+
+    nav
+      ul.pagination
+        - @grouped_results.keys.sort.each do |key|
+          li = link_to key, "##{key}"
+
+
+    - @grouped_results.keys.sort.each do |key|
+      .faculty-group-wrapper
+        h2.group-letter id=key
+          = key
+          = link_to fa_icon("angle-up", text: "Top", right: false), "#faculty", class: "btn btn-xs btn-default pull-right"
+
+        .faculty-group
+          - @grouped_results[key].each do |result|
+            = render 'faculty', faculty: result_object(result)
+
+        .clearfix
