@@ -10,8 +10,8 @@
 
     .filters
       p Filter by
-      .filter = link_to "Last Name", url_for(filter: nil)
-      .filter = link_to "Department", url_for(filter: 'department')
+      = filter_link "Last Name", nil
+      = filter_link "Department", 'department'
 
     nav
       ul.pagination.pagination-blocky
