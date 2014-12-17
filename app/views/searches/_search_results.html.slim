@@ -6,6 +6,10 @@
     span< to see more results.
 
 
+- if params[:_type] == 'person' && (params[:affiliation] == 'faculty' || (params[:q].blank? && params[:affiliation] == nil))
+  .callout-box Are you looking for the #{link_to('Faculty A-Z Page', faculty_index_url)}?
+
+
 / Don't show sort options on the department and group pages.
 - unless params[:_type] == 'department' || params[:_type] == 'group'
   .sort_options.pull-right
