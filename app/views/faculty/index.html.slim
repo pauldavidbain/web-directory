@@ -9,7 +9,7 @@
   .container
 
     nav
-      ul.pagination
+      ul.pagination.pagination-blocky
         - @grouped_results.keys.sort.each do |key|
           li = link_to key, "##{key}"
 

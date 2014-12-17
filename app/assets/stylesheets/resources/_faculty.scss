@@ -1,5 +1,10 @@
 #faculty { background-color: white; padding-top: 20px;
 
+  .pagination.pagination-blocky {
+    > li > a { width: 39px; }
+  }
+
+
   .faculty-group-wrapper {
     border-top: 1px solid #ddd;
     padding-top: 20px;
