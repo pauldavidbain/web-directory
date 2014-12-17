@@ -6,4 +6,13 @@ module FacultyHelper
     end
   end
 
+  def faculty_nav_class
+    case params[:filter]
+    when 'department'
+      "department_list"
+    else
+      "pagination pagination-blocky"
+    end
+  end
+
 end

@@ -14,7 +14,7 @@
       = filter_link "Department", 'department'
 
     nav
-      ul.pagination.pagination-blocky
+      ul class=faculty_nav_class
         - @keys.each do |key|
           li = link_to key, "##{key}"
 

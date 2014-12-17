@@ -4,6 +4,18 @@
     > li > a { min-width: 39px; margin-left: -1px; }
   }
 
+  ul.department_list {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+
+    -webkit-column-count: 1; -moz-column-count: 1; column-count: 1;
+
+    @media(min-width: 500px) { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
+    @media(min-width: 992px) { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
+    @media(min-width: 1200px) { -webkit-column-count: 4; -moz-column-count: 4; column-count: 4; }
+  }
+
   .filters {
     p {
       display: inline-block;
