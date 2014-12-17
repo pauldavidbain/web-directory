@@ -1,9 +1,24 @@
 #faculty { background-color: white; padding-top: 20px;
 
   .pagination.pagination-blocky {
-    > li > a { width: 39px; }
+    > li > a { min-width: 39px; margin-left: -1px; }
   }
 
+  .filters {
+    p {
+      display: inline-block;
+      font-weight: 500;
+      margin: 0 20px 0 0;
+    }
+    .filter {
+      display: inline-block;
+      padding-right: 10px;
+      margin-right: 10px;
+      border-right: 1px solid #999;
+
+      &:last-child { border-right: none; }
+    }
+  }
 
   .faculty-group-wrapper {
     border-top: 1px solid #ddd;

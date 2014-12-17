@@ -27,9 +27,24 @@ class FacultyController < ApplicationController
     @grouped_results = {}
 
     results["hits"]["hits"].each do |r|
-      key = r["_source"]["last_name"].first
+      key = key_for_filter(r)
       @grouped_results[key] ||= []
       @grouped_results[key] << r
     end
+
+    @keys = @grouped_results.keys.compact.sort
   end
+
+
+  private
+
+  def key_for_filter(r)
+    case params[:filter]
+    when 'department'
+      r["_source"]["department"]
+    else
+      r["_source"]["last_name"].first
+    end
+  end
+
 end
