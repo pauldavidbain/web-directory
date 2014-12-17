@@ -41,7 +41,8 @@ class FacultyController < ApplicationController
   def key_for_filter(r)
     case params[:filter]
     when 'department'
-      r["_source"]["department"]
+      key = r["_source"]["department"]
+      key.gsub(/department( of )?/i, '').gsub(/.*School of/i, '').strip if key.present?
     else
       r["_source"]["last_name"].first
     end
