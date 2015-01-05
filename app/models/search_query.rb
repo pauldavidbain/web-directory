@@ -146,7 +146,7 @@ private
       elsif order == 'last_name'
         [
           { "_type" => { order: :asc }},
-          { "last_name" => { order: :asc }},
+          { "last_name_raw" => { order: :asc }},
           { "normalized_data.title" => { order: :asc }},
         ]
       else  # this includes 'relevance'
@@ -155,7 +155,7 @@ private
     else
       [
         { "_type" => { order: :asc }},
-        { "last_name" => { order: :asc }},
+        { "last_name_raw" => { order: :asc }},
         { "normalized_data.title" => { order: :asc }},
       ]
     end

@@ -20,3 +20,9 @@ window.focusSearch = ->
 
 
 focusSearch()
+
+
+# Open and close the search filter on smaller screens.
+$("#search_results_container").on "click", "li.filter.active", ->
+  $(this).parent().toggleClass "open"
+  false

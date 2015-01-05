@@ -4,6 +4,7 @@ Directory::Application.routes.draw do
     get :thanks, on: :collection
     get :robot, on: :collection
   end
+  resources :faculty, only: [:index]
   resources :people, only: [:show]
   resources :departments, path: 'offices-services', only: [:show]
   resources :groups, only: [:show]

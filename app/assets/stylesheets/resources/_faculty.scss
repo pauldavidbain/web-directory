@@ -1,0 +1,57 @@
+#faculty { background-color: white; padding-top: 20px;
+
+  .pagination.pagination-blocky {
+    > li > a { min-width: 39px; margin-left: -1px; }
+  }
+
+  ul.department_list {
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+
+    -webkit-column-count: 1; -moz-column-count: 1; column-count: 1;
+
+    @media(min-width: 500px) { -webkit-column-count: 2; -moz-column-count: 2; column-count: 2; }
+    @media(min-width: 992px) { -webkit-column-count: 3; -moz-column-count: 3; column-count: 3; }
+    @media(min-width: 1200px) { -webkit-column-count: 4; -moz-column-count: 4; column-count: 4; }
+  }
+
+  .filters {
+    p {
+      display: inline-block;
+      font-weight: 500;
+      margin: 0 20px 0 0;
+    }
+    .filter {
+      display: inline-block;
+      padding-right: 10px;
+      margin-right: 10px;
+      border-right: 1px solid #999;
+
+      &:last-child { border-right: none; }
+    }
+  }
+
+  .faculty-group-wrapper {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  .faculty_listing {
+    float: left;
+    padding: 10px;
+    width: 140px;
+    height: 200px;
+    overflow: hidden;
+    text-align: center;
+
+  }
+  .faculty_image img {
+    padding: 2px;
+    border: 1px solid #ccc;
+    height: 100px;
+    max-width: 100px;
+  }
+  .faculty_name {
+    padding-top: 5px;
+  }
+}

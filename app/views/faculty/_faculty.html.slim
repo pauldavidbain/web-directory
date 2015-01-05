@@ -1,0 +1,10 @@
+a.faculty_listing href=result_url(faculty)
+  .faculty_image
+    - if faculty.data.image_url.present?
+      = image_tag faculty.data.image_url
+    - elsif calced_image = biola_person_image(faculty.raw_data['biola_id'])
+      = image_tag calced_image
+
+  .faculty_name = faculty.data.title
+
+
