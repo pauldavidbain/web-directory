@@ -15,6 +15,10 @@ namespace :elasticsearch do
 
     config.elasticsearchable_models.each do |klass|
       puts "Reimporting #{klass.to_s.pluralize} into elasticsearch..."
+
+      # TODO: This will import everyone, then the next line will go through and remove people who shouldn't be there.
+      #   it would be better to only import the people who need to be there in the first place.
+      #   So maybe `klass.import` isn't the best method to use here.
       klass.import
 
       # This will apply the correct rules to each object.
