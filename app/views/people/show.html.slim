@@ -23,6 +23,7 @@
 
   .fw-content
     .container
+      = @bio_presenter.render :section, :attachment, title: 'Documents', format: :cv_attachment
       = @person_presenter.render :section, :job_description, title: 'What I Do'
       = @bio_presenter.render :section, :degrees
       = @person_presenter.render :section, :memberships

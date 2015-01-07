@@ -88,6 +88,8 @@ class ApplicationPresenter
       context.mail_to content, content
     when :link
       context.link_to content, content
+    when :cv_attachment
+      context.link_to "CV Document (PDF)", content.attachment.url
     else
       content
     end
