@@ -49,6 +49,7 @@ private
             "aliases^5",
             "first_name",
             "last_name^2",
+            "previous_last_name",
             "preferred_name^4",
             "legal_name",
             "*_initial",
