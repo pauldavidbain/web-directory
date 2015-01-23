@@ -23,10 +23,10 @@
     .contact-info
       - if search_result.data.email.present? && policy(Person).can_see_biola_email?
         div = mail_to search_result.data.email
-      - if search_result.data.phone.present? && search_result.type == 'person'
-        - if policy(Person).can_see_employee_phone?
+      - if search_result.type == 'person'
+        - if policy(Person).can_see_employee_phone? && search_result.data.phone.present?
           div = search_result.data.phone + ' (Direct)'
-        - if search_result.data.alternate_phone.present?
+        - if policy(Person).can_see_alternate_phone? && search_result.data.alternate_phone.present?
           div = search_result.data.alternate_phone + ' (Alt)'
       - elsif search_result.data.phone.present?
         div = search_result.data.phone
