@@ -13,7 +13,9 @@ profile_publisher:
   url: https://wcms.biola.edu/profiles
 
 elasticsearch:
-  host: http://elastic1a.prod.biola.edu:9200
+  hosts:
+  - elastic1a.prod.biola.edu
+  - elastic1b.prod.biola.edu
   index_name: directory
 
 google_analytics:

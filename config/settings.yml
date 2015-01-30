@@ -44,7 +44,7 @@ biola_web_api:
   secret_key: # set in settings.local.yml
 
 elasticsearch:
-  host:  # set in environment settings, leave nil for development
+  hosts:  # set in environment settings, leave nil for development
   index_name: 'directory'
 
 profile_publisher:
