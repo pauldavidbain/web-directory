@@ -13,7 +13,8 @@ profile_publisher:
   url: https://wcms.staging.biola.edu/profiles
 
 elasticsearch:
-  host: http://elastic1.staging.biola.edu:9200
+  hosts:
+  - elastic1.staging.biola.edu
   index_name: 'directory'
 
 roz:
