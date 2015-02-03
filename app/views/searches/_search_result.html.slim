@@ -28,6 +28,8 @@
           div = search_result.data.phone + ' (Direct)'
         - if policy(Person).can_see_alternate_phone? && search_result.data.alternate_phone.present?
           div = search_result.data.alternate_phone + ' (Alt)'
+        - if search_result.raw_data['mailbox'].present?
+          div Mailbox # #{search_result.raw_data['mailbox']}
       - elsif search_result.data.phone.present?
         div = search_result.data.phone
 
