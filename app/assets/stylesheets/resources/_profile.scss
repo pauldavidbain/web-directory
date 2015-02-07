@@ -1,6 +1,6 @@
 #profile.full-width-page { background-color: white;
   .fw-banner { background-color: #eee; border-color: #ccc; border-width: 1px 0; border-style: solid; padding: 20px 0;
-    &.with_image { background-size: cover; background-position: center; min-height: 340px;
+    &.with_image { background-size: cover; background-position: center; min-height: 340px; border: none;
       .box { background-color: rgba(0,0,0,.8); color: white; padding: 20px;
         @media (min-width: 500px) { width: 470px; }
         @media (min-width: 768px) { width: 70%; }
