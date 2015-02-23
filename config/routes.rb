@@ -2,7 +2,6 @@ Directory::Application.routes.draw do
 
   resources :feedbacks, path: 'feedback', only: :create do
     get :thanks, on: :collection
-    get :robot, on: :collection
   end
   resources :faculty, only: [:index]
   resources :people, only: [:show]

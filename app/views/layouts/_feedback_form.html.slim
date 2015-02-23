@@ -29,10 +29,6 @@
                 label.required Your Email
                 = text_field_tag 'email', current_user.try(:email), class: 'form-control', required: true
 
-          hr
-          / Google recaptcha for unauthenticated users
-          .g-recaptcha data-sitekey=Settings.recaptcha.sitekey
-
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal" Cancel
         button type="submit" class="btn btn-primary" Send
