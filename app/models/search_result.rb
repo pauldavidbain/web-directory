@@ -10,6 +10,6 @@ class SearchResult
   end
 
   def linkable?
-    type == 'person' ? (affiliations & ['faculty','employee']).any? : true
+    type == 'person' ? (affiliations & ['faculty','employee','contractor']).any? : true
   end
 end

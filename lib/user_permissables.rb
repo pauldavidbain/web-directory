@@ -9,18 +9,19 @@ class UserPermissables
   def affiliations
     if user.present?
       if user.employee? || user.faculty?
-        [:faculty, :employee, :trustee, :volunteer, :alumnus, :student, :student_worker]
+        [:faculty, :employee, :contractor, :trustee, :volunteer, :alumnus, :student, :student_worker]
       elsif user.trustee? || user.volunteer?
-        [:faculty, :employee, :trustee, :volunteer, :alumnus, :student_worker]
+        [:faculty, :employee, :contractor, :trustee, :volunteer, :alumnus, :student_worker]
       elsif user.student? || user.student_worker?
-        [:faculty, :employee, :trustee, :volunteer, :student, :student_worker]
+        [:faculty, :employee, :contractor, :trustee, :volunteer, :student, :student_worker]
       elsif user.alumnus?
-        [:faculty, :employee, :trustee, :volunteer, :alumnus]
+        [:faculty, :employee, :contractor, :trustee, :volunteer, :alumnus]
       else
-        [:faculty, :employee, :trustee]
+        [:faculty, :employee, :contractor, :trustee]
       end
     else
-      [:faculty, :employee, :trustee]
+      # Still gets limited by 'is_public?' which checks for a bio_edition
+      [:faculty, :employee, :contractor, :trustee]
     end
   end
 
