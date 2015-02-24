@@ -33,7 +33,7 @@
             li role="presentation" = link_to affl.titleize, params.merge(affiliation: affl, page: nil)
 
 - if @results_count > 1
-  p.results_count Showing #{currently_showing(@results_count)} #{@results_count} #{'result'.pluralize(@results_count)}
+  p.results_count Showing #{currently_showing(@results_count)} #{@results_count} results
 - elsif @results_count == 1
   p.results_count Showing only result
 - else
