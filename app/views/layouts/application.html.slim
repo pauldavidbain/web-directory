@@ -10,8 +10,6 @@ html lang="en-us"
     javascript:
       try{Typekit.load();}catch(e){}
 
-    script src='https://www.google.com/recaptcha/api.js'
-
   body class="#{controller_name} #{action_name}"
 
     / account_list must be before biola_header otherwise the list won't be defined in time.
@@ -23,7 +21,8 @@ html lang="en-us"
     #body
       = yield
 
-    = render 'layouts/feedback_form'
+    - if current_user
+        = render 'layouts/feedback_form'
 
     = render 'layouts/global_search_form'
     = render 'frontend_toolkit/global_marketing_footer'
