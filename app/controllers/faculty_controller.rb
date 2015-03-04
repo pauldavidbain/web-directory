@@ -15,7 +15,6 @@ class FacultyController < ApplicationController
             query: { match_all: {} },
             filter: { :and => [
               { term: { faculty_status: "full_time" }},
-              { term: { affiliations: "faculty" }},
               { term: { is_public: true }}
             ]}
           }
