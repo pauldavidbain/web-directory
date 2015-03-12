@@ -2,7 +2,7 @@
   .alert.alert-info
     = fa_icon 'lock'
     span<> Not everyone in the directory is public. Please
-    = link_to 'login', params.merge(login: 'true')
+    = link_to 'login', params_with({login: 'true'})
     span< to see more results.
 
 
@@ -18,7 +18,7 @@
       = link_to("#{selected_sort(params[:_type])} #{fa_icon('caret-down')}".html_safe, "#", "data-toggle"=>"dropdown")
       ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
         - sort_options(params[:_type]).each do |option|
-          li role="presentation" = link_to option[:title], params.merge(sort: option[:param], page: nil)
+          li role="presentation" = link_to option[:title], params_with({sort: option[:param], page: nil})
 
 / Don't show filter options on the department and group pages.
 - unless params[:_type] == 'department' || params[:_type] == 'group'
@@ -27,10 +27,10 @@
       = link_to("#{params[:affiliation].try(:titleize).presence || 'Filter'} #{fa_icon('caret-down')}".html_safe, "#", "data-toggle"=>"dropdown")
       ul.dropdown-menu.pull-right role="menu" aria-labelledby="dLabel"
         - if params[:affiliation].present?
-          li role="presentation" = link_to "All", params.merge(affiliation: nil)
+          li role="presentation" = link_to "All", params_with({affiliation: nil})
         - UserPermissables.new(current_user).affiliations.map(&:to_s).sort.each do |affl|
           - unless affl == params[:affiliation]
-            li role="presentation" = link_to affl.titleize, params.merge(affiliation: affl, page: nil)
+            li role="presentation" = link_to affl.titleize, params_with({affiliation: affl, page: nil})
 
 - if @results_count > 1
   p.results_count Showing #{currently_showing(@results_count)} #{@results_count} results
@@ -44,6 +44,6 @@
 
 ul.pager
   - if previous_page.present?
-    li.previous = link_to 'Previous', params.merge(page: previous_page)
+    li.previous = link_to 'Previous', params_with({page: previous_page})
   - if next_page(@pages_count).present?
-    li.next = link_to 'Next', params.merge(page: next_page(@pages_count))
+    li.next = link_to 'Next', params_with({page: next_page(@pages_count)})

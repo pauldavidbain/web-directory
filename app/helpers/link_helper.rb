@@ -28,4 +28,12 @@ module LinkHelper
     route ||= object.class.to_s.downcase.pluralize
     link_to name, "#{Settings.profile_publisher.url}/#{route}/#{object.id}/#{action}", class: css_class, id: html_id
   end
+
+  def params_with(extra_params={})
+    whitelist = [:sort, :page, :_type, :affiliation, :q]
+    clean_params = params.each_with_object({}) do |(key, value), object|
+      object[key] = value.to_s if whitelist.include? key
+    end
+    clean_params.merge(extra_params)
+  end
 end
