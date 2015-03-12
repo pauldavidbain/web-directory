@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_object
-    instance_variable_set "@#{params[:controller].singularize}", get_object(params[:controller].classify.constantize)
+    instance_variable_set "@#{controller_name.singularize}", get_object(controller_name.classify.constantize)
   end
 
 
