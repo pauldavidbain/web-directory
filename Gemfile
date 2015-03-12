@@ -67,6 +67,10 @@ group :test do
   # gem 'rb-fsevent', :require => false
 end
 
+group :staging, :production do
+  gem 'biola_logs'
+end
+
 group :production do
   gem 'exception_notification'
 end
