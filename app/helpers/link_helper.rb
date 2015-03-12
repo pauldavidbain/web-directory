@@ -30,9 +30,9 @@ module LinkHelper
   end
 
   def params_with(extra_params={})
-    whitelist = [:sort, :page, :_type, :affiliation, :q]
+    whitelist = %w{sort page _type affiliation q}
     clean_params = params.each_with_object({}) do |(key, value), object|
-      object[key] = value.to_s if whitelist.include? key
+      object[key] = value.to_s if whitelist.include? key.to_s
     end
     clean_params.merge(extra_params)
   end
