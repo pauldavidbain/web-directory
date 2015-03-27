@@ -28,9 +28,8 @@ email:
   smtp:
     server: postfix.biola.edu
 
-exceptions:
-  mail_to:
-  - appdev@biola.edu
+sentry:
+  url: # Set this in settings.local.yml
 
 feedback:
   mail_to: appsupport@biola.edu

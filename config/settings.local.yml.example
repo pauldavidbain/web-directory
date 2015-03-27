@@ -6,5 +6,8 @@ biola_web_api:
 
 ### In development: ###
 
+sentry:
+  url: # Set this in settings.local.yml
+
 profile_publisher:
   url: http://profile-publisher.dev
