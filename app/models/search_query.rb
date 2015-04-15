@@ -100,6 +100,16 @@ private
     ]}
   end
 
+  def type_filter
+    # Limit "All" search to only type the directory cares about. This will exclude events and other things
+    #   we add to the elasticsearch index in the future
+    { :or => [
+      { term: { _type: "person" }},
+      { term: { _type: "department" }},
+      { term: { _type: "group" }}
+    ]}
+  end
+
   def can_access_filter
     # Either it is not a person or the user has permission on one of the person's indexed affiliations
     { :or => [non_person_filter] + affiliations_user_can_see(current_user) }
@@ -132,7 +142,7 @@ private
 
   def all_filters
     {
-      :and => [facet_filter, can_access_filter, public_filter, affiliation_filter].compact
+      :and => [facet_filter, can_access_filter, public_filter, affiliation_filter, type_filter].compact
     }
   end
 
