@@ -29,7 +29,7 @@ class PersonPresenter < ApplicationPresenter
   def major(type)
     content = ""
     if object.major.present?
-      content += object.major
+      content += object.Major
       content += " - #{object.level}" if object.level.present?
     end
     send type, "Major", content

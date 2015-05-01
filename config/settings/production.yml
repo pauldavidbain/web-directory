@@ -24,5 +24,6 @@ google_analytics:
   enabled: true
 
 roz:
+  api_base_url: https://api.biola.edu/assets/
   files_base_url: http://assets.biola.edu
   access_id: 825942544431112402
