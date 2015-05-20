@@ -1,5 +1,9 @@
 class PersonPresenter < ApplicationPresenter
 
+  def name
+    object.bio_edition.try(:title) || object.name
+  end
+
   def assistants(type)
     content = format_content(object.assistants, :link).join("<br/>")
     send type, "Admin Assistant".pluralize(object.assistants.count), content
