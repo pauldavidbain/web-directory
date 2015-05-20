@@ -1,7 +1,7 @@
 - content_for :title, "#{@person.name} | People, Biola University"
 
 #profile.full-width-page
-  = render 'shared/site_header', title: @person.name, subtitles: @person.titles, image_url: @profile_img
+  = render 'shared/site_header', title: @person_presenter.name, subtitles: @person.titles, image_url: @profile_img
 
   .fw-banner
     .container

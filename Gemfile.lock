@@ -35,12 +35,12 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     biola_deploy (0.7.1)
-    biola_frontend_toolkit (0.4.2)
+    biola_frontend_toolkit (0.4.4)
       bootstrap-sass (~> 3.1)
       coffee-rails (~> 4.0)
       font-awesome-rails (~> 4.2)
       sass-rails (>= 4.0)
-      slim (~> 2.0)
+      slim (>= 2.0)
     biola_logs (0.1.0)
       lograge (~> 0.3)
     blazing (0.4.1)
@@ -295,7 +295,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   biola_deploy
-  biola_frontend_toolkit (~> 0.4.2)
+  biola_frontend_toolkit (~> 0.4.4)
   biola_logs
   blazing
   bootstrap-sass (~> 3.3.1)
