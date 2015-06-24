@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.11.1'
+gem 'rails', '4.1.11'
 
 gem 'biola_deploy'
 gem 'blazing'
@@ -30,6 +30,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener', '~> 1.2.0'
   gem 'rack-mini-profiler'
+  gem 'spring'
   gem 'terminal-notifier-guard' # sends guard notifications to the OS X Notification Center.
 end
 
