@@ -54,6 +54,8 @@
 
       = @department_presenter.render :section, :child_departments
 
+      - if @department.forms_department_id.present?
+        #department_forms data-department-id=@department.forms_department_id
       - if @memberships.present?
         .staff-members
           h4.section-title Department Members
