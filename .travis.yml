@@ -5,3 +5,4 @@ services:
   - elasticsearch
   - mongodb
 script: bundle exec rspec
+sudo: false
