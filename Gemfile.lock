@@ -138,7 +138,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
-    libv8 (3.16.14.7)
+    libv8 (3.16.14.11)
     lisbn (0.2.1)
       nokogiri
       nori (~> 2.0)
