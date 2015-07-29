@@ -3,6 +3,8 @@ class GroupsController < ApplicationController
   before_filter :pundit_authorize
 
   def show
+    # @group is set in application controller via the set object before filter
+    @meta_fields = @group.meta_fields
   end
 
 

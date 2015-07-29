@@ -1,0 +1,8 @@
+- if @meta_fields
+  / meta name="title" content=@meta_fields.title   / title is handled in the application helper
+  meta name="description" content=@meta_fields[:description]
+  meta name="keywords" content=@meta_fields[:keywords]
+  meta name="robots" content=@meta_fields[:robots]
+
+  - if @meta_fields[:canonical_url].present?
+    link rel="canonical" href=@meta_fields[:canonical_url]
