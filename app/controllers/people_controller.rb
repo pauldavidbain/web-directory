@@ -6,9 +6,10 @@ class PeopleController < ApplicationController
     @person_presenter = PersonPresenter.new(view_context, @person)
     @bio_presenter = BiographyPresenter.new(view_context, @person.bio_edition)
 
+    @meta_fields = @person.bio_edition.try(:meta_fields) || {title: @person.name}
+
     @profile_img = @person.profile_photo_url(:medium) || view_context.biola_person_image(@person.try(:biola_id), :large)
   end
-
 
   private
 

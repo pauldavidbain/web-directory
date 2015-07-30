@@ -3,6 +3,7 @@ html lang="en-us"
   head
     / handles default html head tags and csrf_meta_tags
     = render 'frontend_toolkit/head', title: 'Directory, Biola University'
+    = render 'layouts/meta_fields'
     = stylesheet_link_tag    "application", media: "all"
 
     / Load Proxima Nova and Minion Pro

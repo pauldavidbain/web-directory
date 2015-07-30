@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :check_authentication_param, :try_cas_gateway_login, :set_no_cache
+  before_filter :initilaize_meta_fields
   after_action :verify_authorized, except: [:landing, :search, :routing_error]
   after_action :verify_policy_scoped, only: :index
   rescue_from Pundit::NotAuthorizedError, with: :permission_denied!
@@ -26,7 +27,12 @@ class ApplicationController < ActionController::Base
 
 
   protected
-
+  ###################
+  ### Meta Fields ###
+  ###################
+  def initilaize_meta_fields
+    @meta_fields = {}
+  end
 
   ######################
   ### Authentication ###
