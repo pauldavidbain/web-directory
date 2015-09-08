@@ -32,10 +32,12 @@
 
       - if @group.description.present?
         .section-with-table
-          h4.section-title What We Do
+          h4.section-title About Us
           .section-content = @group.description.html_safe
 
-
+      - if @group.body.present?
+        .section
+          .section-content = @group.body.html_safe
 
       - if @group.people.present?
         .staff-members
