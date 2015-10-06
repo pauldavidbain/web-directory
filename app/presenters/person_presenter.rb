@@ -32,7 +32,7 @@ class PersonPresenter < ApplicationPresenter
 
   def major(type)
     content = ""
-    if object.major.present?
+    if context.policy(object).can_see_degree? && object.major.present?
       content += object.major
       content += " - #{object.level}" if object.level.present?
     end
