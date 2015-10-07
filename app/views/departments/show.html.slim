@@ -32,7 +32,7 @@
 
       = @department_presenter.render :section, :service_content, title: "Services We Offer"
 
-      .photo-gallery.hidden-xs = @department_presenter.render :section, :gallery_photos
+      .popup-gallery.hidden-xs = @department_presenter.render :section, :gallery_photos
 
       - if @department.department_contacts.present?
         .department-contacts.section-with-table
