@@ -16,9 +16,11 @@ class BiographyPresenter < ApplicationPresenter
 
   private
   def gallery_photo_list(photos)
-    photos.map do |photo|
-      context.content_tag :div, '', class: 'gallery_photo', style: "background-image: url(#{photo.photo.url(:small)})", 'data-full-url' => photo.photo.url(:medium)
-    end.join
+    context.content_tag :div, class: 'popup-gallery' do
+      photos.map do |photo|
+        context.content_tag :a, context.image_tag(photo.photo.url(:thumb)), href: photo.photo.url(:medium), title: photo.caption
+      end.join.html_safe
+    end
   end
 
 end
