@@ -11,7 +11,9 @@ class BiographyPresenter < ApplicationPresenter
   end
 
   def gallery_photos(type)
-    send type, "Photos", gallery_photo_list(object.gallery_photos)
+    if object.gallery_photos.present?
+      send type, "Photos", gallery_photo_list(object.gallery_photos.asc(:order))
+    end
   end
 
   private
