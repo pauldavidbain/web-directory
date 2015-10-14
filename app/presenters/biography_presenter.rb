@@ -16,13 +16,4 @@ class BiographyPresenter < ApplicationPresenter
     end
   end
 
-  private
-  def gallery_photo_list(photos)
-    context.content_tag :div, class: 'popup-gallery' do
-      photos.map do |photo|
-        context.content_tag :a, context.image_tag(photo.photo.url(:thumb)), href: photo.photo.url(:medium), title: photo.caption
-      end.join.html_safe
-    end
-  end
-
 end
