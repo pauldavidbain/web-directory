@@ -25,6 +25,14 @@ class PersonPolicy < ApplicationPolicy
     user.present?
   end
 
+  def can_see_student_mailbox?
+    user.present?
+  end
+
+  def can_see_degree?
+    user.present?
+  end
+
   def can_see_employee_phone?
     UserPermissables.new(user).phones.include?(:employee_phone)
   end

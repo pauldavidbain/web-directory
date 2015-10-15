@@ -2,6 +2,9 @@
 #= require biola-frontend-toolkit
 #= require jquery.mixitup
 #= require jquery.embedforms
+#= require magnific-popup
+#= require_tree ./components
+#= require_tree ./resources
 #= require_tree .
 
 

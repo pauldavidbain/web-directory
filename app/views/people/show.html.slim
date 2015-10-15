@@ -13,12 +13,12 @@
         / Some of these attributes have custom implementations in person_presenter.rb
         = @person_presenter.render :row, :departments
         = @person_presenter.render :row, :visible_affiliations
-        = @person_presenter.render :row, :major
-        = @person_presenter.render :row, :minor
+        = @person_presenter.render :row, :major, policy: :can_see_degree?
+        = @person_presenter.render :row, :minor, policy: :can_see_degree?
         = @person_presenter.render :row, :biola_id, title: 'Biola ID', policy: :can_see_biola_id?
         = @person_presenter.render :row, :emails
         = @person_presenter.render :row, :phones
-        = @person_presenter.render :row, :mailbox
+        = @person_presenter.render :row, :mailbox, policy: :can_see_student_mailbox?
         = @person_presenter.render :row, :assistants, policy: :can_see_assistants?
         = @person_presenter.render :row, :assistant_to, format: :link
         = @person_presenter.render :row, :office_location

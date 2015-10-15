@@ -1,9 +1,12 @@
 @import "bourbon";
 @import "biola-frontend-toolkit";
+@import "magnific-popup";
+@import "magnific-popup.transitions";
 @import "./settings";
 @import "./mixins";
 @import "./extensions";
 @import "./bootstrap-customizations";
+@import "./components/*";
 @import "./resources/*";
 
 

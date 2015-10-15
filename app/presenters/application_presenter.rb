@@ -98,4 +98,13 @@ class ApplicationPresenter
       context.content_tag :div, context.social_link(account), class: 'link'
     end.join
   end
+
+  def gallery_photo_list(photos)
+    context.content_tag :div, class: 'popup-gallery' do
+      photos.map do |photo|
+        context.content_tag :a, context.image_tag(photo.photo.url(:thumb)), href: photo.photo.url(:medium), title: photo.caption
+      end.join.html_safe + context.content_tag(:div, '', class: 'clearfix')
+    end
+  end
+
 end
