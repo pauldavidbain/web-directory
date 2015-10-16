@@ -1,2 +1,4 @@
+secret_token: "02b2be8b6dc844c24896800734a516b22361d859ad4384ae596c8f27db60994ba39e6f8e52b74bb011f775971a00efb60f7b1678f9ee90c05059993767c628b5"
+
 elasticsearch:
   index_name: 'directory_test'
