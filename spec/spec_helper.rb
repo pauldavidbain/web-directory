@@ -8,8 +8,9 @@ require 'factory_girl'
 
 Mongoid.load!("spec/config/mongoid.yml")
 
-# BuwebContentModels.load_factories
-# FactoryGirl.find_definitions
+# Load factories from buweb
+BuwebContentModels.load_factories
+FactoryGirl.reload
 
 WebMock.disable_net_connect!(allow: ['login.biola.edu', 'localhost:9200'])
 
@@ -54,7 +55,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:suite) do
-    FactoryGirl.lint
+    # FactoryGirl.lint  # this isn't working when importing buweb factories, we need to fix those first.
   end
 
   config.before(:each) do
