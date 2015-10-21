@@ -6,10 +6,12 @@ class PersonPolicy < ApplicationPolicy
   end
 
   def show?
-    if user
-      permitted_to_see_affiliations? || user.admin?
+    if !record.published?
+      false
+    elsif user
+      record.is_public? || permitted_to_see_affiliations? || user.admin?
     else
-      (record.is_public? && permitted_to_see_affiliations?)
+      record.is_public?
     end
   end
 
